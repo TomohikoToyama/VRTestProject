@@ -301,6 +301,7 @@
     <Compile Include="Assets\GameStateManager.cs" />
     <Compile Include="Assets\IEnemy.cs" />
     <Compile Include="Assets\MapManager.cs" />
+    <Compile Include="Assets\PlayerManager.cs" />
     <Compile Include="Assets\PlayerSpawner.cs" />
     <Compile Include="Assets\SceneManager.cs" />
     <Compile Include="Assets\shot.cs" />

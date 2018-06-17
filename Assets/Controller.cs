@@ -7,7 +7,11 @@ public class Controller : MonoBehaviour{
 
     [SerializeField]
     GameObject prefab;
+
+    [SerializeField]
+    GameObject player;
     GameObject _parent;
+    bool shotLimit = false;
 
     // Use this for initialization
     void Start () {
@@ -26,6 +30,7 @@ public class Controller : MonoBehaviour{
         {
             device.TriggerHapticPulse(500);
             Instantiate(prefab, _parent.transform.position, Quaternion.identity);
+            
             Debug.Log("トリガーを深く引いた");
         }
 
@@ -53,7 +58,7 @@ public class Controller : MonoBehaviour{
         if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
         {
 
-            _parent.transform.Translate(0.1f * device.GetAxis().x, 0, 0.1f * device.GetAxis().y);
+            _parent.transform.Translate(0.05f * device.GetAxis().x, 0, 0.05f * device.GetAxis().y);
             Debug.Log("タッチパッドをクリックしている");
         }
      
@@ -82,7 +87,7 @@ public class Controller : MonoBehaviour{
         }
         if (device.GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
         {
-            _parent.transform.Translate(0.05f * device.GetAxis().x, 0, 0.05f * device.GetAxis().y);
+            _parent.transform.Translate(0.025f * device.GetAxis().x, 0, 0.025f * device.GetAxis().y);
             //Debug.Log("タッチパッドに触っている");
         }
 
