@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class shot : MonoBehaviour {
-    float limit = 10f;
+    public float life_time = 2.0f;
+    float time = 0f;
+
     // Use this for initialization
     void Start () {
 		
@@ -12,13 +14,12 @@ public class shot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
-        float translation = Time.deltaTime * 10;
-        transform.Translate(0, 0, translation);
-        if (limit - Time.deltaTime > 0)
-        {
-            Destroy(this);
-        }
 
+        this.gameObject.transform.Translate(0.03f, 0, 0);
+        time += Time.deltaTime;
+        if (time > life_time)
+        {
+            Destroy(gameObject);
+        }
     }
 }

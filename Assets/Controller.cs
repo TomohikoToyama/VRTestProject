@@ -8,6 +8,7 @@ public class Controller : MonoBehaviour{
     [SerializeField]
     GameObject prefab;
     GameObject _parent;
+
     // Use this for initialization
     void Start () {
         _parent = transform.root.gameObject;
@@ -52,7 +53,7 @@ public class Controller : MonoBehaviour{
         if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
         {
 
-            _parent.transform.Translate(0.5f * device.GetAxis().x, 0, 0.5f * device.GetAxis().y);
+            _parent.transform.Translate(0.1f * device.GetAxis().x, 0, 0.1f * device.GetAxis().y);
             Debug.Log("タッチパッドをクリックしている");
         }
      
@@ -63,6 +64,7 @@ public class Controller : MonoBehaviour{
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
         {
+            this.transform.root.position = new Vector3(5,1,5);
             Debug.Log("メニューボタンをクリックした");
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
