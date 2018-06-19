@@ -69,8 +69,10 @@ public class Controller : MonoBehaviour{
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
         {
-            this.transform.root.position = new Vector3(5,1,5);
-            Debug.Log("メニューボタンをクリックした");
+          //  if (!PlayerManager.(true)) {
+                this.transform.root.position = new Vector3(5, 1, 5);
+                Debug.Log("メニューボタンをクリックした");
+           // }
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
         {

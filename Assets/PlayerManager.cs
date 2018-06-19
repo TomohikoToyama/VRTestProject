@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour {
     private int health;
     bool fMove;
     Vector3 playerPos;
+
     // Use this for initialization
     void Start() {
 
@@ -30,6 +31,20 @@ public class PlayerManager : MonoBehaviour {
     }
 
     public void PlayerInit(){
+
+    }
+
+
+    public bool PlayerSpawner(bool spawn)
+    {
+        //スポーンしてないならスポーンフラグ立てて値返す
+        if (!spawn) { 
+           spawn = true;
+        return true;
+        }
+
+            return false;
+
 
     }
 }
