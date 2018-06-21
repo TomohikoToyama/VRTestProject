@@ -9,6 +9,7 @@ public class shot : MonoBehaviour {
     float forwardTime;
     
     bool shotLimit;
+    
 
     // Use this for initialization
     void Start () {
@@ -37,4 +38,6 @@ public class shot : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
+    
 }
