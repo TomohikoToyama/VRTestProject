@@ -300,6 +300,7 @@
     <Compile Include="Assets\EnemyStateManager.cs" />
     <Compile Include="Assets\GameStateManager.cs" />
     <Compile Include="Assets\IEnemy.cs" />
+    <Compile Include="Assets\Interface\IState.cs" />
     <Compile Include="Assets\MapManager.cs" />
     <Compile Include="Assets\PlayerManager.cs" />
     <Compile Include="Assets\PlayerSpawner.cs" />
@@ -407,6 +408,7 @@
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_TrackedObject.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_UpdatePoses.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_Utils.cs" />
+    <Compile Include="Assets\TitleState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Cartoon Temple Building Kit\ReadMe.txt" />
