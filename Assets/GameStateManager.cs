@@ -51,6 +51,15 @@ namespace VR
         }
 
 
+
+        //ステイト切り替え
+        public string SwitchState(IState newState)
+        {
+            activeState = newState;
+            Debug.Log("現在のシーン" + activeState);
+            return activeState.ToString();
+        }
+
         //ゲームステイト初期化
         public void GameStateManagerInit()
         {
