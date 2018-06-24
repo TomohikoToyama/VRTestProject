@@ -4,12 +4,15 @@ using UnityEngine;
 
 namespace VR
 {
-    public class GameStateManager : MonoBehaviour
+    public class GameStateManager : MonoBehaviour , IGameStateManagerController
     {
 
         //ゲームの状態を保持
+        [SerializeField]
         public IState activeState;
-        protected static GameStateManager instance;
+
+        public GameStateManagerController gsmcon;
+        public static GameStateManager instance;
         public static GameStateManager Instance
         {
             get
@@ -27,10 +30,9 @@ namespace VR
                 return instance;
             }
         }
-        // Use this for initialization
-        void awake()
-        {
 
+        void Start()
+        {
             GameObject[] obj = GameObject.FindGameObjectsWithTag("GameStateManager");
             if (obj.Length > 1)
             {
@@ -42,12 +44,21 @@ namespace VR
                 //管理マネージャーはシーン遷移では破棄させない
                 DontDestroyOnLoad(gameObject);
             }
+            GameStateManagerInit();
+        }
+        // Use this for initialization
+        void awake()
+        {
+
+           
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            //activeStateがnullでないならactiveStateのStateUpdateメソッドを実行
+            if (activeState != null)
+                activeState.StateUpdate();
         }
 
 

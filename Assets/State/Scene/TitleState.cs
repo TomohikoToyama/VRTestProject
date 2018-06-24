@@ -21,7 +21,7 @@ public class TitleState : IState {
             if (Input.anyKey)
             {
                 manager.SwitchState(new TestState(manager));
-                SceneManager.LoadScene("TestState");
+                SceneManager.LoadScene("Test");
 
             }
 	    }

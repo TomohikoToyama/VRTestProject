@@ -8,10 +8,22 @@ public class PlayerManager : MonoBehaviour {
     bool fMove;
     Vector3 playerPos;
 
-    // Use this for initialization
-    void Start() {
+    void start()
+    {
 
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("Player");
+        if (obj.Length > 1)
+        {
+            //既に存在してるなら削除
+            Destroy(gameObject);
+        }
+        else
+        {
+            //管理マネージャーはシーン遷移では破棄させない
+            DontDestroyOnLoad(gameObject);
+        }
     }
+           
 
     // Update is called once per frame
     void Update() {
