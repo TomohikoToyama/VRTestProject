@@ -307,6 +307,7 @@
     <Compile Include="Assets\PlayerManager.cs" />
     <Compile Include="Assets\PlayerSpawner.cs" />
     <Compile Include="Assets\shot.cs" />
+    <Compile Include="Assets\State\Scene\MenuState.cs" />
     <Compile Include="Assets\State\Scene\TestState.cs" />
     <Compile Include="Assets\State\Scene\TitleState.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
