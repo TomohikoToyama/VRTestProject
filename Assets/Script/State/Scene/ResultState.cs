@@ -10,7 +10,7 @@ namespace VR
         public ResultState(GameStateManager GSM)
         {
             manager = GSM;
-            Time.timeScale = 0;
+            Time.timeScale = 1;
         }
 
         // Use this for initialization

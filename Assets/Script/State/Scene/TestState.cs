@@ -11,7 +11,7 @@ namespace VR
         {
             //初期化
             manager = GSM;
-            Time.timeScale = 0;
+            Time.timeScale = 1;
         }
 
         // Update is called once per frame

@@ -11,7 +11,7 @@ public class TitleState : IState {
         {
             //初期化
             manager = GSM;
-            Time.timeScale = 0;
+            Time.timeScale = 1;
         }
 
         //更新処理
