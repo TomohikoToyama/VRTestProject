@@ -11,6 +11,8 @@ public class Controller : MonoBehaviour{
     [SerializeField]
     GameObject missile;
 
+
+    public float cool_time = 0.05f;
     [SerializeField]
     GameObject player;
     GameObject _parent;
@@ -29,10 +31,10 @@ public class Controller : MonoBehaviour{
 
         
         //左キー
-        if (device.index == 3 && device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
+        if (device.index == 3 && device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
         {
-            device.TriggerHapticPulse(500);
-            Instantiate(prefab, _parent.transform.position, Quaternion.identity);
+            device.TriggerHapticPulse(3500);
+            Instantiate(prefab, player.transform.position, Quaternion.identity);
             
             Debug.Log("トリガーを深く引いた");
         }
@@ -44,11 +46,10 @@ public class Controller : MonoBehaviour{
         }
 
 
-        if (device.index == 4 && device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
+        if (device.index == 4 && device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
         {
-            device.TriggerHapticPulse(500);
-            Instantiate(prefab, _parent.transform.position, Quaternion.identity);
-            this.gameObject.transform.Translate(0, 0, 1f);
+            device.TriggerHapticPulse(3500);
+            Instantiate(prefab, player.transform.position, Quaternion.identity);
             Debug.Log("トリガーを深く引いた");
         }
 

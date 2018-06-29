@@ -6,6 +6,7 @@ using UnityEngine;
 public class shot : MonoBehaviour {
     public float life_time = 0.5f;
     float time = 0f;
+
     float forwardTime;
     
     bool shotLimit;
@@ -21,14 +22,11 @@ public class shot : MonoBehaviour {
 
         
         time += Time.deltaTime;
-        if (time < 0.25f)
+        if (time < 0.5f)
         {
 
-            this.gameObject.transform.Translate(0.5f, 0, 0);
+            this.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * 1.0f;
 
-        }else if (time >= 0.25f)
-        {
-            this.gameObject.transform.Translate(-0.5f, 0, 0);
 
         }
         else if (time > 0.5f)
