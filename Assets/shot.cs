@@ -25,7 +25,7 @@ public class shot : MonoBehaviour {
         if (time < 0.5f)
         {
 
-            this.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * 1.0f;
+            this.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * 2.0f;
 
 
         }
