@@ -11,7 +11,9 @@ public class Controller : MonoBehaviour{
     [SerializeField]
     GameObject missile;
 
-
+    // 弾丸発射点
+    [SerializeField]
+    public Transform muzzle;
     public float cool_time = 0.05f;
     [SerializeField]
     GameObject player;
@@ -35,8 +37,9 @@ public class Controller : MonoBehaviour{
         if ( device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
         {
             device.TriggerHapticPulse(3500);
-            prefab = Instantiate(prefab, this.transform.position, Quaternion.identity);
-            prefab.transform.parent = this.transform;
+            prefab = Instantiate(prefab, muzzle.transform.position, Quaternion.identity);
+            prefab.transform.position = muzzle.position;
+            prefab.transform.eulerAngles = player.transform.eulerAngles;
             prefab.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * 3f);
 
            // Instantiate(prefab, player.transform.position, Quaternion.identity);
