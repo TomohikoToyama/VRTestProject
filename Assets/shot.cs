@@ -10,7 +10,10 @@ public class shot : MonoBehaviour {
     float forwardTime;
     
     bool shotLimit;
-    
+
+    //テスト用
+    [SerializeField]
+    GameObject playerRight;
 
     // Use this for initialization
     void Start () {

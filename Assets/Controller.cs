@@ -30,30 +30,20 @@ public class Controller : MonoBehaviour{
         var device = SteamVR_Controller.Input((int)trackedObject.index);
 
         
-        //左キー
-        if (device.index == 3 && device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
+       
+        //右キー
+        if ( device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
         {
             device.TriggerHapticPulse(3500);
-            Instantiate(prefab, player.transform.position, Quaternion.identity);
-            
+            prefab = Instantiate(prefab, this.transform.position, Quaternion.identity);
+            prefab.transform.parent = this.transform;
+            prefab.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * 3f);
+
+           // Instantiate(prefab, player.transform.position, Quaternion.identity);
             Debug.Log("トリガーを深く引いた");
         }
 
-        if (device.index == 3 && device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
-        {
-            this.gameObject.transform.Translate(0, 0, -1f);
-            Debug.Log("トリガーを離した");
-        }
-
-
-        if (device.index == 4 && device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
-        {
-            device.TriggerHapticPulse(3500);
-            Instantiate(prefab, player.transform.position, Quaternion.identity);
-            Debug.Log("トリガーを深く引いた");
-        }
-
-        if (device.index == 4 && device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
+        if ( device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
             this.gameObject.transform.Translate(0, 0, -1f);
             Debug.Log("トリガーを離した");
