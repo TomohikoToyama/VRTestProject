@@ -40,31 +40,31 @@ namespace VR
 
 
 
-            //右キー
+            //トリガーキー押した時の挙動
+            //暫定で通常ショット
             if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
             {
-
                  PSC.ShotBullet();
-               
-
             }
 
+            //トリガー離した時の挙動
             if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
             {
-                this.gameObject.transform.Translate(0, 0, -1f);
-                Debug.Log("トリガーを離した");
+                
             }
 
+            //タッチパッドを押した時の挙動
             if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
             {
 
-                _parent.transform.Translate(0.05f * device.GetAxis().x, 0, 0.05f * device.GetAxis().y);
+                //_parent.transform.Translate(0.05f * device.GetAxis().x, 0, 0.05f * device.GetAxis().y);
                 Debug.Log("タッチパッドをクリックしている");
             }
 
-
+            //タッチパッドを離した時の挙動
             if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
+                PSC.ShotMissile();
                 Debug.Log("タッチパッドを離した");
             }
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
@@ -90,7 +90,7 @@ namespace VR
             }
             if (device.GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                _parent.transform.Translate(0.025f * device.GetAxis().x, 0, 0.025f * device.GetAxis().y);
+             //   _parent.transform.Translate(0.025f * device.GetAxis().x, 0, 0.025f * device.GetAxis().y);
                 //Debug.Log("タッチパッドに触っている");
             }
 

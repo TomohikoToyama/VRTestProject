@@ -308,6 +308,7 @@
     <Compile Include="Assets\Script\Interface\IGameStateManagerController.cs" />
     <Compile Include="Assets\Script\Interface\IPlayerState.cs" />
     <Compile Include="Assets\Script\Interface\IState.cs" />
+    <Compile Include="Assets\Script\MissileMover.cs" />
     <Compile Include="Assets\Script\State\Enemy\AdbancedFSM.cs" />
     <Compile Include="Assets\Script\State\Player\ThirdPersonState.cs" />
     <Compile Include="Assets\Script\State\Scene\MenuState.cs" />
