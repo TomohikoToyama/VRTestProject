@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace VR
 {
-    public class EnemyFSMState : MonoBehaviour
+    public abstract class EnemyFSMState : MonoBehaviour
     {
 
         // Use this for initialization
@@ -18,5 +18,21 @@ namespace VR
         {
 
         }
+
+        //状態遷移時、何の状態になるかの判定
+        public FSMStateID GetOutputState(Transition tran)
+        {
+            //遷移がNullか確認
+
+      
+
+            return FSMStateID.None;
+        }
+        //状態遷移するかの意思決定
+        public abstract void Reason(Transform player, Transform enm);
+
+        //敵キャラの処理、行動、動作
+        public abstract void Act(Transform player, Transform enm);
+
     }
 }
