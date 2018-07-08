@@ -38,7 +38,7 @@ public class shot : MonoBehaviour {
         {
 
 
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 

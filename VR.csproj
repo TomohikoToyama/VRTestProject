@@ -310,11 +310,13 @@
     <Compile Include="Assets\Script\Interface\IPlayerState.cs" />
     <Compile Include="Assets\Script\Interface\IState.cs" />
     <Compile Include="Assets\Script\MissileMover.cs" />
+    <Compile Include="Assets\Script\StageScroll.cs" />
     <Compile Include="Assets\Script\State\Enemy\EnemyAIFSM.cs" />
     <Compile Include="Assets\Script\State\Enemy\EnemyFSM.cs" />
     <Compile Include="Assets\Script\State\Enemy\EnemyFSMState.cs" />
     <Compile Include="Assets\Script\State\Enemy\test\AttackMode.cs" />
-    <Compile Include="Assets\Script\State\Enemy\test\TestEnemyContrroler.cs" />
+    <Compile Include="Assets\Script\State\Enemy\test\TestEnemyController.cs" />
+    <Compile Include="Assets\Script\State\EnemyCtrl.cs" />
     <Compile Include="Assets\Script\State\Player\ThirdPersonState.cs" />
     <Compile Include="Assets\Script\State\Scene\MenuState.cs" />
     <Compile Include="Assets\Script\State\Scene\ResultState.cs" />

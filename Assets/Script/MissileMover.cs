@@ -40,7 +40,7 @@ public class MissileMover : MonoBehaviour {
         {
 
 
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

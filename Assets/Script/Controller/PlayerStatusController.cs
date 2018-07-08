@@ -7,7 +7,7 @@ namespace VR
 {
     public class PlayerStatusController : MonoBehaviour
     {
-        [SerializeField]
+       // [SerializeField]
         public GameObject shot;
 
         // 弾丸発射点
@@ -37,7 +37,7 @@ namespace VR
         // Use this for initialization
         void Start()
         {
-            
+            shot =(GameObject)Instantiate(Resources.Load("Prefabs/Sphere"));
         }
 
         // Update is called once per frame

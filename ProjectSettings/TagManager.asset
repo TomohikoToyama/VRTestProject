@@ -8,6 +8,8 @@ TagManager:
   - Player_Right
   - Player_Left
   - Enemy
+  - WandarPoint
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX
