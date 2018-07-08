@@ -6,14 +6,16 @@ namespace VR
 {
     public class EnemyFSM : MonoBehaviour
     {
-        
-        protected RectTransformUtility playerTransform; //プレイヤーの位置
+
+        protected Transform playerTransform; //プレイヤーの位置
 
         protected Vector3 destPos;                      //敵の到達地点
 
-        protected float shottRate;      //敵弾の射撃速度
-        protected float shotCT;         //弾のクールタイム
+        protected float shootRate;      //敵弾の射撃速度
+        protected float shootCT;         //弾のクールタイム
 
+        //策敵する地点のリスト
+        protected GameObject[] pointList;
 
         public Transform muzzle { get; set; }               //砲台
         public Transform bulletSpawnPoint { get; set; }     //弾発射位置
