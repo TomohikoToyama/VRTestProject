@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 namespace VR
 {
     public class MenuState : IState
@@ -9,7 +10,7 @@ namespace VR
         public MenuState(GameStateManager GSM)
         {
             manager = GSM;
-            Time.timeScale = 0;
+            Time.timeScale = 1;
         }
         // Use this for initialization
         void Start()
@@ -20,7 +21,13 @@ namespace VR
         // Update is called once per frame
         public void StateUpdate()
         {
+            //何らかのキーを押して画面遷移
+            if (Input.anyKey)
+            {
+                manager.SwitchState(new TestState(manager));
+                SceneManager.LoadScene("Test");
 
+            }
         }
     }
 }
