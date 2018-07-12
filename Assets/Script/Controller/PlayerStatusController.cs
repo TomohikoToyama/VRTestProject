@@ -55,10 +55,10 @@ namespace VR
             if (shotTimer >= shotCT) {
               shotTimer = 0.0f;
                
-                    Instantiate(shot, muzzle.transform.position, Quaternion.identity);
+                  var shotClone =  Instantiate(shot, muzzle.transform.position, Quaternion.identity);
 
-                    shot.transform.position = muzzle.position;
-                    shot.transform.eulerAngles = player.transform.eulerAngles;
+                shotClone.transform.position = muzzle.position;
+                shotClone.transform.eulerAngles = player.transform.eulerAngles;
               
 
                 Debug.Log("トリガーを深く引いた");
@@ -79,9 +79,9 @@ namespace VR
             if (missileTimer >= missileCT)
             {
                 missileTimer = 0.0f;
-                Instantiate(missile, muzzle.transform.position, Quaternion.identity);
-                missile.transform.position = muzzle.position;
-                missile.transform.eulerAngles = player.transform.eulerAngles;
+              var misslieClone =  Instantiate(missile, muzzle.transform.position, Quaternion.identity);
+                misslieClone.transform.position = muzzle.position;
+                misslieClone.transform.eulerAngles = player.transform.eulerAngles;
                 
             }
 
