@@ -7,7 +7,7 @@ namespace VR
 {
     public class PlayerStatusController : MonoBehaviour
     {
-       // [SerializeField]
+       
         public GameObject shot;
 
         // 弾丸発射点
@@ -16,8 +16,7 @@ namespace VR
 
         [SerializeField]
         public GameObject player;
-
-        [SerializeField]
+        
         public GameObject missile;
 
         Controller Con;
@@ -37,7 +36,9 @@ namespace VR
         // Use this for initialization
         void Start()
         {
-            shot =(GameObject)Instantiate(Resources.Load("Prefabs/Sphere"));
+            shot = (GameObject)Resources.Load("Prefabs/Sphere");
+            missile = (GameObject)Resources.Load("Prefabs/missile");
+          
         }
 
         // Update is called once per frame
@@ -53,10 +54,14 @@ namespace VR
             //ショットタイマーがCT以上なら弾を発射
             if (shotTimer >= shotCT) {
               shotTimer = 0.0f;
-              shot = Instantiate(shot, muzzle.transform.position, Quaternion.identity);
-              shot.transform.position = muzzle.position;
-              shot.transform.eulerAngles = player.transform.eulerAngles;
-             Debug.Log("トリガーを深く引いた");
+               
+                    Instantiate(shot, muzzle.transform.position, Quaternion.identity);
+
+                    shot.transform.position = muzzle.position;
+                    shot.transform.eulerAngles = player.transform.eulerAngles;
+              
+
+                Debug.Log("トリガーを深く引いた");
             }
         }
 
@@ -74,7 +79,7 @@ namespace VR
             if (missileTimer >= missileCT)
             {
                 missileTimer = 0.0f;
-                missile = Instantiate(missile, muzzle.transform.position, Quaternion.identity);
+                Instantiate(missile, muzzle.transform.position, Quaternion.identity);
                 missile.transform.position = muzzle.position;
                 missile.transform.eulerAngles = player.transform.eulerAngles;
                 

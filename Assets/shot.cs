@@ -8,7 +8,7 @@ public class shot : MonoBehaviour {
     float time = 0f;
 
    
-    float shotSpeed = 5.0f;
+    float shotSpeed = 10.0f;
     
     bool shotLimit;
 
@@ -30,7 +30,6 @@ public class shot : MonoBehaviour {
         {
 
             this.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed ;
-            ;
 
 
         }
@@ -38,7 +37,7 @@ public class shot : MonoBehaviour {
         {
 
 
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
