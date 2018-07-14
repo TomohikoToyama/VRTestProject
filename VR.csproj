@@ -297,18 +297,22 @@
   <ItemGroup>
     <Compile Include="Assets\Controller.cs" />
     <Compile Include="Assets\EnemyController.cs" />
-    <Compile Include="Assets\EnemyStateManager.cs" />
-    <Compile Include="Assets\GameStateManager.cs" />
-    <Compile Include="Assets\GameStateManagerController.cs" />
     <Compile Include="Assets\IEnemy.cs" />
-    <Compile Include="Assets\MapManager.cs" />
-    <Compile Include="Assets\PlayerManager.cs" />
     <Compile Include="Assets\PlayerSpawner.cs" />
     <Compile Include="Assets\Script\Controller\PlayerStatusController.cs" />
     <Compile Include="Assets\Script\EnemySpwaner.cs" />
     <Compile Include="Assets\Script\Interface\IGameStateManagerController.cs" />
     <Compile Include="Assets\Script\Interface\IPlayerState.cs" />
+    <Compile Include="Assets\Script\Interface\IStage.cs" />
     <Compile Include="Assets\Script\Interface\IState.cs" />
+    <Compile Include="Assets\Script\Manager\EnemyStateManager.cs" />
+    <Compile Include="Assets\Script\Manager\GameStateManager.cs" />
+    <Compile Include="Assets\Script\Manager\GameStateManagerController.cs" />
+    <Compile Include="Assets\Script\Manager\IStageManagerController.cs" />
+    <Compile Include="Assets\Script\Manager\MapManager.cs" />
+    <Compile Include="Assets\Script\Manager\PlayerManager.cs" />
+    <Compile Include="Assets\Script\Manager\StageManager.cs" />
+    <Compile Include="Assets\Script\Manager\StageManagerController.cs" />
     <Compile Include="Assets\Script\MissileMover.cs" />
     <Compile Include="Assets\Script\StageScroll.cs" />
     <Compile Include="Assets\Script\State\Enemy\EnemyAIFSM.cs" />
@@ -323,6 +327,8 @@
     <Compile Include="Assets\Script\State\Scene\StageState.cs" />
     <Compile Include="Assets\Script\State\Scene\TestState.cs" />
     <Compile Include="Assets\Script\State\Scene\TitleState.cs" />
+    <Compile Include="Assets\Script\State\Stage\FirstStage.cs" />
+    <Compile Include="Assets\Script\State\Stage\TestStage.cs" />
     <Compile Include="Assets\shot.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
