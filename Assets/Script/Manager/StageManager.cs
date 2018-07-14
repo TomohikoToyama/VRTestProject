@@ -29,7 +29,7 @@ public class StageManager : MonoBehaviour, IStageManagerController{
         }
     // Use this for initialization
     void Start() {
-            GameObject[] obj = GameObject.FindGameObjectsWithTag("GameStateManager");
+            GameObject[] obj = GameObject.FindGameObjectsWithTag("StageManager");
             if (obj.Length > 1)
             {
                 //既に存在してるなら削除
@@ -58,8 +58,13 @@ public class StageManager : MonoBehaviour, IStageManagerController{
         //ゲームステイト初期化
         public void StageManagerInit()
         {
-            activeStage = new FirstStage(this);
+            activeStage = new TestStage(this);
 
+        }
+
+        public string FormatStage()
+        {
+            return smcon.GetStageName();
         }
     }
 }

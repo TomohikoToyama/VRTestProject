@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - WandarPoint
   - PlayerBullet
+  - StageManager
   layers:
   - Default
   - TransparentFX

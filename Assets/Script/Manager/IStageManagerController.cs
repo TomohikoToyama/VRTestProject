@@ -8,7 +8,7 @@ namespace VR
     {
 
         void StageManagerInit();
-        string SwitchState(IState istate);
+        string SwitchState(IStage istate);
 
     }
 }
