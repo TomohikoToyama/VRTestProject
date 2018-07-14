@@ -24,7 +24,7 @@ namespace VR
         public string GetStageName()
         {
 
-            string stagename = sm.activeStage.ToString().Replace("VR.", "");
+            string stagename = sm.activeStage.ToString();
             return stagename;
         }
 

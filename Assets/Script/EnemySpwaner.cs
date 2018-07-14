@@ -12,14 +12,18 @@ namespace VR
             TestStage = 9,
         }
 
+
+        float spawnTime;
         [SerializeField]
         StageManager SM;
 
+        GameObject enemy;
         GameObject player;
         // Use this for initialization
-        void Start()
+        void start()
         {
-
+            SM = GameObject.FindGameObjectWithTag("StageManager").GetComponent<StageManager>();
+            enemy = GameObject.FindGameObjectWithTag("Enemy");
             player = GameObject.FindGameObjectWithTag("Player");
             Enemy();
         }
@@ -27,15 +31,21 @@ namespace VR
         // Update is called once per frame
         void Update()
         {
-
+            spawnTime += Time.deltaTime;
+            
+                if (spawnTime > 2.0){
+                    spawnTime = 0;
+                    Instantiate(enemy);
+                }
+            
         }
 
 
         void Enemy(){
 
-            Debug.Log(SM.FormatStage());
+            Debug.Log(SM.GetFormatStage());
             Debug.Log(StageNum.TestStage.ToString());
-            if ( SM.FormatStage() == StageNum.TestStage.ToString())
+            if ( SM.GetFormatStage() == StageNum.TestStage.ToString())
             {
                 Debug.Log("テスト");
             }

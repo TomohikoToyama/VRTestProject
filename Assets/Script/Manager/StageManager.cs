@@ -8,6 +8,7 @@ public class StageManager : MonoBehaviour, IStageManagerController{
     //
     [SerializeField]
     public IStage activeStage;
+    public string stageName;
     public StageManagerController smcon;
     public static StageManager instance;
     public static StageManager Instance
@@ -52,6 +53,7 @@ public class StageManager : MonoBehaviour, IStageManagerController{
         {
             activeStage = newStage;
             Debug.Log("現在のシーン" + activeStage);
+            stageName = activeStage.ToString();
             return activeStage.ToString();
         }
 
@@ -59,12 +61,12 @@ public class StageManager : MonoBehaviour, IStageManagerController{
         public void StageManagerInit()
         {
             activeStage = new TestStage(this);
-
+           
         }
 
-        public string FormatStage()
+        public string GetFormatStage()
         {
-            return smcon.GetStageName();
+            return stageName;
         }
     }
 }
