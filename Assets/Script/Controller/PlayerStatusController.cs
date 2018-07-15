@@ -12,7 +12,11 @@ namespace VR
 
         // 弾丸発射点
         [SerializeField]
-        public Transform muzzle;
+        public Transform muzzleone;
+
+        // 弾丸発射点
+        [SerializeField]
+        public Transform muzzletwo;
 
         [SerializeField]
         public GameObject player;
@@ -26,7 +30,7 @@ namespace VR
         public int Power = 5;               //ショットの威力
         public float missileCT = 2.0f;      //ミサイルチャージタイム
         public float missileTimer = 0f;      //ミサイルチャージタイム
-        public float shotCT = 0.1f;         //ショット用CT
+        public float shotCT = 0.01f;         //ショット用CT
         public float shotTimer = 0;         //ショット間隔用タイマー
         public float invicibleTime = 2.0f;  //無敵時間
         public bool died = false;           //死亡
@@ -55,11 +59,10 @@ namespace VR
             if (shotTimer >= shotCT) {
               shotTimer = 0.0f;
                
-                  var shotClone =  Instantiate(shot, muzzle.transform.position, Quaternion.identity);
-
-                shotClone.transform.position = muzzle.position;
-                shotClone.transform.eulerAngles = player.transform.eulerAngles;
-              
+               var shotClone1 =  Instantiate(shot, muzzleone.transform.position, Quaternion.identity);
+               var shotClone2 = Instantiate(shot, muzzletwo.transform.position, Quaternion.identity);
+                shotClone1.transform.eulerAngles = player.transform.eulerAngles;
+                shotClone2.transform.eulerAngles = player.transform.eulerAngles;
 
                 Debug.Log("トリガーを深く引いた");
             }
@@ -79,8 +82,8 @@ namespace VR
             if (missileTimer >= missileCT)
             {
                 missileTimer = 0.0f;
-              var misslieClone =  Instantiate(missile, muzzle.transform.position, Quaternion.identity);
-                misslieClone.transform.position = muzzle.position;
+              var misslieClone =  Instantiate(missile, muzzleone.transform.position, Quaternion.identity);
+                misslieClone.transform.position = muzzleone.position;
                 misslieClone.transform.eulerAngles = player.transform.eulerAngles;
                 
             }

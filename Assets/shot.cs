@@ -25,7 +25,7 @@ public class shot : MonoBehaviour {
         
        
 
-            this.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed ;
+            gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed ;
 
 
     }

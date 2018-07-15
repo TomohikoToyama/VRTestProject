@@ -12,6 +12,7 @@ TagManager:
   - PlayerBullet
   - StageManager
   - RangeArea
+  - Field
   layers:
   - Default
   - TransparentFX

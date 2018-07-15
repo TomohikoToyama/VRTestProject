@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 416014}
   - component: {fileID: 13613378}
   - component: {fileID: 114736198224023784}
-  - component: {fileID: 54735872828354322}
+  - component: {fileID: 54116877482835216}
   m_Layer: 0
   m_Name: missile
   m_TagString: PlayerBullet
@@ -89,7 +89,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115386}
-  m_LocalRotation: {x: -0.19305901, y: 0.3827602, z: 0.06853716, w: 0.90084714}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.1143837, y: 1.1460054, z: 7.06322}
   m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_Children:
@@ -7029,7 +7029,7 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 115386}
   m_IsPrefabParent: 1
---- !u!54 &54735872828354322
+--- !u!54 &54116877482835216
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -7037,8 +7037,8 @@ Rigidbody:
   m_GameObject: {fileID: 115386}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.1
+  m_AngularDrag: 0.1
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -7055,5 +7055,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1034ea48f2a5e6c48bf6a1c5ddb514b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life_time: 3
   playerRight: {fileID: 0}

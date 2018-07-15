@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 135357693663907192}
   - component: {fileID: 23104245302190648}
   - component: {fileID: 114968863022413436}
-  - component: {fileID: 54049667354883684}
+  - component: {fileID: 54638083104665412}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: PlayerBullet
@@ -37,7 +37,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1647302546056460}
-  m_LocalRotation: {x: -0.1847591, y: 0.6429075, z: 0.05019361, w: 0.7416297}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.24704, y: 1.2980161, z: 7.008888}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1647302546056460}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54049667354883684
+--- !u!54 &54638083104665412
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -93,8 +93,8 @@ Rigidbody:
   m_GameObject: {fileID: 1647302546056460}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.1
+  m_AngularDrag: 0.1
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0

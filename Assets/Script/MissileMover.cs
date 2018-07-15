@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class MissileMover : MonoBehaviour {
 
-    public float life_time = 3.0f;
-    float time = 0f;
+   
 
-
-    float shotSpeed = 8.0f;
+    float shotSpeed = 10.0f;
 
     bool shotLimit;
 
@@ -27,20 +25,20 @@ public class MissileMover : MonoBehaviour {
     {
 
 
-        time += Time.deltaTime;
-        if (time < life_time)
-        {
-
-            this.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed;
-            
+        gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed;
 
 
-        }
-        else if (time > life_time)
-        {
-
-
-            Destroy(this.gameObject);
-        }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+            Destroy(gameObject);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "RangeArea")
+            Destroy(gameObject);
+    }
+
 }

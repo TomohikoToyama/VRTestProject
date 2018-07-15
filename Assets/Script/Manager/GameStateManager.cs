@@ -74,7 +74,8 @@ namespace VR
         //ゲームステイト初期化
         public void GameStateManagerInit()
         {
-            activeState = new TitleState(this);
+           
+            activeState = new TestState(this);
 
         }
 
