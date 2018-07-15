@@ -11,6 +11,7 @@ TagManager:
   - WandarPoint
   - PlayerBullet
   - StageManager
+  - RangeArea
   layers:
   - Default
   - TransparentFX

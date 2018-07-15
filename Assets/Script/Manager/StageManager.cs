@@ -66,7 +66,7 @@ public class StageManager : MonoBehaviour, IStageManagerController{
 
         public string GetFormatStage()
         {
-            return stageName;
+            return activeStage.ToString();
         }
     }
 }

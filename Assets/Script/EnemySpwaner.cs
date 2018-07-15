@@ -17,23 +17,24 @@ namespace VR
         [SerializeField]
         StageManager SM;
 
+        [SerializeField]
         GameObject enemy;
         GameObject player;
         // Use this for initialization
         void start()
         {
             SM = GameObject.FindGameObjectWithTag("StageManager").GetComponent<StageManager>();
-            enemy = GameObject.FindGameObjectWithTag("Enemy");
+            //enemy = GameObject.FindGameObjectWithTag("Enemy");
             player = GameObject.FindGameObjectWithTag("Player");
-            Enemy();
+           
         }
 
         // Update is called once per frame
         void Update()
         {
             spawnTime += Time.deltaTime;
-            
-                if (spawnTime > 2.0){
+            Enemy();
+            if (spawnTime > 2.0){
                     spawnTime = 0;
                     Instantiate(enemy);
                 }

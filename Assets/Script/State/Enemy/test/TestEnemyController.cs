@@ -18,11 +18,11 @@ namespace VR
             shootCT = 0.0f;
             shootRate = 2.0f;
             Debug.Log("オブジェクトとったよ");
-           // GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
+            GameObject objPlayer = GameObject.FindGameObjectWithTag("Player_Right");
             playerTransform = objPlayer.transform;
-            if (!playerTransform)
-                Debug.Log("Playerタグのオブジェクトがないよ");
-
+            if (!playerTransform) { 
+            Debug.Log("Playerタグのオブジェクトがないよ");
+             }
             Debug.Log(playerTransform);
             //弾の発射点取得
             muzzle = gameObject.transform.GetChild(0).transform;
@@ -30,6 +30,7 @@ namespace VR
 
             //FSMを構築
             ConstructFSM();
+
         }
 
         //更新
