@@ -36,13 +36,13 @@ namespace VR
         public bool died = false;           //死亡
         public bool invicible = false;      //無敵
         public string playerName = "Charlotte";//プレイヤー名
+        bool bShot;
 
         // Use this for initialization
         void Start()
         {
             shot = (GameObject)Resources.Load("Prefabs/Sphere");
             missile = (GameObject)Resources.Load("Prefabs/missile");
-          
         }
 
         // Update is called once per frame
@@ -55,17 +55,19 @@ namespace VR
         //弾を撃つ
         public void ShotBullet()
         {
-            //ショットタイマーがCT以上なら弾を発射
-            if (shotTimer >= shotCT) {
-              shotTimer = 0.0f;
-               
-               var shotClone1 =  Instantiate(shot, muzzleone.transform.position, Quaternion.identity);
-               var shotClone2 = Instantiate(shot, muzzletwo.transform.position, Quaternion.identity);
-                shotClone1.transform.eulerAngles = player.transform.eulerAngles;
-                shotClone2.transform.eulerAngles = player.transform.eulerAngles;
+            if(!bShot)
+            StartCoroutine(ShootBulletAndDestroyCoroutine());
+        }
 
-                Debug.Log("トリガーを深く引いた");
-            }
+        private IEnumerator ShootBulletAndDestroyCoroutine()
+        {
+            bShot = true;
+            yield return new WaitForSeconds(0.1f);
+            var shotClone1 = Instantiate(shot, muzzleone.transform.position, player.transform.rotation);
+           // shotClone1.transform.eulerAngles = player.transform.eulerAngles;
+            bShot = false;
+           
+          
         }
 
         //ミサイルロックオン

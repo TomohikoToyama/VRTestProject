@@ -337,6 +337,7 @@
     <Compile Include="Assets\Plugin\Standard Assets\Utility\TimedObjectDestructor.cs" />
     <Compile Include="Assets\Plugin\Standard Assets\Utility\WaypointCircuit.cs" />
     <Compile Include="Assets\Plugin\Standard Assets\Utility\WaypointProgressTracker.cs" />
+    <Compile Include="Assets\Scene\test.cs" />
     <Compile Include="Assets\Script\Controller\GameStateManagerController.cs" />
     <Compile Include="Assets\Script\Controller\PlayerStatusController.cs" />
     <Compile Include="Assets\Script\Controller\StageManagerController.cs" />

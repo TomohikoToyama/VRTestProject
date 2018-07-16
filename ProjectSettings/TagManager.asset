@@ -13,6 +13,9 @@ TagManager:
   - StageManager
   - RangeArea
   - Field
+  - SearchArea
+  - PlayerMuzzle
+  - target
   layers:
   - Default
   - TransparentFX

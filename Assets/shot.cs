@@ -7,7 +7,7 @@ public class shot : MonoBehaviour {
     public float life_time = 1.0f;
     float time = 0f;
     
-    float shotSpeed = 10.0f;
+    float shotSpeed = 20.0f;
     
     bool shotLimit;
 

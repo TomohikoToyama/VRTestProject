@@ -6,9 +6,13 @@ public class MissileMover : MonoBehaviour {
 
    
 
-    float shotSpeed = 10.0f;
+    float shotSpeed = 30.0f;
 
     bool shotLimit;
+    GameObject muzzle;
+    GameObject target;
+    public float Speed;
+
 
     //テスト用
     [SerializeField]
@@ -17,14 +21,18 @@ public class MissileMover : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        muzzle = GameObject.FindGameObjectWithTag("PlayerMuzzle");
+        target = GameObject.FindGameObjectWithTag("target");
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
+        if(target != null)
+        this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z), shotSpeed * Time.deltaTime);
+        
+        if(target == null)
         gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed;
 
 
