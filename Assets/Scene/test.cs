@@ -18,9 +18,7 @@ public class test : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-
-            ll.levelName = "load";
-            ll.Trigger();
+            SteamVR_LoadLevel.Begin("load");
         }
     }
 }

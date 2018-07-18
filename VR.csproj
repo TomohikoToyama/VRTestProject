@@ -346,6 +346,7 @@
     <Compile Include="Assets\Script\Interface\IPlayerState.cs" />
     <Compile Include="Assets\Script\Interface\IStage.cs" />
     <Compile Include="Assets\Script\Interface\IState.cs" />
+    <Compile Include="Assets\Script\LoadSceneMover.cs" />
     <Compile Include="Assets\Script\Manager\EnemyStateManager.cs" />
     <Compile Include="Assets\Script\Manager\GameStateManager.cs" />
     <Compile Include="Assets\Script\Manager\IStageManagerController.cs" />
