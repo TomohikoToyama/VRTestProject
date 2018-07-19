@@ -79,6 +79,12 @@ namespace VR
 
         }
 
+        //
+        public string FormatStateName()
+        {
+            return gsmcon.GetStateName();
+        }
+
     }
 
 }

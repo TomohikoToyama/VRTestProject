@@ -23,8 +23,8 @@ namespace VR
         }
         public string GetStateName()
         {
-            string statename = gsm.activeState.ToString();
-            return statename;
+           
+            return gsm.activeState.ToString();
         }
 
     }
