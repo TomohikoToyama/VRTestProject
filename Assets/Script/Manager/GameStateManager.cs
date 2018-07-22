@@ -10,6 +10,7 @@ namespace VR
         //ゲームの状態を保持
         [SerializeField]
         public IState activeState;
+        public IState nextState;
 
         public GameStateManagerController gsmcon;
         public static GameStateManager instance;
@@ -71,18 +72,26 @@ namespace VR
             return activeState.ToString();
         }
 
+        //ステイト切り替え
+        public string SetNextState(IState next)
+        {
+            nextState = next;
+            Debug.Log("次のシーン" + nextState);
+            return nextState.ToString();
+        }
+
         //ゲームステイト初期化
         public void GameStateManagerInit()
         {
            
-            activeState = new TestState(this);
+            activeState = new TitleState(this);
 
         }
 
         //
         public string FormatStateName()
         {
-            return gsmcon.GetStateName();
+            return activeState.ToString();;
         }
 
     }

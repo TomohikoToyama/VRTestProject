@@ -6,6 +6,8 @@ namespace VR
 {
     public class MenuState : IState
     {
+
+        bool select;
         private GameStateManager manager;
         public MenuState(GameStateManager GSM)
         {
@@ -22,12 +24,14 @@ namespace VR
         public void StateUpdate()
         {
             //何らかのキーを押して画面遷移
-            if (Input.anyKey)
+            if (select)
             {
                 manager.SwitchState(new TestState(manager));
                 SceneManager.LoadScene("Test");
 
             }
         }
+
+        
     }
 }

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 namespace VR
 {
-    public class LoadState : IState
+    public class LoadState : MonoBehaviour,IState
     {
         private AsyncOperation async;
         private GameStateManager manager;
@@ -17,21 +18,26 @@ namespace VR
         }
         public void StateUpdate()
         {
-            SceneLoading(manager.FormatStateName());
+            Debug.Log("ロードシーン" + manager.FormatStateName());
+            StartCoroutine(SceneLoading(manager.FormatStateName()));
 
         }
 
 
-        private IEnumerator SceneLoading(string sneceName){
-
+        private IEnumerator SceneLoading(string sceneName)
+        {
+            Debug.Log("テスト"+sceneName);
             // シーンの読み込みをする
-            async = SceneManager.LoadSceneAsync(sneceName);
+            async = SceneManager.LoadSceneAsync(sceneName);
+            async.allowSceneActivation = false;
             //　読み込みが終わるまで進捗状況をスライダーの値に反映させる
             while (!async.isDone)
             {
               
                 yield return null;
             }
+            Debug.Log("テスト終了" );
+            manager.SwitchState(new MenuState(manager));
             async.allowSceneActivation = true;
         }
 

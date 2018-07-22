@@ -7,6 +7,8 @@ namespace VR
     public class Controller : MonoBehaviour
     {
 
+        GameStateManager gsm;
+
         [SerializeField]
         public GameObject shot;
 
@@ -29,7 +31,8 @@ namespace VR
         void Start()
         {
             _parent = transform.root.gameObject;
-
+            gsm = GameObject.FindWithTag("GameStateManager").GetComponent<GameStateManager>();
+            Debug.Log(gsm);
         }
 
         // Update is called once per frame
@@ -37,14 +40,16 @@ namespace VR
         {
             var trackedObject = GetComponent<SteamVR_TrackedObject>();
             var device = SteamVR_Controller.Input((int)trackedObject.index);
-
+           // var eye = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+           // Ray ray = new Ray(eye.transform.position, eye.transform.forward);
 
 
             //トリガーキー押した時の挙動
             //暫定で通常ショット
             if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
             {
-                 PSC.ShotBullet();
+                if (gsm.FormatStateName() != null && gsm.FormatStateName() == "VR.TestState")
+                    PSC.ShotBullet();
             }
 
             //トリガー離した時の挙動
@@ -64,15 +69,18 @@ namespace VR
             //タッチパッドを離した時の挙動
             if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
+                if(gsm.FormatStateName() != null && gsm.FormatStateName() == "VR.TestState")
                 PSC.ShotMissile();
+
+
                 Debug.Log("タッチパッドを離した");
             }
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
             {
-                //  if (!PlayerManager.(true)) {
+                 
 
                 Debug.Log("メニューボタンをクリックした");
-                // }
+               
             }
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
             {

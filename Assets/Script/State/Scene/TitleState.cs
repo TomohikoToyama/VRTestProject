@@ -20,6 +20,7 @@ public class TitleState : IState {
             //何らかのキーを押して画面遷移
             if (Input.anyKey)
             {
+
                 manager.SwitchState(new MenuState(manager));
                 SceneManager.LoadScene("Menu");
 
