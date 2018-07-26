@@ -11,6 +11,8 @@ namespace VR
         [SerializeField]
         public IState activeState;
         public IState nextState;
+        public GameObject playerObj;
+        public PlayerManager PM;
 
         public GameStateManagerController gsmcon;
         public static GameStateManager instance;
@@ -45,15 +47,11 @@ namespace VR
                 //管理マネージャーはシーン遷移では破棄させない
                 DontDestroyOnLoad(gameObject);
             }
+            playerObj = GameObject.FindGameObjectWithTag("Player");
             GameStateManagerInit();
+            PlayerInit();
         }
-        // Use this for initialization
-        void awake()
-        {
-
-           
-        }
-
+    
         // Update is called once per frame
         void Update()
         {
@@ -88,6 +86,12 @@ namespace VR
 
         }
 
+        //プレイヤー初期化
+        public void PlayerInit()
+        {
+            PM = playerObj.GetComponent<PlayerManager>();
+            PM.PlayerInit();
+        }
         //
         public string FormatStateName()
         {

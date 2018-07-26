@@ -13,21 +13,7 @@ namespace VR
 
         void start()
         {
-            Debug.Log("start now");
-
-            GameObject[] obj = GameObject.FindGameObjectsWithTag("Player");
-            if (obj.Length > 1)
-            {
-                Debug.Log("test now");
-                //既に存在してるなら削除
-                Destroy(gameObject);
-            }
-            else
-            {
-                Debug.Log("NOproblem");
-                //管理マネージャーはシーン遷移では破棄させない
-                DontDestroyOnLoad(gameObject);
-            }
+           
         }
 
 
@@ -51,6 +37,21 @@ namespace VR
 
         public void PlayerInit()
         {
+            Debug.Log("start now");
+
+            GameObject[] obj = GameObject.FindGameObjectsWithTag("Player");
+            if (obj.Length > 1)
+            {
+                Debug.Log("test now");
+                //既に存在してるなら削除
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.Log("NOproblem");
+                //管理マネージャーはシーン遷移では破棄させない
+                DontDestroyOnLoad(gameObject);
+            }
 
         }
 

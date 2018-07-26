@@ -62,7 +62,7 @@ namespace VR
             if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
             {
 
-                //_parent.transform.Translate(0.05f * device.GetAxis().x, 0, 0.05f * device.GetAxis().y);
+                _parent.transform.Translate(0.05f * device.GetAxis().x, 0, 0.05f * device.GetAxis().y);
                 Debug.Log("タッチパッドをクリックしている");
             }
 

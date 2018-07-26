@@ -450,14 +450,17 @@
     <Compile Include="Assets\Script\Interface\IPlayerState.cs" />
     <Compile Include="Assets\Script\Interface\IStage.cs" />
     <Compile Include="Assets\Script\Interface\IState.cs" />
+    <Compile Include="Assets\Script\LaserPointer.cs" />
     <Compile Include="Assets\Script\Manager\EnemyStateManager.cs" />
     <Compile Include="Assets\Script\Manager\GameStateManager.cs" />
     <Compile Include="Assets\Script\Manager\IStageManagerController.cs" />
     <Compile Include="Assets\Script\Manager\MapManager.cs" />
     <Compile Include="Assets\Script\Manager\PlayerManager.cs" />
     <Compile Include="Assets\Script\Manager\StageManager.cs" />
+    <Compile Include="Assets\Script\MenuButton.cs" />
     <Compile Include="Assets\Script\MissileMover.cs" />
     <Compile Include="Assets\Script\StageScroll.cs" />
+    <Compile Include="Assets\Script\StageSelect.cs" />
     <Compile Include="Assets\Script\State\Enemy\EnemyAIFSM.cs" />
     <Compile Include="Assets\Script\State\Enemy\EnemyFSM.cs" />
     <Compile Include="Assets\Script\State\Enemy\EnemyFSMState.cs" />

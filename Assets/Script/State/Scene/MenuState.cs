@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 namespace VR
 {
-    public class MenuState : IState
+    public class MenuState :  IState
     {
-
+        StageSelect SS;
         bool select;
         private GameStateManager manager;
         public MenuState(GameStateManager GSM)
@@ -17,14 +17,16 @@ namespace VR
         // Use this for initialization
         void Start()
         {
-
+            
         }
 
         // Update is called once per frame
         public void StateUpdate()
         {
+            SS = GameObject.FindGameObjectWithTag("StageCard").GetComponent<StageSelect>();
+
             //何らかのキーを押して画面遷移
-            if (select)
+            if (SS.select)
             {
                 manager.SwitchState(new TestState(manager));
                 SceneManager.LoadScene("Test");
