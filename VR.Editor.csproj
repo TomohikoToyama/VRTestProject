@@ -289,6 +289,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="VR.Plugins.csproj">
+      <Project>{CF4E8F1E-AB7A-7C71-0DB3-A8E5FB235117}</Project>
+      <Name>VR.Plugins</Name>
+    </ProjectReference>
     <ProjectReference Include="VR.csproj">
       <Project>{262920D3-35E0-439A-13D6-FC4051F4B40D}</Project>
       <Name>VR</Name>
@@ -329,6 +333,9 @@
     <None Include="Assets\Plugin\SteamVR\Resources\SteamVR_Fade.shader" />
     <None Include="Assets\Plugin\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
     <None Include="Assets\Plugin\SteamVR\readme.txt" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ChromaticAberrationShader.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\VignettingShader.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableBlur.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

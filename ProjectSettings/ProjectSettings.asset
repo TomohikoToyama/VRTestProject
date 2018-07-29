@@ -668,7 +668,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 87a85f73-e96f-4a68-8185-d2070e07e33e
-  projectName: 
+  projectName: VRTestProject
   organizationId: unity_ei4ovosswnn9ma
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
