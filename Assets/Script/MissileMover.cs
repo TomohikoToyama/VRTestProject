@@ -12,6 +12,8 @@ public class MissileMover : MonoBehaviour {
     GameObject muzzle;
     GameObject target;
     public float Speed;
+    private int power = 10; //ショットの攻撃力
+    public int Power { get { return power; } set { power = value; } }
 
 
     //テスト用
