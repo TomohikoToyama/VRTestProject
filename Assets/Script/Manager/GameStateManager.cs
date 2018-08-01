@@ -14,6 +14,7 @@ namespace VR
         public GameObject playerObj;
         public PlayerManager PM;
 
+        private string removeName = "VR.";     //state名を渡す時用にnamespaceの文字列を除去
         public GameStateManagerController gsmcon;
         public static GameStateManager instance;
         public static GameStateManager Instance
@@ -92,10 +93,11 @@ namespace VR
             PM = playerObj.GetComponent<PlayerManager>();
             PM.PlayerInit();
         }
-        //
-        public string FormatStateName()
+
+        //現在のstate名を取得
+        public string GetStateName()
         {
-            return activeState.ToString();;
+            return activeState.ToString().Replace(removeName, "");
         }
 
     }

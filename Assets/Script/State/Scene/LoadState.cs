@@ -18,8 +18,8 @@ namespace VR
         }
         public void StateUpdate()
         {
-            Debug.Log("ロードシーン" + manager.FormatStateName());
-            StartCoroutine(SceneLoading(manager.FormatStateName()));
+            Debug.Log("ロードシーン" + manager.GetStateName());
+            StartCoroutine(SceneLoading(manager.GetStateName()));
 
         }
 

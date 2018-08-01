@@ -6,12 +6,13 @@ public class MissileMover : MonoBehaviour {
 
    
 
-    float shotSpeed = 30.0f;
+    float shotSpeed = 20.0f;
 
     bool shotLimit;
     GameObject muzzle;
     GameObject target;
     public float Speed;
+    [SerializeField]
     private int power = 10; //ショットの攻撃力
     public int Power { get { return power; } set { power = value; } }
 
@@ -24,7 +25,7 @@ public class MissileMover : MonoBehaviour {
     void Start()
     {
         muzzle = GameObject.FindGameObjectWithTag("PlayerMuzzle");
-        target = GameObject.FindGameObjectWithTag("target");
+       // target = GameObject.FindGameObjectWithTag("target");
 
     }
 
@@ -41,8 +42,8 @@ public class MissileMover : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
-            Destroy(gameObject);
+       // if (other.gameObject.tag == "Enemy")
+         //   Destroy(gameObject);
     }
 
     private void OnTriggerExit(Collider other)

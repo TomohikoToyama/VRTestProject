@@ -42,7 +42,7 @@ namespace VR
         void Enemy(){
 
             var e1 = Instantiate(enemy, this.transform.position + new Vector3(5,5,5), this.transform.rotation);
-            e1.tag = "target";
+            //e1.tag = "target";
             var e2 = Instantiate(enemy, this.transform.position + new Vector3(0,0, 0), this.transform.rotation);
             var e3 = Instantiate(enemy, this.transform.position + new Vector3(-5, -5, -5), this.transform.rotation);
             var e4 = Instantiate(enemy, this.transform.position + new Vector3(10, 10, 10), this.transform.rotation);

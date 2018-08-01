@@ -6,6 +6,14 @@ namespace VR
 {
     public class Controller : MonoBehaviour
     {
+        //sceneStateの列挙
+        enum typeScene
+        {
+            TitleState,
+            MenuState,
+            StageState,
+            TestState,
+        }
 
         GameStateManager gsm;
 
@@ -24,9 +32,11 @@ namespace VR
         public float cool_time = 0.05f;
         [SerializeField]
         public GameObject player;
+ 
         GameObject _parent;
         bool shotLimit = false;
 
+        
         // Use this for initialization
         void Start()
         {
@@ -38,70 +48,66 @@ namespace VR
         // Update is called once per frame
         void Update()
         {
-            var trackedObject = GetComponent<SteamVR_TrackedObject>();
-            var device = SteamVR_Controller.Input((int)trackedObject.index);
-           // var eye = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
-           // Ray ray = new Ray(eye.transform.position, eye.transform.forward);
-
-
+            var trackObj = GetComponent<SteamVR_TrackedObject>();
+            var device = SteamVR_Controller.Input((int)trackObj.index);
+            var touchX = device.GetAxis().x;
+            var touchY = device.GetAxis().y;
             //トリガーキー押した時の挙動
-            //暫定で通常ショット
             if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
             {
-                if (gsm.FormatStateName() != null && gsm.FormatStateName() == "VR.TestState")
-                    PSC.ShotBullet();
+                PressTrigger();
             }
-
+            
             //トリガー離した時の挙動
             if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
             {
-                
-            }
 
+            }
+            
             //タッチパッドを押した時の挙動
             if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
             {
 
-                _parent.transform.Translate(0.05f * device.GetAxis().x, 0, 0.05f * device.GetAxis().y);
-                Debug.Log("タッチパッドをクリックしている");
+                PressTouch(touchX, touchY);
             }
 
             //タッチパッドを離した時の挙動
             if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                if(gsm.FormatStateName() != null && gsm.FormatStateName() == "VR.TestState")
+                if(gsm.GetStateName() != null && gsm.GetStateName() == typeScene.TestState.ToString())
                 PSC.ShotMissile();
 
-
-                Debug.Log("タッチパッドを離した");
+              
             }
+
+            //メニューボタン押下時の挙動
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
             {
-                 
-
-                Debug.Log("メニューボタンをクリックした");
-               
+     
             }
+            //グリップボタン押下時の挙動
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
             {
                 this.transform.root.position = new Vector3(5, 1, 5);
-                Debug.Log("グリップボタンをクリックした");
             }
 
-            if (device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
-            {
-                //Debug.Log("トリガーを浅く引いている");
-            }
-            if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
-            {
-                //Debug.Log("トリガーを深く引いている");
-            }
-            if (device.GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
-            {
-             //   _parent.transform.Translate(0.025f * device.GetAxis().x, 0, 0.025f * device.GetAxis().y);
-                //Debug.Log("タッチパッドに触っている");
-            }
-
+           
         }
+
+        //トリガーを押した時の処理
+        public void PressTrigger()
+        {
+            //テストシーンならショットを撃つ
+            if (gsm.GetStateName() != null && gsm.GetStateName() == typeScene.TestState.ToString())
+                PSC.ShotBullet();
+        }
+
+
+        //タッチパッドを押した時の処理
+        public void PressTouch(float X, float Y)
+        {
+            _parent.transform.Translate(0.05f * X, 0, 0.05f * Y);
+        }
+
     }
 }

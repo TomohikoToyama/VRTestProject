@@ -33,7 +33,7 @@ namespace VR
         // Use this for initialization
         void Start()
         {
-            InitEnemy();
+            InitEnemy(10);
 
         }
 
@@ -43,10 +43,10 @@ namespace VR
 
         }
 
-        private void InitEnemy()
+        private void InitEnemy(int _health)
         {
 
-            Health = 10;
+            Health = _health;
 
         }
         private void OnTriggerEnter(Collider other)
@@ -56,10 +56,21 @@ namespace VR
             if (other.gameObject.tag == "PlayerBullet")
             {
                 //弾のショットから弾の威力を取得して威力分のダメージ
-                int Damage = other.gameObject.GetComponent<shot>().Power;
 
-                Debug.Log("被弾した");
-                Health -= Damage;
+                if (other.gameObject.GetComponent<shot>() != null)
+                {
+                    int Damage = other.gameObject.GetComponent<shot>().Power;
+
+                    Debug.Log("ショットに被弾した");
+                    Health -= Damage;
+                }else if (other.gameObject.GetComponent<MissileMover>() != null)
+                {
+                    int Damage = other.gameObject.GetComponent<MissileMover>().Power;
+
+                    Debug.Log("ミサイルに被弾した");
+                    Health -= Damage;
+                }
+
 
                 //体力がなくなったら死亡処理
                 if (health <= 0)
