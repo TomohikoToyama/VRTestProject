@@ -4,29 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class shot : MonoBehaviour {
-    public float life_time = 1.0f;
-    float time = 0f;
-    
-    float shotSpeed = 20.0f;
-    
-    bool shotLimit;
-
-    //テスト用
-    [SerializeField]
-    GameObject playerRight;
-
+    private float lifeTime ;
+    private float limitTime = 2.0f;
+    private float shotSpeed = 20.0f;
+  
     // Use this for initialization
     void Start () {
     }
 	
 	// Update is called once per frame
 	void Update () {
-
         
-       
-
-            gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed ;
-
+        gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed ;
+        lifeTime += Time.deltaTime;
+        
+        if(lifeTime >= limitTime)
+        {
+            lifeTime = 0f;
+            Destroy(gameObject);
+        }
 
     }
     private void OnTriggerEnter(Collider other)

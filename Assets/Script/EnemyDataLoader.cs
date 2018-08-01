@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyDataLoader : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
