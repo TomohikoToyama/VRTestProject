@@ -446,7 +446,8 @@
     <Compile Include="Assets\Script\Controller\GameStateManagerController.cs" />
     <Compile Include="Assets\Script\Controller\PlayerStatusController.cs" />
     <Compile Include="Assets\Script\Controller\StageManagerController.cs" />
-    <Compile Include="Assets\Script\EnemyDataLoader.cs" />
+    <Compile Include="Assets\Script\Data\EnemyData.cs" />
+    <Compile Include="Assets\Script\Data\EnemyDataLoader.cs" />
     <Compile Include="Assets\Script\EnemySpwaner.cs" />
     <Compile Include="Assets\Script\Interface\IGameStateManagerController.cs" />
     <Compile Include="Assets\Script\Interface\IPlayerState.cs" />
