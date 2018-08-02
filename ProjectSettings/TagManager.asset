@@ -18,6 +18,7 @@ TagManager:
   - Player_Right
   - Laser
   - MenuButton
+  - EnemyShot
   layers:
   - Default
   - TransparentFX

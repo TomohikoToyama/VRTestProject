@@ -24,8 +24,12 @@ namespace VR
         public GameObject missile;
 
         Controller Con;
-        public int HP = 3;
-        public int MaxHP = 5;
+
+        private int health = 3;      // 現在体力
+        public int  Health { get { return health; } set { health = value; } }
+        private int maxhealth = 3;   // 最大体力
+        public int Maxhealth { get { return maxhealth; } set { maxhealth = value; } }
+
         public int missileStuck = 5;             //ミサイルストック数
         public int Power = 5;               //ショットの威力
         public float missileCT = 2.0f;      //ミサイルチャージタイム
@@ -59,6 +63,7 @@ namespace VR
             StartCoroutine(ShootBulletAndDestroyCoroutine());
         }
 
+        //ショットの非同期処理
         private IEnumerator ShootBulletAndDestroyCoroutine()
         {
             bShot = true;
@@ -90,6 +95,43 @@ namespace VR
                 
             }
 
+        }
+
+
+        //あたり判定処理
+        private void OnTriggerEnter(Collider other)
+        {
+
+
+            //プレイヤーの弾でHP減少
+            if (other.gameObject.tag == "EnemyShot")
+            {
+                //弾のショットから弾の威力を取得して威力分のダメージ
+
+                if (other.gameObject.GetComponent<shot>() != null)
+                {
+                    int Damage = other.gameObject.GetComponent<shot>().Power;
+
+                    Debug.Log("ショットに被弾した");
+                    Health -= Damage;
+                }
+                else if (other.gameObject.GetComponent<MissileMover>() != null)
+                {
+                    int Damage = other.gameObject.GetComponent<MissileMover>().Power;
+
+                    Debug.Log("ミサイルに被弾した");
+                    Health -= Damage;
+                }
+
+
+                //体力がなくなったら死亡処理
+                if (health <= 0)
+                {
+                    Debug.Log("Dead State");
+                    Destroy(gameObject);
+
+                }
+            }
         }
 
     }

@@ -28,14 +28,18 @@ public class shot : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
-            Destroy(gameObject);
+        if (gameObject.tag == "PlayerBullet") {
+            if (other.gameObject.tag == "Enemy")
+                Destroy(gameObject);
+
+        }
+        if (gameObject.tag == "EnemyShot")
+        {
+            if (other.gameObject.tag == "Player_Right")
+                Destroy(gameObject);
+        }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "RangeArea")
-            Destroy(gameObject);
-    }
+   
 
 }

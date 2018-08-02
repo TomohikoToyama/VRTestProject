@@ -8,7 +8,7 @@ namespace VR
     {
 
 
-        string type;               // 敵名
+        private string type;               // 敵名
         public string Type { get { return type; } set { type = value; } }
         private string weapon;    // 攻撃種類
         public string Weapon { get { return weapon; } set { weapon = value; } }
@@ -31,6 +31,8 @@ namespace VR
         private bool rocked;    // ロックオン判定
         public bool Rocked { get { return rocked; } set { rocked = value; } }
 
+        public GameObject shot;
+        bool bShot;
 
 
 
@@ -44,7 +46,7 @@ namespace VR
         // Update is called once per frame
         void Update()
         {
-
+            ShotBullet();
         }
 
         private void InitEnemy(int _health)
@@ -53,6 +55,26 @@ namespace VR
             Health = _health;
 
         }
+
+        //弾を撃つ
+        public void ShotBullet()
+        {
+            if (!bShot)
+                StartCoroutine(ShootBulletAndDestroyCoroutine());
+        }
+
+        //ショットの非同期処理
+        private IEnumerator ShootBulletAndDestroyCoroutine()
+        {
+            bShot = true;
+            yield return new WaitForSeconds(0.2f);
+            var shotClone1 = Instantiate(shot, gameObject.transform.position, gameObject.transform.rotation);
+            bShot = false;
+            Debug.Log("たまたま");
+
+
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             

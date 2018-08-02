@@ -74,7 +74,7 @@ MonoBehaviour:
     m_Bits: 0
   target: {fileID: 0}
   anchor: {fileID: 0}
-  lineRenderer: {fileID: 120708246949268656}
+  lineRenderer: {fileID: 0}
 --- !u!120 &120708246949268656
 LineRenderer:
   m_ObjectHideFlags: 1
