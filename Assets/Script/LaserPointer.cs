@@ -7,7 +7,7 @@ namespace VR
     public class LaserPointer : MonoBehaviour
     {
         public bool IsActive = true;            //稼働フラグ
-        public float defaultLength = 0.5f;      //ヒットなしのときのレーザーの長さ
+        public float defaultLength = 500f;      //ヒットなしのときのレーザーの長さ
 
         public bool shotRay = true;             //Ray を撃つ(false のときは target に指す位置を入れる)
         public float rayLength = 500f;          //Ray の長さ

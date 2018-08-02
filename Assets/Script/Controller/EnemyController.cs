@@ -28,6 +28,10 @@ namespace VR
         public int Score { get { return score; } set { score = value; } }
         private string item;    // 落下アイテム
         public string Item { get { return item; } set { item = value; } }
+        private bool rocked;    // ロックオン判定
+        public bool Rocked { get { return rocked; } set { rocked = value; } }
+
+
 
 
         // Use this for initialization
@@ -51,6 +55,7 @@ namespace VR
         }
         private void OnTriggerEnter(Collider other)
         {
+            
 
             //プレイヤーの弾でHP減少
             if (other.gameObject.tag == "PlayerBullet")
