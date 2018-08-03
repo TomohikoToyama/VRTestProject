@@ -448,6 +448,7 @@
     <Compile Include="Assets\Script\Controller\StageManagerController.cs" />
     <Compile Include="Assets\Script\Data\EnemyData.cs" />
     <Compile Include="Assets\Script\Data\EnemyDataLoader.cs" />
+    <Compile Include="Assets\Script\EnemyShot.cs" />
     <Compile Include="Assets\Script\EnemySpwaner.cs" />
     <Compile Include="Assets\Script\Interface\IGameStateManagerController.cs" />
     <Compile Include="Assets\Script\Interface\IPlayerState.cs" />
@@ -462,6 +463,7 @@
     <Compile Include="Assets\Script\Manager\StageManager.cs" />
     <Compile Include="Assets\Script\MenuButton.cs" />
     <Compile Include="Assets\Script\MissileMover.cs" />
+    <Compile Include="Assets\Script\PlayerShot.cs" />
     <Compile Include="Assets\Script\StageScroll.cs" />
     <Compile Include="Assets\Script\StageSelect.cs" />
     <Compile Include="Assets\Script\State\Enemy\EnemyAIFSM.cs" />
@@ -478,7 +480,6 @@
     <Compile Include="Assets\Script\State\Scene\TitleState.cs" />
     <Compile Include="Assets\Script\State\Stage\FirstStage.cs" />
     <Compile Include="Assets\Script\State\Stage\TestStage.cs" />
-    <Compile Include="Assets\shot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugin\A-15 Beast\Info.txt" />

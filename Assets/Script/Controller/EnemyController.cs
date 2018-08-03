@@ -84,9 +84,9 @@ namespace VR
             {
                 //弾のショットから弾の威力を取得して威力分のダメージ
 
-                if (other.gameObject.GetComponent<shot>() != null)
+                if (other.gameObject.GetComponent<PlayerShot>() != null)
                 {
-                    int Damage = other.gameObject.GetComponent<shot>().Power;
+                    int Damage = other.gameObject.GetComponent<PlayerShot>().Power;
 
                     Debug.Log("ショットに被弾した");
                     Health -= Damage;

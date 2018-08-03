@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33783337789107142}
   - component: {fileID: 135357693663907192}
   - component: {fileID: 23104245302190648}
-  - component: {fileID: 114968863022413436}
   - component: {fileID: 54638083104665412}
+  - component: {fileID: 114928937287591946}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: PlayerBullet
@@ -100,7 +100,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114968863022413436
+--- !u!114 &114928937287591946
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1647302546056460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c09e5b6c029b948b738cb7f12c16ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 121dc4ecf1c1a7a45b5ff94e60290aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &135357693663907192

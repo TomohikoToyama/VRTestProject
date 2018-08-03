@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace VR {
     public class TestStage :  IStage{
 
+        PlayerStatusController PSC;
         private StageManager manager;
         public TestStage(StageManager SM)
         {
@@ -19,7 +21,8 @@ namespace VR {
         // Update is called once per frame
         public void StageUpdate()
         {
-
+            
+           
         }
 
 

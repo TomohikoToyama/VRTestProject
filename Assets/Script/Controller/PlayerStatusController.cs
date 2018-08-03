@@ -37,7 +37,8 @@ namespace VR
         public float shotCT = 0.01f;         //ショット用CT
         public float shotTimer = 0;         //ショット間隔用タイマー
         public float invicibleTime = 2.0f;  //無敵時間
-        public bool died = false;           //死亡
+        private bool died = false;           //死亡
+        public  bool Died { get { return died; } set { died = value; } }
         public bool invicible = false;      //無敵
         public string playerName = "Charlotte";//プレイヤー名
         bool bShot;
@@ -52,7 +53,6 @@ namespace VR
         // Update is called once per frame
         void Update()
         {
-            shotTimer += Time.deltaTime;
             missileTimer += Time.deltaTime;
         }
 
@@ -108,9 +108,9 @@ namespace VR
             {
                 //弾のショットから弾の威力を取得して威力分のダメージ
 
-                if (other.gameObject.GetComponent<shot>() != null)
+                if (other.gameObject.GetComponent<EnemyShot>() != null)
                 {
-                    int Damage = other.gameObject.GetComponent<shot>().Power;
+                    int Damage = other.gameObject.GetComponent<EnemyShot>().Power;
 
                     Debug.Log("ショットに被弾した");
                     Health -= Damage;
@@ -128,7 +128,7 @@ namespace VR
                 if (health <= 0)
                 {
                     Debug.Log("Dead State");
-                    Destroy(gameObject);
+                    Died = true;
 
                 }
             }

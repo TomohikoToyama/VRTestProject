@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33077750429921658}
   - component: {fileID: 135990807892959850}
   - component: {fileID: 23159945483941890}
-  - component: {fileID: 114433072385220498}
   - component: {fileID: 54413663530640324}
+  - component: {fileID: 114022460710398940}
   m_Layer: 0
   m_Name: EnmSphere
   m_TagString: EnemyShot
@@ -100,7 +100,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114433072385220498
+--- !u!114 &114022460710398940
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1173077298110872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c09e5b6c029b948b738cb7f12c16ec, type: 3}
+  m_Script: {fileID: 11500000, guid: ed0c1a4a1c5542b4caac87b10f2530a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &135990807892959850
