@@ -12,7 +12,8 @@ namespace VR
         public StageState(GameStateManager GSM)
         {
             manager = GSM;
-            Time.timeScale = 0;
+            Time.timeScale = 1;
+            PSC = GameObject.FindGameObjectWithTag("PlayerUnit").GetComponent<PlayerStatusController>();
         }
         
 

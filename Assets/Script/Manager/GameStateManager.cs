@@ -59,6 +59,7 @@ namespace VR
             //activeStateがnullでないならactiveStateのStateUpdateメソッドを実行
             if (activeState != null)
                 activeState.StateUpdate();
+           
         }
 
 

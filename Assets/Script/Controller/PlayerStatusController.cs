@@ -37,6 +37,7 @@ namespace VR
         public float shotCT = 0.01f;         //ショット用CT
         public float shotTimer = 0;         //ショット間隔用タイマー
         public float invicibleTime = 2.0f;  //無敵時間
+        [SerializeField]
         private bool died = false;           //死亡
         public  bool Died { get { return died; } set { died = value; } }
         public bool invicible = false;      //無敵
