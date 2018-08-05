@@ -10,7 +10,7 @@ namespace VR
         PlayerStatusController PSC;
         GameObject Controller;
         GameObject PUnit;
-
+        GameObject obj;
         private GameStateManager manager;
         public TestState(GameStateManager GSM)
         {
@@ -19,7 +19,7 @@ namespace VR
             Time.timeScale = 1;
             Controller = GameObject.FindGameObjectWithTag("ActiveController");
             PUnit = (GameObject)Resources.Load("Prefabs/A15-Beast") ;
-            var obj = Instantiate(PUnit, Controller.transform.position, Quaternion.identity);
+            obj = Instantiate(PUnit, Controller.transform.position, Quaternion.identity);
             obj.transform.parent = Controller.transform;
             PSC = obj.GetComponent<PlayerStatusController>();
         }
@@ -30,7 +30,7 @@ namespace VR
            
             if (PSC.Died == true)
             {
-
+                Destroy(obj);
                 manager.SwitchState(new MenuState(manager));
                 SceneManager.LoadScene("Menu");
             }
