@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 650807428}
   - component: {fileID: 650807433}
   - component: {fileID: 650807432}
+  - component: {fileID: 650807434}
   m_Layer: 0
   m_Name: EnemyTest
   m_TagString: Enemy
@@ -254,6 +255,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &650807434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 650807427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05fbc4f917277d645ad1af44e99e4c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1114100402
 GameObject:
   m_ObjectHideFlags: 0

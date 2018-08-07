@@ -6,39 +6,19 @@ namespace VR
 {
     public class EnemyController : MonoBehaviour
     {
-
-
-        private string type;               // 敵名
-        public string Type { get { return type; } set { type = value; } }
-        private string weapon;    // 攻撃種類
-        public string Weapon { get { return weapon; } set { weapon = value; } }
-        private string atkPattern;    // 攻撃パターン
-        public string AtkPattern { get { return atkPattern; } set { atkPattern = value; } }
-        private string movePattern;    // 移動パターン
-        public string MovePattern { get { return movePattern; } set { movePattern = value; } }
-        private int health;          // 体力
-        public int Health { get { return health; } set { health = value; } }
-        private float posX;       // 座標X
-        public float PosX { get { return posX; } set { posX = value; } }
-        private float posY;       // 座標Y
-        public float PosY { get { return posY; } set { posY = value; } }
-        private float posZ;       // 座標Z
-        public float PosZ { get { return posZ; } set { posZ = value; } }
-        private int score;          // スコア
-        public int Score { get { return score; } set { score = value; } }
-        private string item;    // 落下アイテム
-        public string Item { get { return item; } set { item = value; } }
-        private bool rocked;    // ロックオン判定
-        public bool Rocked { get { return rocked; } set { rocked = value; } }
-
+        EnemyStatusController ESC;
         public GameObject shot;
         bool bShot;
-
-
+        GameObject ESobj;
+        GameObject Target;
+        string PlayerUnit = "PlayerUnit";
 
         // Use this for initialization
         void Start()
         {
+            ESC = gameObject.GetComponent<EnemyStatusController>();
+            ESobj = (GameObject)Resources.Load("Prefabs/EnmSphere");
+            Target = GameObject.FindGameObjectWithTag(PlayerUnit);
             InitEnemy(10);
 
         }
@@ -49,10 +29,10 @@ namespace VR
             ShotBullet();
         }
 
+        //敵機初期化処理
         private void InitEnemy(int _health)
         {
-
-            Health = _health;
+            ESC.Health = _health;
 
         }
 
@@ -66,9 +46,15 @@ namespace VR
         //ショットの非同期処理
         private IEnumerator ShootBulletAndDestroyCoroutine()
         {
+            
+           
+
             bShot = true;
             yield return new WaitForSeconds(0.2f);
-            var shotClone1 = Instantiate(shot, gameObject.transform.position, gameObject.transform.rotation);
+            var shotClone1 = Instantiate(ESobj,this.transform.position, this.transform.rotation);
+            var aim = this.Target.transform.position - this.transform.position;
+            var look = Quaternion.LookRotation(aim);
+            this.transform.localRotation = look;
             bShot = false;
             Debug.Log("たまたま");
 
@@ -89,18 +75,18 @@ namespace VR
                     int Damage = other.gameObject.GetComponent<PlayerShot>().Power;
 
                     Debug.Log("ショットに被弾した");
-                    Health -= Damage;
+                    ESC.Health -= Damage;
                 }else if (other.gameObject.GetComponent<MissileMover>() != null)
                 {
                     int Damage = other.gameObject.GetComponent<MissileMover>().Power;
 
                     Debug.Log("ミサイルに被弾した");
-                    Health -= Damage;
+                    ESC.Health -= Damage;
                 }
 
 
                 //体力がなくなったら死亡処理
-                if (health <= 0)
+                if (ESC.Health <= 0)
                 {
                     Debug.Log("Dead State");
                     Destroy(gameObject);
