@@ -17,6 +17,8 @@ namespace VR
         public string MovePattern { get { return movePattern; } set { movePattern = value; } }
         private int health;          // 体力
         public int Health { get { return health; } set { health = value; } }
+        private int shotStock;          // 体力
+        public int ShotStock { get { return shotStock; } set { shotStock = value; } }
         private float posX;       // 座標X
         public float PosX { get { return posX; } set { posX = value; } }
         private float posY;       // 座標Y
@@ -29,7 +31,7 @@ namespace VR
         public string Item { get { return item; } set { item = value; } }
         private bool rocked;    // ロックオン判定
         public bool Rocked { get { return rocked; } set { rocked = value; } }
-
+        
 
     }
 

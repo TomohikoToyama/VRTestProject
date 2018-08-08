@@ -33,13 +33,13 @@ namespace VR
         private void InitEnemy(int _health)
         {
             ESC.Health = _health;
-
+            ESC.ShotStock = 10;
         }
 
         //弾を撃つ
         public void ShotBullet()
         {
-            if (!bShot)
+            if (!bShot && ESC.ShotStock > 0)
                 StartCoroutine(ShootBulletAndDestroyCoroutine());
         }
 
@@ -47,7 +47,6 @@ namespace VR
         private IEnumerator ShootBulletAndDestroyCoroutine()
         {
             
-           
 
             bShot = true;
             yield return new WaitForSeconds(0.2f);
@@ -55,8 +54,8 @@ namespace VR
             var aim = this.Target.transform.position - this.transform.position;
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
+            ESC.ShotStock -= 1;
             bShot = false;
-            Debug.Log("たまたま");
 
 
         }
