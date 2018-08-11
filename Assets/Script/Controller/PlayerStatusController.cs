@@ -64,6 +64,9 @@ namespace VR
             StartCoroutine(ShootBulletAndDestroyCoroutine());
         }
 
+        //非同期処理群
+        #region
+        
         //ショットの非同期処理
         private IEnumerator ShootBulletAndDestroyCoroutine()
         {
@@ -75,6 +78,22 @@ namespace VR
            
           
         }
+
+        //被弾時に無敵化処理
+        private IEnumerator IsInvicible()
+        {
+            invicible = true;
+            Debug.Log("無敵状態");
+            yield return new WaitForSeconds(2.0f);
+
+            //無敵状態を可視化するための演出処理
+
+            invicible = false;
+
+            Debug.Log("無敵終わり");
+        }
+
+        #endregion
 
         //ミサイルロックオン
         public void Lockon()
@@ -103,27 +122,32 @@ namespace VR
         private void OnTriggerEnter(Collider other)
         {
 
-
+            
             //プレイヤーの弾でHP減少
             if (other.gameObject.tag == "EnemyShot")
             {
                 //弾のショットから弾の威力を取得して威力分のダメージ
-
-                if (other.gameObject.GetComponent<EnemyShot>() != null)
+                if (!invicible)
                 {
-                    int Damage = other.gameObject.GetComponent<EnemyShot>().Power;
+                    //ダメージ時に連続ヒット防止に無敵化処理
+                    StartCoroutine(IsInvicible());
 
-                    Debug.Log("ショットに被弾した");
-                    Health -= Damage;
+                    //敵ショット
+                    if (other.gameObject.GetComponent<EnemyShot>() != null)
+                    {
+                        int Damage = other.gameObject.GetComponent<EnemyShot>().Power;
+
+                        Debug.Log("ショットに被弾した");
+                        Health -= Damage;
+                    }
+                    else if (other.gameObject.GetComponent<MissileMover>() != null)
+                    {
+                        int Damage = other.gameObject.GetComponent<MissileMover>().Power;
+
+                        Debug.Log("ミサイルに被弾した");
+                        Health -= Damage;
+                    }
                 }
-                else if (other.gameObject.GetComponent<MissileMover>() != null)
-                {
-                    int Damage = other.gameObject.GetComponent<MissileMover>().Power;
-
-                    Debug.Log("ミサイルに被弾した");
-                    Health -= Damage;
-                }
-
 
                 //体力がなくなったら死亡処理
                 if (health <= 0)

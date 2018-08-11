@@ -33,7 +33,7 @@ namespace VR
         private void InitEnemy(int _health)
         {
             ESC.Health = _health;
-            ESC.ShotStock = 10;
+            ESC.ShotStock = 30;
         }
 
         //弾を撃つ
