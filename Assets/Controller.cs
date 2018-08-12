@@ -42,6 +42,7 @@ namespace VR
         {
             _parent = transform.root.gameObject;
             gsm = GameObject.FindWithTag("GameStateManager").GetComponent<GameStateManager>();
+           // PSC = GetComponent<PlayerStatusController>();
             Debug.Log(gsm);
         }
 
@@ -96,10 +97,13 @@ namespace VR
         //トリガーを押した時の処理
         private void PressTrigger()
         {
-            Debug.Log("テスト" +typeScene.TestState.ToString());
+            Debug.Log("テスト" + gsm.GetStateName());
             //テストシーンならショットを撃つ
-            if (gsm.GetStateName() != null && gsm.GetStateName() == typeScene.TestState.ToString())
+            if ( gsm.GetStateName() == "TestState")
+            {
+                Debug.Log("でるよ");
                 PSC.ShotBullet();
+            }
         }
 
         //トリガーを離した時の処理

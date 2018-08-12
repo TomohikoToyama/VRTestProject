@@ -26,10 +26,11 @@ namespace VR
             SS = GameObject.FindGameObjectWithTag("StageCard").GetComponent<StageSelect>();
 
             //何らかのキーを押して画面遷移
-            if (SS.select)
+            if (Input.anyKey)
             {
-                manager.SwitchState(new TestState(manager));
-                SceneManager.LoadScene("Test");
+
+                manager.SwitchState(new StageState(manager));
+                SceneManager.LoadScene("Stage");
 
             }
         }

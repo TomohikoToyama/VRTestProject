@@ -43,8 +43,8 @@ namespace VR
         public bool invicible = false;      //無敵
         public string playerName = "Charlotte";//プレイヤー名
         bool bShot;
-
-        // Use this for initialization
+        private float interval = 0.1f;
+        private GameObject child;
         void Start()
         {
             shot = (GameObject)Resources.Load("Prefabs/Sphere");
@@ -79,20 +79,40 @@ namespace VR
           
         }
 
+
         //被弾時に無敵化処理
         private IEnumerator IsInvicible()
         {
             invicible = true;
             Debug.Log("無敵状態");
-            yield return new WaitForSeconds(2.0f);
 
+            var count = 0;
             //無敵状態を可視化するための演出処理
+            var renderBody = transform.Find("Body").gameObject.GetComponent<Renderer>();
+            var renderFrontLeg = transform.Find("Front_Leg").gameObject.GetComponent<Renderer>();
+            var renderLeftLeg = transform.Find("L_Leg").gameObject.GetComponent<Renderer>();
+            var renderRightLeg = transform.Find("R_leg").gameObject.GetComponent<Renderer>();
+            while (count < 20)
+            {
+                renderBody.enabled = !renderBody.enabled;
+                renderFrontLeg.enabled = !renderFrontLeg.enabled;
+                renderLeftLeg.enabled = !renderLeftLeg.enabled;
+                renderRightLeg.enabled = !renderRightLeg.enabled;
+                yield return new WaitForSeconds(interval);
+                count ++;
+
+            }
+            renderRightLeg.enabled = true ;
+            renderFrontLeg.enabled = true;
+            renderLeftLeg.enabled = true;
+            renderRightLeg.enabled = true;
 
             invicible = false;
 
             Debug.Log("無敵終わり");
         }
 
+        
         #endregion
 
         //ミサイルロックオン
@@ -124,29 +144,18 @@ namespace VR
 
             
             //プレイヤーの弾でHP減少
-            if (other.gameObject.tag == "EnemyShot")
+            if (other.gameObject.tag == "EnemyShot" || other.gameObject.tag == "Enemy")
             {
                 //弾のショットから弾の威力を取得して威力分のダメージ
                 if (!invicible)
                 {
                     //ダメージ時に連続ヒット防止に無敵化処理
                     StartCoroutine(IsInvicible());
-
                     //敵ショット
-                    if (other.gameObject.GetComponent<EnemyShot>() != null)
-                    {
-                        int Damage = other.gameObject.GetComponent<EnemyShot>().Power;
-
+                     
                         Debug.Log("ショットに被弾した");
-                        Health -= Damage;
-                    }
-                    else if (other.gameObject.GetComponent<MissileMover>() != null)
-                    {
-                        int Damage = other.gameObject.GetComponent<MissileMover>().Power;
-
-                        Debug.Log("ミサイルに被弾した");
-                        Health -= Damage;
-                    }
+                        Health --;
+                    
                 }
 
                 //体力がなくなったら死亡処理

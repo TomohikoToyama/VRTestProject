@@ -15,7 +15,6 @@ namespace VR
         public PlayerManager PM;
 
         private string removeName = "VR.";     //state名を渡す時用にnamespaceの文字列を除去
-        public GameStateManagerController gsmcon;
         public static GameStateManager instance;
         public static GameStateManager Instance
         {
