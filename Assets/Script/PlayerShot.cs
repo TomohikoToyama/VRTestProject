@@ -13,7 +13,7 @@ public class PlayerShot : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        Remain = true;
 	}
 	
 	// Update is called once per frame
@@ -29,7 +29,7 @@ public class PlayerShot : MonoBehaviour {
         //2秒経ったら破棄
         yield return new WaitForSeconds(limitTime);
         //ショット管理クラスに弾の残存を判定させるための処理を追加予定
-        //Remain = false;    
+        Remain = false;    
         Destroy(gameObject);
 
 

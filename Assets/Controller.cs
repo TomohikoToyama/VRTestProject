@@ -42,7 +42,6 @@ namespace VR
         {
             _parent = transform.root.gameObject;
             gsm = GameObject.FindWithTag("GameStateManager").GetComponent<GameStateManager>();
-           // PSC = GetComponent<PlayerStatusController>();
             Debug.Log(gsm);
         }
 
@@ -57,39 +56,58 @@ namespace VR
             //トリガーキー押した時の挙動
             if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
             {
+                if (PSC == null)
+                    InitController();
+
                 PressTrigger();
             }
             
             //トリガー離した時の挙動
             if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
             {
+                if (PSC == null)
+                    InitController();
                 UpTrigger();
             }
             
             //タッチパッドを押した時の挙動
             if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
             {
+                if (PSC == null)
+                    InitController();
                 PressTouch(touchX, touchY);
             }
 
             //タッチパッドを離した時の挙動
             if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
+                if (PSC == null)
+                    InitController();
                 UpTouch();
             }
 
             //メニューボタン押下時の挙動
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
             {
+                if (PSC == null)
+                    InitController();
                 PressMenu();
             }
             //グリップボタン押下時の挙動
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
             {
+                if (PSC == null)
+                    InitController();
                 PressGrip();
             }
 
            
+        }
+
+        private void InitController()
+        {
+            if (gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.TestState.ToString() || gsm.GetStateName() == typeScene.StageState.ToString()))
+                PSC = GameObject.FindGameObjectWithTag("PlayerUnit").GetComponent<PlayerStatusController>();
         }
 
         //ボタンの処理内容群
@@ -121,9 +139,11 @@ namespace VR
         //タッチパッドを離した時の処理
         private void UpTouch()
         {
-            //テストシーンならショットを撃つ
-            if (gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.TestState.ToString() || gsm.GetStateName() == typeScene.StageState.ToString()) )
-                PSC.ShotMissile();
+            //テストシーンならミサイルを撃つ
+            if (gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.TestState.ToString() || gsm.GetStateName() == typeScene.StageState.ToString()))
+            {
+                 PSC.ShotMissile();
+            }
 
         }
 

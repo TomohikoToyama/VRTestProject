@@ -22,6 +22,7 @@ TagManager:
   - Player_Unit
   - PlayerUnit
   - ActiveController
+  - SoundManager
   layers:
   - Default
   - TransparentFX

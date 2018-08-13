@@ -7,6 +7,7 @@ namespace VR
     public class MenuState :  IState
     {
         StageSelect SS;
+        PlayerObjectManager PMO;
         bool select;
         private GameStateManager manager;
         public MenuState(GameStateManager GSM)
@@ -17,7 +18,7 @@ namespace VR
         // Use this for initialization
         void Start()
         {
-            
+            PMO = GameObject.Find("ObjectManager").gameObject.GetComponent<PlayerObjectManager>();
         }
 
         // Update is called once per frame
@@ -26,11 +27,11 @@ namespace VR
             SS = GameObject.FindGameObjectWithTag("StageCard").GetComponent<StageSelect>();
 
             //何らかのキーを押して画面遷移
-            if (Input.anyKey)
+            if (SS.select)
             {
 
-                manager.SwitchState(new StageState(manager));
-                SceneManager.LoadScene("Stage");
+                manager.SwitchState(new TestState(manager));
+                SceneManager.LoadScene("Test");
 
             }
         }

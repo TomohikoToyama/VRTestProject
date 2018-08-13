@@ -7,7 +7,7 @@ namespace VR
 {
     public class PlayerStatusController : MonoBehaviour
     {
-       
+        [SerializeField]
         public GameObject shot;
 
         // 弾丸発射点
@@ -29,7 +29,6 @@ namespace VR
         public int  Health { get { return health; } set { health = value; } }
         private int maxhealth = 3;   // 最大体力
         public int Maxhealth { get { return maxhealth; } set { maxhealth = value; } }
-
         public int missileStuck = 5;             //ミサイルストック数
         public int Power = 5;               //ショットの威力
         public float missileCT = 2.0f;      //ミサイルチャージタイム

@@ -10,13 +10,16 @@ namespace VR
         GameObject Controller;
         GameObject PUnit;
         GameObject obj;
+        PlayerObjectManager PMO;
         private GameStateManager manager;
 
         public StageState(GameStateManager GSM)
         {
             manager = GSM;
             Time.timeScale = 1;
-            PSC = GameObject.FindGameObjectWithTag("PlayerUnit").GetComponent<PlayerStatusController>();
+            InitTest();
+
+
         }
         
 
@@ -33,12 +36,9 @@ namespace VR
 
         private void InitTest()
         {
-            Controller = GameObject.FindGameObjectWithTag("ActiveController");
-            PUnit = (GameObject)Resources.Load("Prefabs/A15-Beast");
-            Debug.Log("P" + PUnit);
-            obj = Instantiate(PUnit, Controller.transform.position, Quaternion.identity);
-            obj.transform.parent = Controller.transform;
-            PSC = obj.GetComponent<PlayerStatusController>();
+            PMO = GameObject.Find("ObjectManager").gameObject.GetComponent<PlayerObjectManager>();
+            PMO.CreatePlayerUnit();
+            PSC = GameObject.FindGameObjectWithTag("PlayerUnit").GetComponent<PlayerStatusController>();
         }
     }
 }

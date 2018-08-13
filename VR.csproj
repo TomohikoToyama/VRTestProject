@@ -466,6 +466,7 @@
     <Compile Include="Assets\Script\Manager\StageManager.cs" />
     <Compile Include="Assets\Script\MenuButton.cs" />
     <Compile Include="Assets\Script\MissileMover.cs" />
+    <Compile Include="Assets\Script\PlayerObjectManager.cs" />
     <Compile Include="Assets\Script\PlayerShot.cs" />
     <Compile Include="Assets\Script\StageScroll.cs" />
     <Compile Include="Assets\Script\StageSelect.cs" />
@@ -487,6 +488,7 @@
   <ItemGroup>
     <None Include="Assets\Plugin\A-15 Beast\Info.txt" />
     <None Include="Assets\Plugin\Cartoon Temple Building Kit\ReadMe.txt" />
+    <None Include="Assets\Plugin\SpaceCraft 0\Readme.txt" />
     <None Include="Assets\Plugin\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Plugin\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
     <None Include="Assets\Plugin\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
