@@ -463,6 +463,7 @@
     <Compile Include="Assets\Script\Manager\IStageManagerController.cs" />
     <Compile Include="Assets\Script\Manager\MapManager.cs" />
     <Compile Include="Assets\Script\Manager\PlayerManager.cs" />
+    <Compile Include="Assets\Script\Manager\SoundManager.cs" />
     <Compile Include="Assets\Script\Manager\StageManager.cs" />
     <Compile Include="Assets\Script\MenuButton.cs" />
     <Compile Include="Assets\Script\MissileMover.cs" />
