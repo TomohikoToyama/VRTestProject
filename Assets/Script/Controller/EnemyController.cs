@@ -88,6 +88,7 @@ namespace VR
                 if (ESC.Health <= 0)
                 {
                     Debug.Log("Dead State");
+                    SoundManager.Instance.PlaySE(1);
                     Destroy(gameObject);
 
                 }
