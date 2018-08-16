@@ -155,7 +155,7 @@ namespace VR
     public class SoundVolume
     {
         public float BGM = 1.0f;
-        public float SE = 1.0f;
+        public float SE = 0.5f;
         public bool Mute = false;
 
         public void Init()

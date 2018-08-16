@@ -24,7 +24,6 @@ namespace VR
         public GameObject missile;
 
         Controller Con;
-
         private int health = 3;      // 現在体力
         public int  Health { get { return health; } set { health = value; } }
         private int maxhealth = 3;   // 最大体力
@@ -71,6 +70,7 @@ namespace VR
         {
             bShot = true;
             yield return new WaitForSeconds(0.1f);
+            SoundManager.Instance.PlaySE(0);
             var shotClone1 = Instantiate(shot, muzzleone.transform.position, player.transform.rotation);
            // shotClone1.transform.eulerAngles = player.transform.eulerAngles;
             bShot = false;
