@@ -27,6 +27,9 @@ namespace VR
         void Update()
         {
             ShotBullet();
+            var aim = this.Target.transform.position - this.transform.position;
+            var look = Quaternion.LookRotation(aim);
+            this.transform.localRotation = look;
         }
 
         //敵機初期化処理
@@ -72,14 +75,12 @@ namespace VR
                 if (other.gameObject.GetComponent<PlayerShot>() != null)
                 {
                     int Damage = other.gameObject.GetComponent<PlayerShot>().Power;
-
-                    Debug.Log("ショットに被弾した");
+                    SoundManager.Instance.PlaySE(2);
                     ESC.Health -= Damage;
                 }else if (other.gameObject.GetComponent<MissileMover>() != null)
                 {
                     int Damage = other.gameObject.GetComponent<MissileMover>().Power;
-
-                    Debug.Log("ミサイルに被弾した");
+                    
                     ESC.Health -= Damage;
                 }
 
@@ -87,7 +88,6 @@ namespace VR
                 //体力がなくなったら死亡処理
                 if (ESC.Health <= 0)
                 {
-                    Debug.Log("Dead State");
                     SoundManager.Instance.PlaySE(1);
                     Destroy(gameObject);
 

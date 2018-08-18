@@ -115,11 +115,9 @@ namespace VR
         //トリガーを押した時の処理
         private void PressTrigger()
         {
-            Debug.Log("テスト" + gsm.GetStateName());
             //テストシーンならショットを撃つ
             if ( gsm.GetStateName() == "TestState")
             {
-                Debug.Log("でるよ");
                 PSC.ShotBullet();
             }
         }

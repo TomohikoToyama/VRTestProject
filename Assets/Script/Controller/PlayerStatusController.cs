@@ -69,7 +69,7 @@ namespace VR
         private IEnumerator ShootBulletAndDestroyCoroutine()
         {
             bShot = true;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.15f);
             SoundManager.Instance.PlaySE(0);
             var shotClone1 = Instantiate(shot, muzzleone.transform.position, player.transform.rotation);
            // shotClone1.transform.eulerAngles = player.transform.eulerAngles;
@@ -83,7 +83,6 @@ namespace VR
         private IEnumerator IsInvicible()
         {
             invicible = true;
-            Debug.Log("無敵状態");
 
             var count = 0;
             //無敵状態を可視化するための演出処理
@@ -107,8 +106,7 @@ namespace VR
             renderRightLeg.enabled = true;
 
             invicible = false;
-
-            Debug.Log("無敵終わり");
+            
         }
 
         
@@ -152,7 +150,6 @@ namespace VR
                     StartCoroutine(IsInvicible());
                     //敵ショット
                      
-                        Debug.Log("ショットに被弾した");
                         Health --;
                     
                 }
@@ -160,7 +157,6 @@ namespace VR
                 //体力がなくなったら死亡処理
                 if (health <= 0)
                 {
-                    Debug.Log("Dead State");
                     Died = true;
 
                 }
