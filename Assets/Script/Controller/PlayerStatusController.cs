@@ -115,8 +115,29 @@ namespace VR
         //ミサイルロックオン
         public void Lockon()
         {
+            //Rayの作成
+            Ray ray = new Ray(transform.position, transform.forward);
+            
+            //Rayが当たったオブジェクトの情報
+            RaycastHit hit;
 
+            //Rayを飛ばす距離
+            float distance = 30.0f;
+            //Rayの可視化    ↓Rayの原点　　　　↓Rayの方向　　　　　　　　　↓Rayの色
+            Debug.DrawLine(ray.origin, ray.direction * distance, Color.red);
 
+            if (Physics.Raycast(ray, out hit, distance))
+            {
+                //Rayが当たったオブジェクトのtagがPlayerだったら
+                if (hit.collider.tag == "Enemy")
+                {
+                    // 衝突したオブジェクトの色を赤に変える
+                    hit.collider.GetComponent<MeshRenderer>().material.color = Color.red;
+
+                    Debug.Log("RayがEnemyに当たった");
+                    SoundManager.Instance.PlaySE(1);
+                }
+            }
         }
 
         //ミサイル発射

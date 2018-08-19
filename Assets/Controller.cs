@@ -132,6 +132,8 @@ namespace VR
         private void PressTouch(float X, float Y)
         {
             _parent.transform.Translate(0.05f * X, 0, 0.05f * Y);
+            if (gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.TestState.ToString() || gsm.GetStateName() == typeScene.StageState.ToString()))
+                PSC.Lockon();
         }
 
         //タッチパッドを離した時の処理
