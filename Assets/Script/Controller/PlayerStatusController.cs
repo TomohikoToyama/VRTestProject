@@ -132,7 +132,7 @@ namespace VR
                 if (hit.collider.tag == "Enemy")
                 {
                     // 衝突したオブジェクトの色を赤に変える
-                    hit.collider.GetComponent<MeshRenderer>().material.color = Color.red;
+                    hit.collider.GetComponent<EnemyController>();
 
                     Debug.Log("RayがEnemyに当たった");
                     SoundManager.Instance.PlaySE(1);
@@ -155,6 +155,7 @@ namespace VR
 
         }
 
+        
 
         //あたり判定処理
         private void OnTriggerEnter(Collider other)

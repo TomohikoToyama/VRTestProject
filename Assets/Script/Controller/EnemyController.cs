@@ -13,6 +13,7 @@ namespace VR
         GameObject Target;
         string PlayerUnit = "PlayerUnit";
 
+
         // Use this for initialization
         void Start()
         {
@@ -39,6 +40,11 @@ namespace VR
             ESC.ShotStock = 30;
         }
 
+        //ロックオンされた処理
+        public void Locked()
+        {
+
+        }
         //弾を撃つ
         public void ShotBullet()
         {
