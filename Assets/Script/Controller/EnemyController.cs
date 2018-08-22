@@ -13,10 +13,15 @@ namespace VR
         GameObject Target;
         string PlayerUnit = "PlayerUnit";
 
+        [SerializeField]
+        GameObject LockField;   //ロックオン画像
+
 
         // Use this for initialization
         void Start()
         {
+            
+
             ESC = gameObject.GetComponent<EnemyStatusController>();
             ESobj = (GameObject)Resources.Load("Prefabs/EnmSphere");
             Target = GameObject.FindGameObjectWithTag(PlayerUnit);
@@ -43,7 +48,14 @@ namespace VR
         //ロックオンされた処理
         public void Locked()
         {
+            ESC.Locked = true;
+            LockField.GetComponent<MeshRenderer>().enabled = true;
+        }
 
+        //ロックオン済みか確認
+        public bool CheckLock()
+        {
+            return ESC.Locked;
         }
         //弾を撃つ
         public void ShotBullet()

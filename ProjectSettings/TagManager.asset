@@ -23,6 +23,8 @@ TagManager:
   - PlayerUnit
   - ActiveController
   - SoundManager
+  - EnemyManager
+  - Lock
   layers:
   - Default
   - TransparentFX

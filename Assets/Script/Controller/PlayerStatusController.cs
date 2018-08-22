@@ -129,13 +129,18 @@ namespace VR
             if (Physics.Raycast(ray, out hit, distance))
             {
                 //Rayが当たったオブジェクトのtagがPlayerだったら
-                if (hit.collider.tag == "Enemy")
+                if (hit.collider.tag == "Enemy" )
                 {
-                    // 衝突したオブジェクトの色を赤に変える
-                    hit.collider.GetComponent<EnemyController>();
-
-                    Debug.Log("RayがEnemyに当たった");
-                    SoundManager.Instance.PlaySE(1);
+                    var EC = hit.collider.GetComponent<EnemyController>();
+                    
+                    //ロックオン済みの場合は何もしない
+                    if ( EC.CheckLock() ){
+                        
+                    }else
+                    {
+                        EC.Locked();
+                        SoundManager.Instance.PlaySE(1);
+                    }
                 }
             }
         }
