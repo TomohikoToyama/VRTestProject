@@ -14,6 +14,7 @@ namespace VR
         {
             manager = GSM;
             Time.timeScale = 1;
+            SoundManager.Instance.PlayBGM(0);
         }
         // Use this for initialization
         void Start()
