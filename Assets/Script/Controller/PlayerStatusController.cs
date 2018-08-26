@@ -43,6 +43,7 @@ namespace VR
         bool bShot;
         private float interval = 0.1f;
         private GameObject child;
+        private int lockNum;
         void Start()
         {
             shot = (GameObject)Resources.Load("Prefabs/Sphere");
@@ -138,6 +139,8 @@ namespace VR
                         
                     }else
                     {
+                        
+                        lockNum ++;
                         EC.Locked();
                         SoundManager.Instance.PlaySE(1);
                     }
@@ -148,15 +151,17 @@ namespace VR
         //ミサイル発射
         public void ShotMissile()
         {
-            //ショットタイマーがCT以上なら弾を発射
-            if (missileTimer >= missileCT)
-            {
-                missileTimer = 0.0f;
-              var misslieClone =  Instantiate(missile, muzzleone.transform.position, Quaternion.identity);
-                misslieClone.transform.position = muzzleone.position;
-                misslieClone.transform.eulerAngles = player.transform.eulerAngles;
-                
+            //ロックオン数の数だけミサイル発射
+            if (lockNum > 0) {
+                for (int i = 0; i < lockNum; i++)
+                {
+                    var misslieClone = Instantiate(missile, muzzleone.transform.position, Quaternion.identity);
+                    misslieClone.transform.position = muzzleone.position;
+                    misslieClone.transform.eulerAngles = player.transform.eulerAngles;
+                }
+                lockNum = 0;
             }
+          
 
         }
 

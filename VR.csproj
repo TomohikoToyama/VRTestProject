@@ -440,6 +440,7 @@
     <Compile Include="Assets\Plugin\SteamVR\Scripts\SteamVR_TrackedObject.cs" />
     <Compile Include="Assets\Plugin\SteamVR\Scripts\SteamVR_UpdatePoses.cs" />
     <Compile Include="Assets\Plugin\SteamVR\Scripts\SteamVR_Utils.cs" />
+    <Compile Include="Assets\Plugin\UGUIImageShaderPack\Examples\TestController.cs" />
     <Compile Include="Assets\Scene\test.cs" />
     <Compile Include="Assets\Script\Controller\EnemyAttackPattern.cs" />
     <Compile Include="Assets\Script\Controller\EnemyController.cs" />
@@ -513,6 +514,20 @@
     <None Include="Assets\Plugin\SteamVR\Resources\SteamVR_Fade.shader" />
     <None Include="Assets\Plugin\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
     <None Include="Assets\Plugin\SteamVR\readme.txt" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIDynamicMaterials\UIImage_Dynamic_Wave_Circle.shader" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIDynamicMaterials\UIImage_Dynamic_Wave_Direction.shader" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIStaticMaterials\UIImage_Static_Bloom.shader" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIStaticMaterials\UIImage_Static_Bloom_Advanced.shader" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIStaticMaterials\UIImage_Static_Blur.shader" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIStaticMaterials\UIImage_Static_Blur_Advanced.shader" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIStaticMaterials\UIImage_Static_Blur_Focus.shader" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIStaticMaterials\UIImage_Static_Bumps.shader" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIStaticMaterials\UIImage_Static_Gradient.shader" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIStaticMaterials\UIImage_Static_Gray.shader" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIStaticMaterials\UIImage_Static_Outline_Alpha.shader" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIStaticMaterials\UIImage_Static_Relief.shader" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIStaticMaterials\UIImage_Static_Sharp.shader" />
+    <None Include="Assets\Plugin\UGUIImageShaderPack\UIMaterials\UIStaticMaterials\UIImage_Static_SpotLight.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
