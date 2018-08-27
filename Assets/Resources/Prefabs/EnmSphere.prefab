@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23159945483941890}
   - component: {fileID: 54413663530640324}
   - component: {fileID: 114022460710398940}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnmSphere
   m_TagString: EnemyShot
   m_Icon: {fileID: 0}

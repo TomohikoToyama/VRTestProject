@@ -23,6 +23,10 @@ namespace VR
         
         public GameObject missile;
 
+        [SerializeField]
+        public GameObject LockLaser;
+
+
         Controller Con;
         private int health = 3;      // 現在体力
         public int  Health { get { return health; } set { health = value; } }
@@ -44,10 +48,12 @@ namespace VR
         private float interval = 0.1f;
         private GameObject child;
         private int lockNum;
+        GameObject Targetting;
         void Start()
         {
             shot = (GameObject)Resources.Load("Prefabs/Sphere");
             missile = (GameObject)Resources.Load("Prefabs/missile");
+            Targetting = transform.Find("Targetting").gameObject;
         }
 
         // Update is called once per frame
@@ -116,6 +122,7 @@ namespace VR
         //ミサイルロックオン
         public void Lockon()
         {
+            Targetting.GetComponent<MeshRenderer>().enabled = true;
             //Rayの作成
             Ray ray = new Ray(transform.position, transform.forward);
             
@@ -123,7 +130,7 @@ namespace VR
             RaycastHit hit;
 
             //Rayを飛ばす距離
-            float distance = 30.0f;
+            float distance = 300.0f;
             //Rayの可視化    ↓Rayの原点　　　　↓Rayの方向　　　　　　　　　↓Rayの色
             Debug.DrawLine(ray.origin, ray.direction * distance, Color.red);
 
@@ -148,9 +155,11 @@ namespace VR
             }
         }
 
+
         //ミサイル発射
-        public void ShotMissile()
+        public IEnumerator ShotMissile()
         {
+            Targetting.GetComponent<MeshRenderer>().enabled = false;
             //ロックオン数の数だけミサイル発射
             if (lockNum > 0) {
                 for (int i = 0; i < lockNum; i++)
@@ -158,6 +167,7 @@ namespace VR
                     var misslieClone = Instantiate(missile, muzzleone.transform.position, Quaternion.identity);
                     misslieClone.transform.position = muzzleone.position;
                     misslieClone.transform.eulerAngles = player.transform.eulerAngles;
+                    yield return new WaitForSeconds(0.3f);
                 }
                 lockNum = 0;
             }

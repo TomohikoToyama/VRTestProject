@@ -12,8 +12,7 @@ namespace VR
         GameObject ESobj;
         GameObject Target;
         string PlayerUnit = "PlayerUnit";
-
-        [SerializeField]
+        
         GameObject LockField;   //ロックオン画像
 
 
@@ -26,7 +25,7 @@ namespace VR
             ESobj = (GameObject)Resources.Load("Prefabs/EnmSphere");
             Target = GameObject.FindGameObjectWithTag(PlayerUnit);
             InitEnemy(10);
-
+            LockField = transform.Find("Lock").gameObject;
         }
 
         // Update is called once per frame

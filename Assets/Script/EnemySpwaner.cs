@@ -12,7 +12,7 @@ namespace VR
             TestStage = 9,
         }
 
-
+        private string place;
         float spawnTime;
         [SerializeField]
         StageManager SM;
@@ -24,7 +24,7 @@ namespace VR
         void start()
         {
             SM = GameObject.FindGameObjectWithTag("StageManager").GetComponent<StageManager>();
-            enemy = GameObject.FindGameObjectWithTag("Enemy");
+            enemy = (GameObject)Resources.Load("Prefabs/EnemyShip");
             player = GameObject.FindGameObjectWithTag("SearchArea");
            
         }
@@ -42,17 +42,11 @@ namespace VR
         void Enemy(){
 
             var e1 = Instantiate(enemy, this.transform.position + new Vector3(5,5,5), this.transform.rotation);
-            //e1.tag = "target";
             var e2 = Instantiate(enemy, this.transform.position + new Vector3(0,0, 0), this.transform.rotation);
             var e3 = Instantiate(enemy, this.transform.position + new Vector3(-5, -5, -5), this.transform.rotation);
             var e4 = Instantiate(enemy, this.transform.position + new Vector3(10, 10, 10), this.transform.rotation);
-
-            Debug.Log(SM.GetFormatStage());
-            Debug.Log(StageNum.TestStage.ToString());
-            if ( SM.GetFormatStage() == StageNum.TestStage.ToString())
-            {
-                Debug.Log("テスト");
-            }
+            
+            
         }
 
         private void OnTriggerEnter(Collider other)

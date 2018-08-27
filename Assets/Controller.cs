@@ -142,7 +142,7 @@ namespace VR
             //テストシーンならミサイルを撃つ
             if (gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.TestState.ToString() || gsm.GetStateName() == typeScene.StageState.ToString()))
             {
-                 PSC.ShotMissile();
+                StartCoroutine(PSC.ShotMissile());
             }
 
         }

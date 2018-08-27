@@ -489,7 +489,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugin\A-15 Beast\Info.txt" />
-    <None Include="Assets\Plugin\Cartoon Temple Building Kit\ReadMe.txt" />
     <None Include="Assets\Plugin\SpaceCraft 0\Readme.txt" />
     <None Include="Assets\Plugin\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Plugin\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
