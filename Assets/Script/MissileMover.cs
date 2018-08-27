@@ -46,13 +46,18 @@ public class MissileMover : MonoBehaviour {
     {
         if(target != null)
         this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z), shotSpeed * Time.deltaTime);
-        
-        if(target == null)
+
+        if (target == null)
         gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed;
 
         StartCoroutine(ShootBulletAndDestroyCoroutine());
 
 
+    }
+
+    public void SetEnemy(GameObject enm)
+    {
+        target = enm;
     }
     private void OnTriggerEnter(Collider other)
     {

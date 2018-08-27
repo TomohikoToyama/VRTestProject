@@ -26,6 +26,8 @@ namespace VR
         [SerializeField]
         public GameObject LockLaser;
 
+        MissileMover MS;
+
 
         Controller Con;
         private int health = 3;      // 現在体力
@@ -49,11 +51,13 @@ namespace VR
         private GameObject child;
         private int lockNum;
         GameObject Targetting;
+        Queue<GameObject> queueENemy = new Queue<GameObject>();
         void Start()
         {
             shot = (GameObject)Resources.Load("Prefabs/Sphere");
             missile = (GameObject)Resources.Load("Prefabs/missile");
             Targetting = transform.Find("Targetting").gameObject;
+
         }
 
         // Update is called once per frame
@@ -140,13 +144,13 @@ namespace VR
                 if (hit.collider.tag == "Enemy" )
                 {
                     var EC = hit.collider.GetComponent<EnemyController>();
-                    
+                 
                     //ロックオン済みの場合は何もしない
                     if ( EC.CheckLock() ){
                         
                     }else
                     {
-                        
+                        queueENemy.Enqueue(hit.collider.gameObject);
                         lockNum ++;
                         EC.Locked();
                         SoundManager.Instance.PlaySE(1);
@@ -164,9 +168,12 @@ namespace VR
             if (lockNum > 0) {
                 for (int i = 0; i < lockNum; i++)
                 {
+
                     var misslieClone = Instantiate(missile, muzzleone.transform.position, Quaternion.identity);
                     misslieClone.transform.position = muzzleone.position;
                     misslieClone.transform.eulerAngles = player.transform.eulerAngles;
+                    MS = misslieClone.GetComponent<MissileMover>();
+                    MS.SetEnemy(queueENemy.Dequeue());
                     yield return new WaitForSeconds(0.3f);
                 }
                 lockNum = 0;
