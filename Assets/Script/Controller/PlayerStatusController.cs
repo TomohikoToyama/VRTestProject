@@ -142,7 +142,7 @@ namespace VR
 
 
                 //Rayを飛ばす距離
-                float distance = 300.0f;
+                float distance = 1000.0f;
 
 
                 if (Physics.Raycast(ray, out hit, distance))
