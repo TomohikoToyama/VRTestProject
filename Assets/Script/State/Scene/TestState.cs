@@ -37,7 +37,6 @@ namespace VR
             PMO = GameObject.Find("ObjectManager").gameObject.GetComponent<PlayerObjectManager>();
             PMO.CreatePlayerUnit();
             PUnit = GameObject.FindGameObjectWithTag("PlayerUnit");
-            Debug.Log( "よんだよんだ" +PUnit);
             PSC = PUnit.GetComponent<PlayerStatusController>();
             SoundManager.Instance.PlayBGM(1);
         }

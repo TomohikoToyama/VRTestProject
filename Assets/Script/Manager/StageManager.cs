@@ -1,72 +1,63 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace VR{
-public class StageManager : MonoBehaviour, IStageManagerController{
 
+namespace VR {
+    public class StageManager : MonoBehaviour
+    {
 
-    //
-    [SerializeField]
-    public IStage activeStage;
-    public string stageName;
-    public StageManagerController smcon;
-    public static StageManager instance;
-    public static StageManager Instance
+        PlayerSpawner PS;
+        int currentState;
+        enum STAGESTATE
         {
-            get
+            READY       = 0,
+            ROAD        = 1,
+            BOSS        = 2,
+            GAMEOVER    = 3,
+            CLEAR       = 4
+
+        }
+        // Use this for initialization
+        void Start()
+        {
+            currentState = (int)STAGESTATE.READY;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            //READYの時の処理
+            if(currentState == (int)STAGESTATE.READY)
             {
-                if (instance == null)
-                {
-                    instance = (StageManager)FindObjectOfType(typeof(StageManager));
 
-                    if (instance == null)
-                    {
-                        Debug.LogError("StageManager Instance Error");
-                    }
-                }
 
-                return instance;
             }
-        }
-    // Use this for initialization
-    void Start() {
-            GameObject[] obj = GameObject.FindGameObjectsWithTag("StageManager");
-            if (obj.Length > 1)
+            //道中の時の処理
+            else if (currentState == (int)STAGESTATE.ROAD)
             {
-                //既に存在してるなら削除
-                Destroy(gameObject);
+
             }
-            else
+            //ボス戦の時の処理
+            else if (currentState == (int)STAGESTATE.BOSS)
             {
-                //管理マネージャーはシーン遷移では破棄させない
-                DontDestroyOnLoad(gameObject);
+
             }
-            StageManagerInit();
+            //ゲームオーバーの時の処理
+            else if (currentState == (int)STAGESTATE.GAMEOVER)
+            {
+
+            }//ステージクリアの時の処理
+            else if (currentState == (int)STAGESTATE.CLEAR)
+            {
+
+            }
+
+
         }
 
-    void Update()
-        {
 
-        }
-        //ステイト切り替え
-        public string SwitchState(IStage newStage)
-        {
-            activeStage = newStage;
-            Debug.Log("現在のシーン" + activeStage);
-            stageName = activeStage.ToString();
-            return activeStage.ToString();
-        }
 
-        //ゲームステイト初期化
-        public void StageManagerInit()
-        {
-            activeStage = new TestStage(this);
-           
-        }
 
-        public string GetFormatStage()
-        {
-            return activeStage.ToString();
-        }
+
     }
 }

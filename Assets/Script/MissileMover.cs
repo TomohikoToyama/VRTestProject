@@ -59,9 +59,14 @@ public class MissileMover : MonoBehaviour {
     {
         target = enm;
     }
+
+    public string GetEnemy()
+    {
+        return target.name;
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.name == target.name)
             Destroy(gameObject);
     }
 

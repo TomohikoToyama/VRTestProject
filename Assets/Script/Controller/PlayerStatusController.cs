@@ -28,6 +28,7 @@ namespace VR
 
         MissileMover MS;
 
+        bool missileShotting;
 
         Controller Con;
         private int health = 3;      // 現在体力
@@ -50,7 +51,9 @@ namespace VR
         private float interval = 0.1f;
         private GameObject child;
         private int lockNum;
+
         GameObject Targetting;
+        GameObject targetObj;
         Queue<GameObject> queueENemy = new Queue<GameObject>();
         void Start()
         {
@@ -120,43 +123,53 @@ namespace VR
             
         }
 
-        
+
         #endregion
 
         //ミサイルロックオン
         public void Lockon()
         {
-            Targetting.GetComponent<MeshRenderer>().enabled = true;
-            //Rayの作成
-            Ray ray = new Ray(transform.position, transform.forward);
-            
-            //Rayが当たったオブジェクトの情報
-            RaycastHit hit;
+               //ミサイル発射中はロックオン不可
+            if (!missileShotting) { 
+                if (Targetting != null)
+                    Targetting.GetComponent<MeshRenderer>().enabled = true;
 
-            //Rayを飛ばす距離
-            float distance = 300.0f;
-            //Rayの可視化    ↓Rayの原点　　　　↓Rayの方向　　　　　　　　　↓Rayの色
-            Debug.DrawLine(ray.origin, ray.direction * distance, Color.red);
+                //Rayの作成
+                Ray ray = new Ray(transform.position, transform.forward);
 
-            if (Physics.Raycast(ray, out hit, distance))
-            {
-                //Rayが当たったオブジェクトのtagがPlayerだったら
-                if (hit.collider.tag == "Enemy" )
+                //Rayが当たったオブジェクトの情報
+                RaycastHit hit;
+
+
+                //Rayを飛ばす距離
+                float distance = 300.0f;
+
+
+                if (Physics.Raycast(ray, out hit, distance))
                 {
-                    var EC = hit.collider.GetComponent<EnemyController>();
-                 
-                    //ロックオン済みの場合は何もしない
-                    if ( EC.CheckLock() ){
-                        
-                    }else
+                    //対象のオブジェクト
+                    GameObject hitObj = hit.collider.gameObject;
+                    //Rayが当たったオブジェクトのtagがPlayerだったら
+                    if (hitObj.tag == "Enemy")
                     {
-                        queueENemy.Enqueue(hit.collider.gameObject);
-                        lockNum ++;
-                        EC.Locked();
-                        SoundManager.Instance.PlaySE(1);
-                    }
+                        var EC = hitObj.GetComponent<EnemyController>();
+
+                        //ロックオン済みの場合は何もしない
+                        if (EC.CheckLock())
+                        {
+
+                        }
+                        else
+                        {
+                            lockNum ++;
+                            queueENemy.Enqueue(hit.collider.gameObject);
+                            EC.Locked();
+                            SoundManager.Instance.PlaySE(1);
+                        }
+    
+                     }
                 }
-            }
+             }
         }
 
 
@@ -164,22 +177,33 @@ namespace VR
         public IEnumerator ShotMissile()
         {
             Targetting.GetComponent<MeshRenderer>().enabled = false;
-            //ロックオン数の数だけミサイル発射
-            if (lockNum > 0) {
-                for (int i = 0; i < lockNum; i++)
+
+            if (!missileShotting)
+            {
+                //ロックオン数の数だけミサイル発射
+                if (lockNum > 0)
                 {
-
-                    var misslieClone = Instantiate(missile, muzzleone.transform.position, Quaternion.identity);
-                    misslieClone.transform.position = muzzleone.position;
-                    misslieClone.transform.eulerAngles = player.transform.eulerAngles;
-                    MS = misslieClone.GetComponent<MissileMover>();
-                    MS.SetEnemy(queueENemy.Dequeue());
-                    yield return new WaitForSeconds(0.3f);
+                    for (int i = 0; i < lockNum; i++)
+                    {
+                        missileShotting = true;
+                        
+                        targetObj = queueENemy.Dequeue();
+                        if (targetObj != null)
+                        {
+                            var misslieClone = Instantiate(missile, muzzleone.transform.position, Quaternion.identity);
+                            misslieClone.transform.position = muzzleone.position;
+                            misslieClone.transform.eulerAngles = player.transform.eulerAngles;
+                            MS = misslieClone.GetComponent<MissileMover>();
+                            MS.SetEnemy(targetObj);
+                        }
+                        targetObj = null;
+                        yield return new WaitForSeconds(0.1f);
+                    }
+                    lockNum = 0;
+                    missileShotting = false;
                 }
-                lockNum = 0;
-            }
-          
 
+            }
         }
 
         

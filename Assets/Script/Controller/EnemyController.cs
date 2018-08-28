@@ -94,7 +94,7 @@ namespace VR
                     int Damage = other.gameObject.GetComponent<PlayerShot>().Power;
                     SoundManager.Instance.PlaySE(2);
                     ESC.Health -= Damage;
-                }else if (other.gameObject.GetComponent<MissileMover>() != null)
+                }else if (other.gameObject.GetComponent<MissileMover>() != null && gameObject.name == other.gameObject.GetComponent<MissileMover>().GetEnemy())
                 {
                     int Damage = other.gameObject.GetComponent<MissileMover>().Power;
                     
