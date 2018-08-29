@@ -84,6 +84,14 @@ namespace VR {
 
         }
 
+        public bool AbleEnemyShoot()
+        {
+            if (currentState == (int)STAGESTATE.ROAD || currentState == (int)STAGESTATE.BOSS)
+            {
+                return true;
+            }
+            return false;
+        }
         public int GetCurrentState()
         {
             return currentState;

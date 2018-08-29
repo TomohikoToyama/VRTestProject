@@ -15,6 +15,8 @@ namespace VR
         
         GameObject LockField;   //ロックオン画像
 
+        private int roadState = 1;
+        private int bossState = 2;
 
         // Use this for initialization
         void Start()
@@ -31,10 +33,13 @@ namespace VR
         // Update is called once per frame
         void Update()
         {
-            ShotBullet();
-            var aim = this.Target.transform.position - this.transform.position;
-            var look = Quaternion.LookRotation(aim);
-            this.transform.localRotation = look;
+            if (StageManager.Instance.AbleEnemyShoot())
+            {
+                ShotBullet();
+                var aim = this.Target.transform.position - this.transform.position;
+                var look = Quaternion.LookRotation(aim);
+                this.transform.localRotation = look;
+            }
         }
 
         //敵機初期化処理
