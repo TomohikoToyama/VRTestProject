@@ -9,6 +9,7 @@ namespace VR
         StageSelect SS;
         PlayerObjectManager PMO;
         bool select;
+
         private GameStateManager manager;
         public MenuState(GameStateManager GSM)
         {

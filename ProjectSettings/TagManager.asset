@@ -25,6 +25,7 @@ TagManager:
   - SoundManager
   - EnemyManager
   - Lock
+  - CameraText
   layers:
   - Default
   - TransparentFX

@@ -5,9 +5,11 @@ using UnityEngine;
 namespace VR {
     public class StageManager : MonoBehaviour
     {
-
+        [SerializeField]
+        public Material[] stageText;
         GameObject PS;
         GameObject Player;
+        private GameObject CameraText;
         int currentState;
         TextMesh stateText;
         public enum STAGESTATE
@@ -50,6 +52,7 @@ namespace VR {
             Player = GameObject.FindGameObjectWithTag("ActiveController");
             Player.transform.position = PS.transform.position;
             Player.transform.rotation = PS.transform.rotation;
+            CameraText = GameObject.FindGameObjectWithTag("CameraText");
             StartCoroutine(ReadyCoroutine());
         }
 
@@ -102,15 +105,15 @@ namespace VR {
         #region
         IEnumerator ReadyCoroutine()
         {
-            stateText = PS.transform.Find("StateText").GetComponent<TextMesh>();
-            stateText.gameObject.SetActive(true);
-          
-            yield return new WaitForSeconds(3.0f);
+            CameraText.GetComponent<Renderer>().material = stageText[0];
+            CameraText.GetComponent<MeshRenderer>().enabled = true;
+            CameraText.GetComponent<Renderer>().material = stageText[1];
+             yield return new WaitForSeconds(3.0f);
 
-            stateText.text = "GO!";
+            CameraText.GetComponent<Renderer>().material = stageText[2];
+            yield return new WaitForSeconds(1.0f);
 
-
-            stateText.gameObject.SetActive(false);
+            CameraText.GetComponent<MeshRenderer>().enabled = false;
             currentState = (int)STAGESTATE.ROAD;
         }
 
