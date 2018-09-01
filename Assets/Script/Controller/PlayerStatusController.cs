@@ -164,7 +164,7 @@ namespace VR
                             lockNum ++;
                             queueENemy.Enqueue(hit.collider.gameObject);
                             EC.Locked();
-                            SoundManager.Instance.PlaySE(1);
+                            SoundManager.Instance.PlaySE(3);
                         }
     
                      }
