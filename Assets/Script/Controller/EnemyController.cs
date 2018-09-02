@@ -6,11 +6,15 @@ namespace VR
 {
     public class EnemyController : MonoBehaviour
     {
-        EnemyStatusController ESC;
+        EnemyStatus ES;
         public GameObject shot;
         bool bShot;
         GameObject ESobj;
         GameObject Target;
+        [SerializeField]
+        ParticleSystem explode;
+        [SerializeField]
+        ParticleSystem fire;
         string PlayerUnit = "PlayerUnit";
         
         GameObject LockField;   //ロックオン画像
@@ -21,9 +25,10 @@ namespace VR
         // Use this for initialization
         void Start()
         {
-            
 
-            ESC = gameObject.GetComponent<EnemyStatusController>();
+            explode.Stop();
+            fire.Stop();
+            ES = gameObject.GetComponent<EnemyStatus>();
             ESobj = (GameObject)Resources.Load("Prefabs/EnmSphere");
             Target = GameObject.FindGameObjectWithTag(PlayerUnit);
             InitEnemy(10);
@@ -45,29 +50,31 @@ namespace VR
         //敵機初期化処理
         private void InitEnemy(int _health)
         {
-            ESC.Health = _health;
-            ESC.ShotStock = 30;
+            ES.Health = _health;
+            ES.ShotStock = 20;
         }
 
         //ロックオンされた処理
         public void Locked()
         {
-            ESC.Locked = true;
+            ES.Locked = true;
             LockField.GetComponent<MeshRenderer>().enabled = true;
         }
 
         //ロックオン済みか確認
         public bool CheckLock()
         {
-            return ESC.Locked;
+            return ES.Locked;
         }
         //弾を撃つ
         public void ShotBullet()
         {
-            if (!bShot && ESC.ShotStock > 0)
+            if (!bShot && ES.ShotStock > 0)
                 StartCoroutine(ShootBulletAndDestroyCoroutine());
         }
 
+        //非同期処理群
+        #region
         //ショットの非同期処理
         private IEnumerator ShootBulletAndDestroyCoroutine()
         {
@@ -79,13 +86,34 @@ namespace VR
             var aim = this.Target.transform.position - this.transform.position;
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
-            ESC.ShotStock -= 1;
+            ES.ShotStock -= 1;
             bShot = false;
 
 
         }
 
-        private void OnTriggerEnter(Collider other)
+        //被弾時の処理
+        private IEnumerator FireCoroutine(Collider shot)
+        {
+            fire.transform.position = shot.gameObject.transform.position;
+            fire.transform.LookAt(shot.gameObject.transform);
+            fire.Play();
+            yield return new WaitForSeconds(0.3f);
+            fire.Stop();
+        }
+
+        //破壊時の処理
+        private IEnumerator ExplodeCoroutine()
+        {
+            explode.Play();
+            SoundManager.Instance.PlaySE(1);
+            yield return new WaitForSeconds(0.3f);
+            explode.Stop();
+            Destroy(gameObject);
+        }
+            #endregion
+
+            private void OnTriggerEnter(Collider other)
         {
             
 
@@ -98,21 +126,21 @@ namespace VR
                 {
                     int Damage = other.gameObject.GetComponent<PlayerShot>().Power;
                     SoundManager.Instance.PlaySE(2);
-                    ESC.Health -= Damage;
-                }else if (other.gameObject.GetComponent<MissileMover>() != null && gameObject.name == other.gameObject.GetComponent<MissileMover>().GetEnemy())
+                    ES.Health -= Damage;
+                    StartCoroutine(FireCoroutine(other));
+                }
+                else if (other.gameObject.GetComponent<MissileMover>() != null && gameObject.name == other.gameObject.GetComponent<MissileMover>().GetEnemy())
                 {
                     int Damage = other.gameObject.GetComponent<MissileMover>().Power;
                     
-                    ESC.Health -= Damage;
+                    ES.Health -= Damage;
                 }
 
 
                 //体力がなくなったら死亡処理
-                if (ESC.Health <= 0)
+                if (ES.Health <= 0)
                 {
-                    SoundManager.Instance.PlaySE(1);
-                    Destroy(gameObject);
-
+                    StartCoroutine(ExplodeCoroutine());
                 }
             }
         }
