@@ -77,7 +77,7 @@ namespace VR
         //弾を撃つ
         public void ShotBullet()
         {
-            if(!bShot && StageManager.Instance.AbleShoot())
+            if(!bShot && (StageManager.Instance != null && StageManager.Instance.AbleShoot() ))
             StartCoroutine(ShootBulletAndDestroyCoroutine());
         }
 
@@ -155,7 +155,7 @@ namespace VR
         public void Lockon()
         {
                //ミサイル発射中はロックオン不可
-            if (!missileShotting && StageManager.Instance.AbleShoot()) { 
+            if (!missileShotting && (StageManager.Instance != null && StageManager.Instance.AbleShoot())) { 
                 if (Targetting != null)
                     Targetting.GetComponent<MeshRenderer>().enabled = true;
 
@@ -215,6 +215,7 @@ namespace VR
                         targetObj = queueENemy.Dequeue();
                         if (targetObj != null)
                         {
+                            SoundManager.Instance.PlaySE(4);
                             var misslieClone = Instantiate(missile, muzzleone.transform.position, Quaternion.identity);
                             misslieClone.transform.position = muzzleone.position;
                             misslieClone.transform.eulerAngles = player.transform.eulerAngles;

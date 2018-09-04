@@ -9,6 +9,7 @@ namespace VR {
         public Material[] stageText;
         GameObject PS;
         GameObject Player;
+        GameObject PUnit;
         private GameObject CameraText;
         int currentState;
         TextMesh stateText;
@@ -36,7 +37,7 @@ namespace VR {
 
                     if (instance == null)
                     {
-                        Debug.LogError("StageManager Instance Error");
+                       Debug.Log("StageManager Instance Error");
                     }
                 }
 
@@ -49,9 +50,11 @@ namespace VR {
         {
             currentState = (int)STAGESTATE.READY;
             PS = GameObject.Find("PlayerSpawner");
+            PUnit = GameObject.FindGameObjectWithTag("PlayerUnit");
             Player = GameObject.FindGameObjectWithTag("ActiveController");
             Player.transform.position = PS.transform.position;
-            Player.transform.rotation = PS.transform.rotation;
+            PUnit.transform.rotation = Player.transform.rotation;
+            PUnit.transform.Rotate(45,0,0);
             CameraText = GameObject.FindGameObjectWithTag("CameraText");
             StartCoroutine(ReadyCoroutine());
         }
