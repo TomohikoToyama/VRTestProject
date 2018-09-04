@@ -38,7 +38,7 @@ namespace VR
         // Update is called once per frame
         void Update()
         {
-            if (StageManager.Instance.AbleEnemyShoot())
+            if (StageManager.Instance.AbleShoot())
             {
                 ShotBullet();
                 var aim = this.Target.transform.position - this.transform.position;
@@ -97,6 +97,7 @@ namespace VR
         {
             fire.transform.position = shot.gameObject.transform.position;
             fire.transform.LookAt(shot.gameObject.transform);
+            SoundManager.Instance.PlaySE(2);
             fire.Play();
             yield return new WaitForSeconds(0.3f);
             fire.Stop();
@@ -125,7 +126,7 @@ namespace VR
                 if (other.gameObject.GetComponent<PlayerShot>() != null)
                 {
                     int Damage = other.gameObject.GetComponent<PlayerShot>().Power;
-                    SoundManager.Instance.PlaySE(2);
+                    
                     ES.Health -= Damage;
                     StartCoroutine(FireCoroutine(other));
                 }

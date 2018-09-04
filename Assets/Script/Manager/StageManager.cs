@@ -87,7 +87,7 @@ namespace VR {
 
         }
 
-        public bool AbleEnemyShoot()
+        public bool AbleShoot()
         {
             if (currentState == (int)STAGESTATE.ROAD || currentState == (int)STAGESTATE.BOSS)
             {
@@ -100,7 +100,10 @@ namespace VR {
             return currentState;
         }
 
-        
+        public void SetGameOver()
+        {
+            currentState = (int)STAGESTATE.GAMEOVER;
+        }
         //非同期処理群
         #region
         IEnumerator ReadyCoroutine()

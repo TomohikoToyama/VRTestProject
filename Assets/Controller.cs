@@ -36,7 +36,7 @@ namespace VR
         GameObject _parent;
         bool shotLimit = false;
 
-        
+        bool waitInput = false;
         // Use this for initialization
         void Start()
         {
@@ -47,6 +47,24 @@ namespace VR
 
         // Update is called once per frame
         void Update()
+        {
+         
+            //操作可能時、入力を受け付ける
+            if(!waitInput)
+                Act();
+
+
+
+        }
+
+        private void InitController()
+        {
+            if (gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.TestState.ToString() || gsm.GetStateName() == typeScene.StageState.ToString()))
+                PSC = GameObject.FindGameObjectWithTag("PlayerUnit").GetComponent<PlayerStatusController>();
+        }
+
+        //コントローラーの操作
+        private void Act()
         {
             var trackObj = GetComponent<SteamVR_TrackedObject>();
             var device = SteamVR_Controller.Input((int)trackObj.index);
@@ -61,7 +79,7 @@ namespace VR
 
                 PressTrigger();
             }
-            
+
             //トリガー離した時の挙動
             if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
             {
@@ -69,7 +87,7 @@ namespace VR
                     InitController();
                 UpTrigger();
             }
-            
+
             //タッチパッドを押した時の挙動
             if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
             {
@@ -100,14 +118,6 @@ namespace VR
                     InitController();
                 PressGrip();
             }
-
-           
-        }
-
-        private void InitController()
-        {
-            if (gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.TestState.ToString() || gsm.GetStateName() == typeScene.StageState.ToString()))
-                PSC = GameObject.FindGameObjectWithTag("PlayerUnit").GetComponent<PlayerStatusController>();
         }
 
         //ボタンの処理内容群
@@ -116,7 +126,7 @@ namespace VR
         private void PressTrigger()
         {
             //テストシーンならショットを撃つ
-            if ( gsm.GetStateName() == "TestState")
+            if ( gsm.GetStateName() == "TestState" && StageManager.Instance.AbleShoot())
             {
                 PSC.ShotBullet();
             }

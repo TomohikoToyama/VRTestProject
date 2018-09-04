@@ -51,12 +51,17 @@ namespace VR
         private float interval = 0.1f;
         private GameObject child;
         private int lockNum;
-
+        [SerializeField]
+        ParticleSystem explode;
+        [SerializeField]
+        ParticleSystem fire;
         GameObject Targetting;
         GameObject targetObj;
         Queue<GameObject> queueENemy = new Queue<GameObject>();
         void Start()
         {
+            explode.Stop();
+            fire.Stop();
             shot = (GameObject)Resources.Load("Prefabs/Sphere");
             missile = (GameObject)Resources.Load("Prefabs/missile");
             Targetting = transform.Find("Targetting").gameObject;
@@ -72,7 +77,7 @@ namespace VR
         //弾を撃つ
         public void ShotBullet()
         {
-            if(!bShot)
+            if(!bShot && StageManager.Instance.AbleShoot())
             StartCoroutine(ShootBulletAndDestroyCoroutine());
         }
 
@@ -123,14 +128,34 @@ namespace VR
             
         }
 
+        //被弾時の処理
+        private IEnumerator FireCoroutine(Collider shot)
+        {
+            fire.transform.position = shot.gameObject.transform.position;
+            fire.transform.LookAt(shot.gameObject.transform);
+            SoundManager.Instance.PlaySE(2);
+            fire.Play();
+            yield return new WaitForSeconds(0.3f);
+            fire.Stop();
+        }
 
+        //破壊時の処理
+        private IEnumerator ExplodeCoroutine()
+        {
+            explode.Play();
+            SoundManager.Instance.PlaySE(1);
+            yield return new WaitForSeconds(0.3f);
+            explode.Stop();
+            StageManager.Instance.SetGameOver();
+            //Destroy(gameObject);
+        }
         #endregion
 
         //ミサイルロックオン
         public void Lockon()
         {
                //ミサイル発射中はロックオン不可
-            if (!missileShotting) { 
+            if (!missileShotting && StageManager.Instance.AbleShoot()) { 
                 if (Targetting != null)
                     Targetting.GetComponent<MeshRenderer>().enabled = true;
 
@@ -178,7 +203,7 @@ namespace VR
         {
             Targetting.GetComponent<MeshRenderer>().enabled = false;
 
-            if (!missileShotting)
+            if (!missileShotting && StageManager.Instance.AbleShoot())
             {
                 //ロックオン数の数だけミサイル発射
                 if (lockNum > 0)
@@ -219,6 +244,7 @@ namespace VR
                 //弾のショットから弾の威力を取得して威力分のダメージ
                 if (!invicible)
                 {
+                    StartCoroutine( FireCoroutine(other) );
                     //ダメージ時に連続ヒット防止に無敵化処理
                     StartCoroutine(IsInvicible());
                     //敵ショット
@@ -230,7 +256,8 @@ namespace VR
                 //体力がなくなったら死亡処理
                 if (health <= 0)
                 {
-                    Died = true;
+                    StartCoroutine(ExplodeCoroutine() );
+                   // Died = true;
 
                 }
             }
