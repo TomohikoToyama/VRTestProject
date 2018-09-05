@@ -61,6 +61,15 @@ namespace VR
             LockField.GetComponent<MeshRenderer>().enabled = true;
         }
 
+        //ミサイル着弾でロックオン解除
+        public void Unlock()
+        {
+            ES.Locked = false;
+            LockField.GetComponent<MeshRenderer>().enabled = false;
+        }
+
+    
+
         //ロックオン済みか確認
         public bool CheckLock()
         {
@@ -135,6 +144,7 @@ namespace VR
                     int Damage = other.gameObject.GetComponent<MissileMover>().Power;
                     
                     ES.Health -= Damage;
+                    Unlock();
                 }
 
 

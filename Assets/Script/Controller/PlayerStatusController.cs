@@ -31,6 +31,8 @@ namespace VR
         bool missileShotting;
 
         Controller Con;
+        private int score;  //スコア
+        public int Score { get { return score; } set { score = value; } }
         private int health = 3;      // 現在体力
         public int  Health { get { return health; } set { health = value; } }
         private int maxhealth = 3;   // 最大体力
@@ -147,7 +149,9 @@ namespace VR
             yield return new WaitForSeconds(0.3f);
             explode.Stop();
             StageManager.Instance.SetGameOver();
-            //Destroy(gameObject);
+            yield return new WaitForSeconds(3.0f);
+            Died = true;
+            Destroy(gameObject);
         }
         #endregion
 
@@ -258,7 +262,7 @@ namespace VR
                 if (health <= 0)
                 {
                     StartCoroutine(ExplodeCoroutine() );
-                   // Died = true;
+                   
 
                 }
             }
