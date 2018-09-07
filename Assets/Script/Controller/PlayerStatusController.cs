@@ -59,6 +59,9 @@ namespace VR
         ParticleSystem fire;
         GameObject Targetting;
         GameObject targetObj;
+        Vector3 origin;
+        Vector3 direction;
+        float sphereRadius = 1.0f;
         Queue<GameObject> queueENemy = new Queue<GameObject>();
         void Start()
         {
@@ -164,7 +167,9 @@ namespace VR
                     Targetting.GetComponent<MeshRenderer>().enabled = true;
 
                 //Rayの作成
-                Ray ray = new Ray(transform.position, transform.forward);
+                origin = transform.position;
+                direction = transform.forward;
+                Ray ray = new Ray(origin, direction);
 
                 //Rayが当たったオブジェクトの情報
                 RaycastHit hit;
@@ -172,9 +177,9 @@ namespace VR
 
                 //Rayを飛ばす距離
                 float distance = 1000.0f;
+                //Raycast(ray, out hit, distance))
 
-
-                if (Physics.Raycast(ray, out hit, distance))
+                if (Physics.SphereCast(origin ,sphereRadius ,direction ,out hit ,distance))
                 {
                     //対象のオブジェクト
                     GameObject hitObj = hit.collider.gameObject;
