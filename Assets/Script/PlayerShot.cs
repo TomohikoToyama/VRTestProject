@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShot : MonoBehaviour {
 
     private float limitTime = 2.0f;
-    private float shotSpeed = 20.0f;
+    private float shotSpeed = 30.0f;
     private int power = 1; //ショットの攻撃力
     public int Power { get { return power; } set { power = value; } }
     private bool remain;

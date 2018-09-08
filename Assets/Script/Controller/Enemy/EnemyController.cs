@@ -31,7 +31,7 @@ namespace VR
             ES = gameObject.GetComponent<EnemyStatus>();
             ESobj = (GameObject)Resources.Load("Prefabs/EnmSphere");
             Target = GameObject.FindGameObjectWithTag(PlayerUnit);
-            InitEnemy(10);
+            InitEnemy(30);
             LockField = transform.Find("Lock").gameObject;
         }
 
@@ -119,6 +119,7 @@ namespace VR
             SoundManager.Instance.PlaySE(1);
             yield return new WaitForSeconds(0.3f);
             explode.Stop();
+            if(ES.Health <= 0)
             Destroy(gameObject);
         }
             #endregion
@@ -145,6 +146,7 @@ namespace VR
                     
                     ES.Health -= Damage;
                     Unlock();
+                    StartCoroutine(ExplodeCoroutine());
                 }
 
 

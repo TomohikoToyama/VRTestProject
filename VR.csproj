@@ -465,6 +465,7 @@
     <Compile Include="Assets\Script\Manager\GameStateManager.cs" />
     <Compile Include="Assets\Script\Manager\MapManager.cs" />
     <Compile Include="Assets\Script\Manager\PlayerManager.cs" />
+    <Compile Include="Assets\Script\Manager\ScoreManager.cs" />
     <Compile Include="Assets\Script\Manager\SoundManager.cs" />
     <Compile Include="Assets\Script\Manager\StageManager.cs" />
     <Compile Include="Assets\Script\MenuButton.cs" />

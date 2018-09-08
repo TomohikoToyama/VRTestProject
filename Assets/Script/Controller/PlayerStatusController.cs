@@ -61,14 +61,17 @@ namespace VR
         GameObject targetObj;
         Vector3 origin;
         Vector3 direction;
-        float sphereRadius = 1.0f;
+        float sphereRadius = 2.5f;
         Queue<GameObject> queueENemy = new Queue<GameObject>();
+        GameObject PUnit;
         void Start()
         {
             explode.Stop();
             fire.Stop();
             shot = (GameObject)Resources.Load("Prefabs/Sphere");
             missile = (GameObject)Resources.Load("Prefabs/missile");
+            PUnit = GameObject.FindGameObjectWithTag("PlayerUnit");
+            
             Targetting = transform.Find("Targetting").gameObject;
 
         }
@@ -168,18 +171,17 @@ namespace VR
                     Targetting.GetComponent<MeshRenderer>().enabled = true;
 
                 //Rayの作成
-                origin = transform.position;
-                direction = transform.forward;
+                origin = Targetting.transform.position;
+                direction = Targetting.transform.forward;
                 Ray ray = new Ray(origin, direction);
 
                 //Rayが当たったオブジェクトの情報
                 RaycastHit hit;
 
-
+               
                 //Rayを飛ばす距離
                 float distance = 1000.0f;
-                //Raycast(ray, out hit, distance))
-
+                
                 if (Physics.SphereCast(origin ,sphereRadius ,direction ,out hit ,distance))
                 {
                     //対象のオブジェクト

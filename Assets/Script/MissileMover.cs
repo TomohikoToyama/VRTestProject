@@ -44,31 +44,35 @@ public class MissileMover : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        //ターゲット対象生存時、対象に向きながら追尾着弾
         if (target != null)
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z), shotSpeed * Time.deltaTime);
             var look = Quaternion.LookRotation(transform.position - this.transform.position);
             this.transform.localRotation = look;
         }
+
         //ターゲット対象が着弾前に死亡などなくなった場合は2秒で破棄
         if (target == null)
         {
             gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed;
-
             StartCoroutine(ShootBulletAndDestroyCoroutine());
         }
 
     }
 
+    //ターゲット対象をセット
     public void SetEnemy(GameObject enm)
     {
         target = enm;
     }
 
+    //ターゲット対象名をゲット、着弾対象照合用
     public string GetEnemy()
     {
         return target.name;
     }
+    //ターゲット対象に着弾した時、破棄する
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == target.name)

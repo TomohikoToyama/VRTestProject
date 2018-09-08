@@ -59,6 +59,15 @@ namespace VR {
             PUnit.transform.Rotate(45,0,0);
             CameraText = GameObject.FindGameObjectWithTag("CameraText");
             RenderSettings.skybox = (Material)Resources.Load("Image/Material/Sky Material");
+            GameObject[] model = GameObject.FindGameObjectsWithTag("Model");
+            foreach (GameObject obj in model)
+            {
+                Renderer[] rnd = obj.GetComponentsInChildren<Renderer>();
+                foreach(var rnds in rnd)
+                {
+                    rnds.enabled = false;
+                }
+            }
             StartCoroutine(ReadyCoroutine());
 
         }
