@@ -44,14 +44,19 @@ public class MissileMover : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if(target != null)
-        this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z), shotSpeed * Time.deltaTime);
-
+        if (target != null)
+        {
+            this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z), shotSpeed * Time.deltaTime);
+            var look = Quaternion.LookRotation(transform.position - this.transform.position);
+            this.transform.localRotation = look;
+        }
+        //ターゲット対象が着弾前に死亡などなくなった場合は2秒で破棄
         if (target == null)
-        gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed;
+        {
+            gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed;
 
-        StartCoroutine(ShootBulletAndDestroyCoroutine());
-
+            StartCoroutine(ShootBulletAndDestroyCoroutine());
+        }
 
     }
 

@@ -13,6 +13,8 @@ namespace VR {
         private GameObject CameraText;
         int currentState;
         TextMesh stateText;
+        Material stageSkybox;
+        GameObject playerCamera;
         public enum STAGESTATE
         {
             READY = 0,
@@ -56,7 +58,9 @@ namespace VR {
             PUnit.transform.rotation = Player.transform.rotation;
             PUnit.transform.Rotate(45,0,0);
             CameraText = GameObject.FindGameObjectWithTag("CameraText");
+            RenderSettings.skybox = (Material)Resources.Load("Image/Material/Sky Material");
             StartCoroutine(ReadyCoroutine());
+
         }
 
         // Update is called once per frame

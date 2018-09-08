@@ -110,24 +110,25 @@ namespace VR
 
             var count = 0;
             //無敵状態を可視化するための演出処理
-            var renderBody = transform.Find("Body").gameObject.GetComponent<Renderer>();
-            var renderFrontLeg = transform.Find("Front_Leg").gameObject.GetComponent<Renderer>();
-            var renderLeftLeg = transform.Find("L_Leg").gameObject.GetComponent<Renderer>();
-            var renderRightLeg = transform.Find("R_leg").gameObject.GetComponent<Renderer>();
+            //全ての機体パーツのRenderer取得
+            Renderer[] rend = GetComponentsInChildren<Renderer>();
+         
             while (count < 20)
             {
-                renderBody.enabled = !renderBody.enabled;
-                renderFrontLeg.enabled = !renderFrontLeg.enabled;
-                renderLeftLeg.enabled = !renderLeftLeg.enabled;
-                renderRightLeg.enabled = !renderRightLeg.enabled;
+                //全ての機体パーツを点滅処理
+                foreach (var col in rend)
+                {
+                    col.enabled = !col.enabled;
+                }
                 yield return new WaitForSeconds(interval);
                 count ++;
 
             }
-            renderRightLeg.enabled = true ;
-            renderFrontLeg.enabled = true;
-            renderLeftLeg.enabled = true;
-            renderRightLeg.enabled = true;
+            //全ての機体パーツの表示を正常に戻す
+            foreach (var col in rend)
+            {
+                col.enabled = true;
+            }
 
             invicible = false;
             
