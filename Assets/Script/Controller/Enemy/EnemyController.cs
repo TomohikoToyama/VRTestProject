@@ -52,6 +52,7 @@ namespace VR
         {
             ES.Health = _health;
             ES.ShotStock = 20;
+            ES.Score = 100;
         }
 
         //ロックオンされた処理
@@ -117,10 +118,14 @@ namespace VR
         {
             explode.Play();
             SoundManager.Instance.PlaySE(1);
+            if (ES.Health <= 0)
+            {
+                explode.Stop();
+                Destroy(gameObject);
+            }
             yield return new WaitForSeconds(0.3f);
             explode.Stop();
-            if(ES.Health <= 0)
-            Destroy(gameObject);
+           
         }
             #endregion
 
@@ -153,6 +158,7 @@ namespace VR
                 //体力がなくなったら死亡処理
                 if (ES.Health <= 0)
                 {
+                    ScoreManager.Instance.ScoreChange(ES.Score);
                     StartCoroutine(ExplodeCoroutine());
                 }
             }
