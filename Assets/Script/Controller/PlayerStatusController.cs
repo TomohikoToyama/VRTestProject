@@ -37,8 +37,8 @@ namespace VR
         public int  Health { get { return health; } set { health = value; } }
         private int maxhealth = 3;   // 最大体力
         public int Maxhealth { get { return maxhealth; } set { maxhealth = value; } }
+
         public int missileStuck = 5;             //ミサイルストック数
-        public int Power = 5;               //ショットの威力
         public float missileCT = 2.0f;      //ミサイルチャージタイム
         public float missileTimer = 0f;      //ミサイルチャージタイム
         public float shotCT = 0.01f;         //ショット用CT
@@ -79,8 +79,9 @@ namespace VR
         // Update is called once per frame
         void Update()
         {
-            missileTimer += Time.deltaTime;
+
         }
+
 
         //弾を撃つ
         public void ShotBullet()
@@ -151,10 +152,26 @@ namespace VR
         //破壊時の処理
         private IEnumerator ExplodeCoroutine()
         {
-            explode.Play();
+            /*
+             *爆発再生、SE再生、0.3秒待って、爆発止め、ゲームオーバーセットする 
+             *
+             *
+            */
+            explode.Play(); 
             SoundManager.Instance.PlaySE(1);
-            yield return new WaitForSeconds(0.3f);
+            
+                yield return new WaitForSeconds(0.3f);
             explode.Stop();
+            ///全ての機体パーツのRenderer取得
+            Renderer[] rend = GetComponentsInChildren<Renderer>();
+
+
+            //全ての機体パーツを点滅処理
+            foreach (var col in rend)
+            {
+                col.enabled = false;
+            }
+
             StageManager.Instance.SetGameOver();
             yield return new WaitForSeconds(3.0f);
             Died = true;
@@ -255,7 +272,7 @@ namespace VR
             if (other.gameObject.tag == "EnemyShot" || other.gameObject.tag == "Enemy")
             {
                 //弾のショットから弾の威力を取得して威力分のダメージ
-                if (!invicible)
+                if (!invicible && health > 1)
                 {
                     StartCoroutine( FireCoroutine(other) );
                     //ダメージ時に連続ヒット防止に無敵化処理
@@ -267,8 +284,9 @@ namespace VR
                 }
 
                 //体力がなくなったら死亡処理
-                if (health <= 0)
+                if (!invicible &&  health == 1)
                 {
+                    Health--;
                     StartCoroutine(ExplodeCoroutine() );
                    
 

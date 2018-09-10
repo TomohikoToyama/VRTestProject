@@ -24,9 +24,9 @@ namespace VR
         {
           
             
-            if (PSC.Died == true)
+            if (StageManager.Instance.GameEnd == true)
             {
-                PMO.DestroyPlayerUnit();
+                StageManager.Instance.GameEnd = false;
                 manager.SwitchState(new MenuState(manager));
                 SceneManager.LoadScene("Menu");
             }

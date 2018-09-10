@@ -15,15 +15,18 @@ namespace VR {
         TextMesh stateText;
         Material stageSkybox;
         GameObject playerCamera;
-        public enum STAGESTATE
+        private bool gameEnd;
+        public bool GameEnd { get { return gameEnd; } set { gameEnd = value; } }
+       public enum STAGESTATE
         {
+           
             READY = 0,
             ROAD = 1,
             BOSS = 2,
             STAY = 3,
             GAMEOVER = 4,
-            CLEAR = 5
-
+            CLEAR = 5,
+            NONE  = 9
         }
 
 
@@ -50,25 +53,7 @@ namespace VR {
         // Use this for initialization
         void Start()
         {
-            currentState = (int)STAGESTATE.READY;
-            PS = GameObject.Find("PlayerSpawner");
-            PUnit = GameObject.FindGameObjectWithTag("PlayerUnit");
-            Player = GameObject.FindGameObjectWithTag("ActiveController");
-            Player.transform.position = PS.transform.position;
-            PUnit.transform.rotation = Player.transform.rotation;
-            PUnit.transform.Rotate(45,0,0);
-            CameraText = GameObject.FindGameObjectWithTag("CameraText");
-            RenderSettings.skybox = (Material)Resources.Load("Image/Material/Sky Material");
-            GameObject[] model = GameObject.FindGameObjectsWithTag("Model");
-            foreach (GameObject obj in model)
-            {
-                Renderer[] rnd = obj.GetComponentsInChildren<Renderer>();
-                foreach(var rnds in rnd)
-                {
-                    rnds.enabled = false;
-                }
-            }
-            StartCoroutine(ReadyCoroutine());
+            InitAct();
 
         }
 
@@ -93,7 +78,7 @@ namespace VR {
             //ゲームオーバーの時の処理
             else if (currentState == (int)STAGESTATE.GAMEOVER)
             {
-
+                StartCoroutine(GameOverCoroutine());
             }//ステージクリアの時の処理
             else if (currentState == (int)STAGESTATE.CLEAR)
             {
@@ -101,6 +86,31 @@ namespace VR {
             }
 
 
+        }
+
+
+        private void InitAct()
+        {
+            GameObject[] model = GameObject.FindGameObjectsWithTag("Model");
+            foreach (GameObject obj in model)
+            {
+                Renderer[] rnd = obj.GetComponentsInChildren<Renderer>();
+                foreach (var rnds in rnd)
+                {
+                    rnds.enabled = false;
+                }
+            }
+            currentState = (int)STAGESTATE.READY;
+            PS = GameObject.Find("PlayerSpawner");
+            PUnit = GameObject.FindGameObjectWithTag("PlayerUnit");
+            Player = GameObject.FindGameObjectWithTag("ActiveController");
+            Player.transform.position = PS.transform.position;
+            PUnit.transform.rotation = Player.transform.rotation;
+            PUnit.transform.Rotate(45, 0, 0);
+            CameraText = GameObject.FindGameObjectWithTag("CameraText");
+            RenderSettings.skybox = (Material)Resources.Load("Image/Material/Sky Material");
+           
+            StartCoroutine(ReadyCoroutine());
         }
 
         public bool AbleShoot()
@@ -122,6 +132,8 @@ namespace VR {
         }
         //非同期処理群
         #region
+
+        //開始時の処理
         IEnumerator ReadyCoroutine()
         {
             CameraText.GetComponent<Renderer>().material = stageText[0];
@@ -136,6 +148,15 @@ namespace VR {
             currentState = (int)STAGESTATE.ROAD;
         }
 
+
+        //ゲームオーバー時の処理
+        IEnumerator GameOverCoroutine()
+        {
+
+            yield return new WaitForSeconds(3.0f);
+            currentState = (int)STAGESTATE.NONE;
+            GameEnd = true;
+        }
         #endregion
 
 
