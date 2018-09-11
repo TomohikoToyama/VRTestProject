@@ -91,6 +91,7 @@ namespace VR {
 
         private void InitAct()
         {
+            //Renderを取得して、モーションコントローラーの表示を消す
             GameObject[] model = GameObject.FindGameObjectsWithTag("Model");
             foreach (GameObject obj in model)
             {
@@ -100,6 +101,15 @@ namespace VR {
                     rnds.enabled = false;
                 }
             }
+            // スコア表示数字のRenderer取得
+            Renderer[] rend = GameObject.FindGameObjectWithTag("ScoreManager").GetComponentsInChildren<Renderer>();
+
+          
+                foreach (var col in rend)
+                {
+                    col.enabled = true;
+                }
+               
             currentState = (int)STAGESTATE.READY;
             PS = GameObject.Find("PlayerSpawner");
             PUnit = GameObject.FindGameObjectWithTag("PlayerUnit");

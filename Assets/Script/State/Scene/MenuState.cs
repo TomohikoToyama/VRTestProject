@@ -55,6 +55,7 @@ namespace VR
             {
                 init = false;
                 manager.SwitchState(new TestState(manager));
+
                 SceneManager.LoadScene("Test");
 
             }
