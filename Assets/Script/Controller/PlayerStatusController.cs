@@ -230,6 +230,7 @@ namespace VR
         //ミサイル発射
         public IEnumerator ShotMissile()
         {
+            if(Targetting != null)
             Targetting.GetComponent<MeshRenderer>().enabled = false;
 
             if (!missileShotting && StageManager.Instance.AbleShoot())
