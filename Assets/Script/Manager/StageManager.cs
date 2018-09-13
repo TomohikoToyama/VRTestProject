@@ -168,12 +168,22 @@ namespace VR {
             yield return new WaitForSeconds(1.0f);
             CameraText.GetComponent<Renderer>().material = stageText[3];
             CameraText.GetComponent<MeshRenderer>().enabled = true;
-            soundInstance.PlaySE(5);
+           // soundInstance.PlaySE(5);
 
             yield return new WaitForSeconds(2.0f);
-            CameraText.GetComponent<MeshRenderer>().enabled = false;
+            GameObject.FindGameObjectWithTag("CameraText").GetComponent<MeshRenderer>().enabled = false;
             yield return new WaitForSeconds(1.0f);
             currentState = (int)STAGESTATE.NONE;
+            
+
+
+            // スコア表示数字のRenderer取得
+            Renderer[] rend = GameObject.FindGameObjectWithTag("ScoreManager").GetComponentsInChildren<Renderer>();
+
+            foreach (var col in rend)
+            {
+                col.enabled = false;
+            }
             GameEnd = true;
         }
         #endregion
