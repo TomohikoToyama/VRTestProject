@@ -26,6 +26,7 @@ namespace VR
         [SerializeField]
         PlayerStatusController PSC;
 
+        StageSelect SS;
         // 弾丸発射点
         [SerializeField]
         public Transform muzzle;
@@ -61,6 +62,9 @@ namespace VR
         {
             if (GameObject.FindGameObjectWithTag("PlayerUnit") != null && gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.TestState.ToString() || gsm.GetStateName() == typeScene.StageState.ToString()))
                 PSC = GameObject.FindGameObjectWithTag("PlayerUnit").GetComponent<PlayerStatusController>();
+
+            if (gsm.GetStateName() == typeScene.MenuState.ToString()) 
+            SS = GameObject.FindGameObjectWithTag("StageCard").GetComponent<StageSelect>();
         }
 
         //コントローラーの操作
@@ -77,9 +81,12 @@ namespace VR
                 if (PSC == null)
                     InitController();
 
-                PressTrigger();
-            }
+                if (gsm.GetStateName() == typeScene.MenuState.ToString() && SS == null)
+                    InitController();
 
+                PressTrigger();
+
+            }
             //トリガー離した時の挙動
             if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
             {
@@ -129,6 +136,12 @@ namespace VR
             if ( gsm.GetStateName() == "TestState" && StageManager.Instance.AbleShoot())
             {
                 PSC.ShotBullet();
+            }
+            
+            //メニューシーンなら
+            if (SS.select)
+            {
+                SS.SetDone();
             }
         }
 

@@ -6,16 +6,17 @@ public class MissileMover : MonoBehaviour {
 
    
 
-    float shotSpeed = 30.0f;
+    
 
     bool shotLimit;
     GameObject muzzle;
     GameObject target;
-    public float Speed;
+    private float speed = 30.0f;
+    public float Speed { get { return speed; } set { speed = value; } }
     [SerializeField]
     private int power = 10; //ショットの攻撃力
     public int Power { get { return power; } set { power = value; } }
-    private float limitTime = 3.0f;
+    private float limitTime = 2.0f;
     bool Remain = true;
 
     //テスト用
@@ -26,7 +27,6 @@ public class MissileMover : MonoBehaviour {
     void Start()
     {
         muzzle = GameObject.FindGameObjectWithTag("PlayerMuzzle");
-       // target = GameObject.FindGameObjectWithTag("target");
 
     }
 
@@ -47,7 +47,7 @@ public class MissileMover : MonoBehaviour {
         //ターゲット対象生存時、対象に向きながら追尾着弾
         if (target != null)
         {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z), shotSpeed * Time.deltaTime);
+            this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z), Speed * Time.deltaTime);
             var look = Quaternion.LookRotation(transform.position - this.transform.position);
             this.transform.localRotation = look;
         }
@@ -55,7 +55,7 @@ public class MissileMover : MonoBehaviour {
         //ターゲット対象が着弾前に死亡などなくなった場合は2秒で破棄
         if (target == null)
         {
-            gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed;
+            gameObject.GetComponent<Rigidbody>().velocity = transform.forward * Speed;
             StartCoroutine(ShootBulletAndDestroyCoroutine());
         }
 

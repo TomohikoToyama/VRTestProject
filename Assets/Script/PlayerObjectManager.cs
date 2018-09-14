@@ -16,6 +16,8 @@ namespace VR {
         GameObject Controller;  //コントローラー
         GameObject PUnit;       //プレイヤー機体
         GameObject obj;
+        int bulletLimit = 20;
+        GameObject[] playerBullet = new GameObject[20];
         GameStateManager gsm;
         // Use this for initialization
         void Start() {
@@ -24,6 +26,34 @@ namespace VR {
 
         // Update is called once per frame
         void Update() {
+
+        }
+
+        public void LoadBullet()
+        {
+            for (int i = 0; i < bulletLimit; i++)
+            {
+                //var shotClone1 = Instantiate(shot, muzzleone.transform.position, player.transform.rotation);
+                //playerBullet[i] = 
+            }
+        }
+
+        //プレイヤーショットの処理
+        public void CreateBullet(GameObject obj)
+        {
+
+        }
+
+        public void DestroyBullet(GameObject obj)
+        {
+
+        }
+
+
+
+        //プレイヤー機の処理
+        public void LoadPlayerUnit()
+        {
 
         }
 

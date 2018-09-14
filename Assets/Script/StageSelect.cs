@@ -6,6 +6,7 @@ namespace VR
 {
     public class StageSelect : MonoBehaviour
     {
+        public bool done = false;
         public bool select = false;
         // Use this for initialization
         void Start()
@@ -30,6 +31,10 @@ namespace VR
             return true;
         }
 
+        public bool SetDone()
+        {
 
+            return true;
+        }
     }
 }

@@ -51,7 +51,7 @@ namespace VR
                 init = true;
             }
             //何らかのキーを押して画面遷移
-            if (SS.select)
+            if (SS.done )
             {
                 init = false;
                 manager.SwitchState(new TestState(manager));
