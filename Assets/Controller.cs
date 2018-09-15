@@ -63,8 +63,7 @@ namespace VR
             if (GameObject.FindGameObjectWithTag("PlayerUnit") != null && gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.TestState.ToString() || gsm.GetStateName() == typeScene.StageState.ToString()))
                 PSC = GameObject.FindGameObjectWithTag("PlayerUnit").GetComponent<PlayerStatusController>();
 
-            if (gsm.GetStateName() == typeScene.MenuState.ToString()) 
-            SS = GameObject.FindGameObjectWithTag("StageCard").GetComponent<StageSelect>();
+           
         }
 
         //コントローラーの操作
@@ -81,10 +80,9 @@ namespace VR
                 if (PSC == null)
                     InitController();
 
-                if (gsm.GetStateName() == typeScene.MenuState.ToString() && SS == null)
-                    InitController();
+                   PressTrigger();
 
-                PressTrigger();
+
 
             }
             //トリガー離した時の挙動
@@ -137,12 +135,9 @@ namespace VR
             {
                 PSC.ShotBullet();
             }
-            
-            //メニューシーンなら
-            if (SS.select)
-            {
-                SS.SetDone();
-            }
+            if (gsm.GetStateName() == typeScene.MenuState.ToString() )
+                MenuObjectManager.Instance.PressController();
+
         }
 
         //トリガーを離した時の処理

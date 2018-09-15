@@ -50,6 +50,7 @@ namespace VR
                 }
                 init = true;
             }
+            /*
             //何らかのキーを押して画面遷移
             if (SS.done )
             {
@@ -59,6 +60,7 @@ namespace VR
                 SceneManager.LoadScene("Test");
 
             }
+            */
         }
 
         

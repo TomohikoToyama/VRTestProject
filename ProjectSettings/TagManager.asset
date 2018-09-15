@@ -28,6 +28,7 @@ TagManager:
   - CameraText
   - Model
   - ScoreManager
+  - MenuManager
   layers:
   - Default
   - TransparentFX
