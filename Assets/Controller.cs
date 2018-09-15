@@ -131,8 +131,9 @@ namespace VR
         private void PressTrigger()
         {
             //テストシーンならショットを撃つ
-            if ( gsm.GetStateName() == "TestState" && StageManager.Instance.AbleShoot())
+            if ( gsm.GetStateName() == "TestState" && GameObject.FindGameObjectWithTag("StageManager") != null)
             {
+                if(StageManager.Instance.AbleShoot())
                 PSC.ShotBullet();
             }
             if (gsm.GetStateName() == typeScene.MenuState.ToString() )

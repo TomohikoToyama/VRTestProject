@@ -34,8 +34,9 @@ namespace VR
 
         private void InitTest()
         {
-            PMO = GameObject.Find("ObjectManager").gameObject.GetComponent<PlayerObjectManager>();
+            PMO = GameObject.Find("ObjectManager").GetComponent<PlayerObjectManager>();
             PMO.CreatePlayerUnit();
+            
             PUnit = GameObject.FindGameObjectWithTag("PlayerUnit");
             PSC = PUnit.GetComponent<PlayerStatusController>();
             SoundManager.Instance.PlayBGM(1);

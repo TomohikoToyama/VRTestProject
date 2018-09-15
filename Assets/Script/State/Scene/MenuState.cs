@@ -50,9 +50,9 @@ namespace VR
                 }
                 init = true;
             }
-            /*
+            
             //何らかのキーを押して画面遷移
-            if (SS.done )
+            if (MenuObjectManager.Instance.startGame)
             {
                 init = false;
                 manager.SwitchState(new TestState(manager));
@@ -60,7 +60,7 @@ namespace VR
                 SceneManager.LoadScene("Test");
 
             }
-            */
+            
         }
 
         

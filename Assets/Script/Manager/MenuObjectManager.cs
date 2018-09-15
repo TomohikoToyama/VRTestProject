@@ -30,7 +30,7 @@ namespace VR
         enum Menu
         {
 
-            start = 0,
+            Start = 0,
             Option = 1,
             Exit = 2
         }
@@ -39,6 +39,7 @@ namespace VR
         string nowSelect;
         MeshRenderer[] menuRender;
         MeshRenderer[] stageRender;
+        public bool startGame = false;
 
         // Use this for initialization
         void Start()
@@ -94,10 +95,10 @@ namespace VR
         public void PressController(){
 
 
-            Debug.Log("おせてるお");
-            if(nowSelect == Menu.start.ToString())
+            if(nowSelect == Menu.Start.ToString())
             {
-
+                Debug.Log("ok");
+                startGame = true;
             }
             else if (nowSelect == Menu.Option.ToString())
             {
@@ -105,10 +106,10 @@ namespace VR
             }
             else if (nowSelect == Menu.Exit.ToString())
             {
-    #if UNITY_EDITOR
-                EditorApplication.isPlaying = false;
-        #elif UNITY_STANDALONE
-      Application.Quit();
+                      #if UNITY_EDITOR
+                    EditorApplication.isPlaying = false;
+                    #elif UNITY_STANDALONE
+                    Application.Quit();
                     #endif
             }
         }

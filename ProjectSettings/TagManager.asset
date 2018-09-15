@@ -29,6 +29,7 @@ TagManager:
   - Model
   - ScoreManager
   - MenuManager
+  - ObjectManager
   layers:
   - Default
   - TransparentFX
