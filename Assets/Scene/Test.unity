@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 1869297131}
   m_Layer: 2
   m_Name: StageManager
-  m_TagString: Untagged
+  m_TagString: StageManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -596,6 +596,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: d7e49844c9b767c4cbaaffa8df7373f4, type: 2}
   - {fileID: 2100000, guid: 3031735fafa9d0c45b24cd56a49f6587, type: 2}
   - {fileID: 2100000, guid: 465605d3f90a98949a20029530c3350b, type: 2}
+  initEnd: 0
 --- !u!1 &1901581683
 GameObject:
   m_ObjectHideFlags: 0

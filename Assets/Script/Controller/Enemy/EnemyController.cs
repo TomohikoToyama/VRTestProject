@@ -30,7 +30,6 @@ namespace VR
             fire.Stop();
             ES = gameObject.GetComponent<EnemyStatus>();
             ESobj = (GameObject)Resources.Load("Prefabs/EnmSphere");
-            Target = GameObject.FindGameObjectWithTag(PlayerUnit);
             InitEnemy(30);
             LockField = transform.Find("Lock").gameObject;
         }
@@ -40,6 +39,8 @@ namespace VR
         {
             if (StageManager.Instance.AbleShoot())
             {
+                if(Target == null)
+                Target = GameObject.FindGameObjectWithTag(PlayerUnit);
                 ShotBullet();
                 var aim = this.Target.transform.position - this.transform.position;
                 var look = Quaternion.LookRotation(aim);

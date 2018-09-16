@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.SceneManagement;
 namespace VR
 {
     public class Controller : MonoBehaviour
@@ -9,10 +10,10 @@ namespace VR
         //sceneStateの列挙
         enum typeScene
         {
-            TitleState,
-            MenuState,
-            StageState,
-            TestState,
+            Title,
+            Menu,
+            Stage,
+            Test,
         }
 
         GameStateManager gsm;
@@ -60,7 +61,7 @@ namespace VR
 
         private void InitController()
         {
-            if (GameObject.FindGameObjectWithTag("PlayerUnit") != null && gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.TestState.ToString() || gsm.GetStateName() == typeScene.StageState.ToString()))
+            if (GameObject.FindGameObjectWithTag("PlayerUnit") != null && gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.Test.ToString() || gsm.GetStateName() == typeScene.Stage.ToString()))
                 PSC = GameObject.FindGameObjectWithTag("PlayerUnit").GetComponent<PlayerStatusController>();
 
            
@@ -131,12 +132,12 @@ namespace VR
         private void PressTrigger()
         {
             //テストシーンならショットを撃つ
-            if ( gsm.GetStateName() == "TestState" && GameObject.FindGameObjectWithTag("StageManager") != null)
+            if ( gsm.GetStateName() == typeScene.Test.ToString() && gsm.GetStateName() == SceneManager.GetActiveScene().name)
             {
                 if(StageManager.Instance.AbleShoot())
                 PSC.ShotBullet();
             }
-            if (gsm.GetStateName() == typeScene.MenuState.ToString() )
+            if (gsm.GetStateName() == typeScene.Menu.ToString() &&  gsm.GetStateName() == SceneManager.GetActiveScene().name)
                 MenuObjectManager.Instance.PressController();
 
         }
@@ -151,7 +152,7 @@ namespace VR
         private void PressTouch(float X, float Y)
         {
             _parent.transform.Translate(0.05f * X, 0, 0.05f * Y);
-            if (gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.TestState.ToString() || gsm.GetStateName() == typeScene.StageState.ToString()))
+            if (gsm.GetStateName() == typeScene.Test.ToString() && gsm.GetStateName() == SceneManager.GetActiveScene().name)
                 PSC.Lockon();
         }
 
@@ -159,7 +160,7 @@ namespace VR
         private void UpTouch()
         {
             //テストシーンならミサイルを撃つ
-            if (gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.TestState.ToString() || gsm.GetStateName() == typeScene.StageState.ToString()))
+            if (gsm.GetStateName() != null && (gsm.GetStateName() == typeScene.Test.ToString() || gsm.GetStateName() == typeScene.Stage.ToString()))
             {
                 StartCoroutine(PSC.ShotMissile());
             }

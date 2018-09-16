@@ -13,7 +13,6 @@ TagManager:
   - RangeArea
   - PlayerMuzzle
   - StageManager
-  - SearchArea
   - Field
   - Player_Right
   - Laser
@@ -29,7 +28,7 @@ TagManager:
   - Model
   - ScoreManager
   - MenuManager
-  - ObjectManager
+  - PlayerObjectManager
   layers:
   - Default
   - TransparentFX

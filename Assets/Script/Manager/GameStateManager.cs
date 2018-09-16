@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 namespace VR
 {
     public class GameStateManager : MonoBehaviour , IGameStateManagerController
@@ -13,8 +13,14 @@ namespace VR
         public IState nextState;
         public GameObject playerObj;
         public PlayerManager PM;
+        MenuObjectManager MenuOM;
+        PlayerObjectManager PlayerOM;
+        StageManager StageM;
+        private bool stageInit;
 
         private string removeName = "VR.";     //state名を渡す時用にnamespaceの文字列を除去
+        private string removeState = "State";     //state名を渡す時用にStateの文字列を除去
+
         public static GameStateManager instance;
         public static GameStateManager Instance
         {
@@ -58,6 +64,22 @@ namespace VR
             //activeStateがnullでないならactiveStateのStateUpdateメソッドを実行
             if (activeState != null)
                 activeState.StateUpdate();
+
+            if(GetStateName() == SceneManager.GetActiveScene().name && GetStateName() == "Test")
+            {
+
+                    if (!stageInit)
+                        {
+                            PlayerOM = GameObject.FindGameObjectWithTag("PlayerObjectManager").GetComponent<PlayerObjectManager>();
+                            PlayerOM.CreatePlayerUnit();
+                            StageM = GameObject.FindGameObjectWithTag("StageManager").GetComponent<StageManager>();
+                            StageM.InitAct(Callback);
+                            SoundManager.Instance.PlayBGM(1);
+                            stageInit = true;
+                        }
+
+                
+            }
            
         }
 
@@ -97,9 +119,16 @@ namespace VR
         //現在のstate名を取得
         public string GetStateName()
         {
-            return activeState.ToString().Replace(removeName, "");
+            return activeState.ToString().Replace(removeName, "").Replace(removeState,"");
         }
 
+
+
+        public void Callback(string msg)
+        {
+
+            Debug.Log("Callback : " + msg); // Callback : おわったよ
+        }
     }
 
 }

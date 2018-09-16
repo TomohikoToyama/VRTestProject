@@ -7,10 +7,10 @@ namespace VR {
         //sceneStateの列挙
         enum typeScene
         {
-            TitleState,
-            MenuState,
-            StageState,
-            TestState,
+            Title,
+            Menu,
+            Stage,
+            Test,
         }
 
         GameObject Controller;  //コントローラー
@@ -59,7 +59,7 @@ namespace VR {
 
         public void CreatePlayerUnit() {
 
-            if (gsm.GetStateName() == typeScene.MenuState.ToString())
+            if (gsm.GetStateName() == typeScene.Test.ToString())
             {
                 Controller = GameObject.FindGameObjectWithTag("ActiveController");
                 PUnit = (GameObject)Resources.Load("Prefabs/A15-Beast");
@@ -73,7 +73,7 @@ namespace VR {
 
         public void DestroyPlayerUnit()
         {
-            if( gsm.GetStateName() == typeScene.TestState.ToString() || gsm.GetStateName() == typeScene.StageState.ToString())
+            if( gsm.GetStateName() == typeScene.Test.ToString() || gsm.GetStateName() == typeScene.Stage.ToString())
             {
                 PUnit = GameObject.FindGameObjectWithTag("PlayerUnit");
                 Destroy(PUnit);

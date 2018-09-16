@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 namespace VR {
     public class StageManager : MonoBehaviour
     {
@@ -16,8 +16,10 @@ namespace VR {
         Material stageSkybox;
         GameObject playerCamera;
         private bool gameEnd;
+        public bool initEnd;
         public bool GameEnd { get { return gameEnd; } set { gameEnd = value; } }
-       public enum STAGESTATE
+        public delegate void onComplete(string msg);
+        public enum STAGESTATE
         {
            
             READY = 0,
@@ -53,7 +55,7 @@ namespace VR {
         // Use this for initialization
         void Start()
         {
-            InitAct();
+           // InitAct();
 
         }
 
@@ -87,9 +89,9 @@ namespace VR {
 
 
         }
+      
 
-
-        private void InitAct()
+        public void InitAct(onComplete callback)
         {
             //Renderを取得して、モーションコントローラーの表示を消す
             GameObject[] model = GameObject.FindGameObjectsWithTag("Model");
@@ -119,7 +121,7 @@ namespace VR {
             PUnit.transform.Rotate(45, 0, 0);
             CameraText = GameObject.FindGameObjectWithTag("CameraText");
             RenderSettings.skybox = (Material)Resources.Load("Image/Material/Sky Material");
-           
+            initEnd = true;
             StartCoroutine(ReadyCoroutine());
         }
 

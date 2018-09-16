@@ -16,14 +16,14 @@ namespace VR
             //初期化
             manager = GSM;
             Time.timeScale = 1;
-            InitTest();
+            
         }
 
         // Update is called once per frame
         public void StateUpdate()
         {
-          
             
+
             if (StageManager.Instance.GameEnd == true)
             {
                 StageManager.Instance.GameEnd = false;
@@ -32,14 +32,6 @@ namespace VR
             }
         }
 
-        private void InitTest()
-        {
-            PMO = GameObject.Find("ObjectManager").GetComponent<PlayerObjectManager>();
-            PMO.CreatePlayerUnit();
-            
-            PUnit = GameObject.FindGameObjectWithTag("PlayerUnit");
-            PSC = PUnit.GetComponent<PlayerStatusController>();
-            SoundManager.Instance.PlayBGM(1);
-        }
+       
     }
 }
