@@ -104,7 +104,7 @@ namespace VR
             bShot = true;
             yield return new WaitForSeconds(0.15f);
             SoundManager.Instance.PlaySE(0);
-            PlayerOM.Place(muzzleone.transform.position, player.transform.eulerAngles);
+            PlayerOM.ShotBullet(muzzleone.transform.position, player.transform.eulerAngles);
             bShot = false;
            
           

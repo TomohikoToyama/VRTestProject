@@ -12,11 +12,30 @@ namespace VR {
             Stage,
             Test,
         }
+        protected static PlayerObjectManager instance;
 
+        public static PlayerObjectManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = (PlayerObjectManager)FindObjectOfType(typeof(PlayerObjectManager));
+
+                    if (instance == null)
+                    {
+                        Debug.Log("MenuObjectManager Instance Error");
+                    }
+                }
+
+                return instance;
+            }
+        }
         GameObject Controller;  //コントローラー
         GameObject PUnit;       //プレイヤー機体
         GameObject obj;
         private const int maxBullet = 20;
+        private const int maxMissile = 10;
         [SerializeField]
         GameObject bulletPrefab;
         GameStateManager gsm;
@@ -25,11 +44,11 @@ namespace VR {
         GameObject[] model;
         GameObject laser;
         GameObject laserObj;
-        private readonly Queue<PoolObject> poolBulletQueue =  new Queue<PoolObject>(maxBullet); //通常弾用
+        private List<GameObject> poolBulletList =  new List<GameObject>(maxBullet); //通常弾用
         [SerializeField]
-        private PoolObject PoolBullet;
+        private GameObject PoolBullet;
 
-        private readonly Queue<PoolObject> poolMissileQueue = new Queue<PoolObject>(maxBullet); //通常弾用
+        private readonly Queue<PoolObject> poolMissileQueue = new Queue<PoolObject>(maxMissile); //通常弾用
 
         // Use this for initialization
         void Start() {
@@ -38,7 +57,6 @@ namespace VR {
 
             PUnit = (GameObject)Resources.Load("Prefabs/A15-Beast");
             laser = (GameObject)Resources.Load("Prefabs/Laser");
-
             laserObj = laser;
         }
 
@@ -48,39 +66,38 @@ namespace VR {
         }
 
 
-
-        public T Place<T>(Vector3 position, Vector3 forward) where T : PoolObject
+     
+        public GameObject ShotBullet(Vector3 position, Vector3 forward)
         {
-            return (T)Place(position, forward);
-        }
-
-        public PoolObject Place(Vector3 position, Vector3 forward)
-        {
-            PoolObject obj;
-            if (poolBulletQueue.Count > 0)
-            {
-                obj = poolBulletQueue.Dequeue();
-                obj.gameObject.SetActive(true);
+            GameObject obj;
+            for (int i = 0; i < poolBulletList.Count; i++) {
+                obj = poolBulletList[i];
+                if (obj.activeInHierarchy == false)
+                {
+                    obj.GetComponent<PoolObject>().Init();
+                    obj.gameObject.SetActive(true);
+                    obj.transform.position = position;
+                    obj.transform.eulerAngles = forward;
+                    return obj;
+                }
+            }
+                obj = (GameObject)Instantiate(PoolBullet, position, PUnit.transform.rotation);
+                obj.SetActive(true);
                 obj.transform.position = position;
                 obj.transform.eulerAngles = forward;
-                obj.Init();
-            }
-            else
-            {
-                obj = Instantiate(PoolBullet, position, PUnit.transform.rotation);
-                obj.transform.eulerAngles = forward;
-                obj.Pool = this;
-                obj.Init();
-            }
-            return obj;
+                obj.GetComponent<PoolObject>().Init();
+                poolBulletList.Add(obj);
+                return obj;
         }
-     
+           
+        
        
       
-        public void Return(PoolObject obj)
+        public void Return(GameObject obj)
         {
-            obj.gameObject.SetActive(false);
-            poolBulletQueue.Enqueue(obj);
+
+                obj.SetActive(false);
+            
         }
 
        
