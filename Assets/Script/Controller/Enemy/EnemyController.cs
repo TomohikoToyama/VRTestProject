@@ -42,7 +42,7 @@ namespace VR
             if (StageManager.Instance.AbleShoot())
             {
                 if(Target == null)
-                Target = GameObject.FindGameObjectWithTag(PlayerUnit);
+                Target = GameObject.FindGameObjectWithTag("Player");
 
                 ShotBullet();
                 var aim = this.Target.transform.position - this.transform.position;

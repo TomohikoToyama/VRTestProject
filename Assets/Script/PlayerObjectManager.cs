@@ -119,6 +119,7 @@ namespace VR {
         //コントローラー表示処理
         public void AbleController()
         {
+            poolBulletList.Clear();
             Controller = GameObject.FindGameObjectWithTag("ActiveController");
             laserObj = Instantiate(laser, Controller.transform.position, Controller.transform.rotation);
             laserObj.transform.parent = Controller.transform;

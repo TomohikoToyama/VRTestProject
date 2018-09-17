@@ -75,7 +75,7 @@ public class MissileMover : MonoBehaviour {
     //ターゲット対象に着弾した時、破棄する
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == target.name)
+        if (other.gameObject.name == target.name && target != null)
             Destroy(gameObject);
     }
 
