@@ -293,6 +293,7 @@
     <Compile Include="Assets\IEnemy.cs" />
     <Compile Include="Assets\PlayerSpawner.cs" />
     <Compile Include="Assets\Plugin\Almgp_particle_vol_1\script\sprite_sheet.cs" />
+    <Compile Include="Assets\Plugin\com\heparo\terrain\toolkit\scripts\TerrainToolkit.cs" />
     <Compile Include="Assets\Plugin\Particle Dissolve Shader by Moonflower Carnivore\Scripts\HUDFPS.cs" />
     <Compile Include="Assets\Plugin\Particle Dissolve Shader by Moonflower Carnivore\Scripts\PDS_GameController.cs" />
     <Compile Include="Assets\Plugin\Particle Dissolve Shader by Moonflower Carnivore\Scripts\ScrollingUVs_PDS.cs" />
@@ -481,6 +482,7 @@
     <Compile Include="Assets\Script\State\Enemy\test\AttackMode.cs" />
     <Compile Include="Assets\Script\State\Enemy\test\TestEnemyController.cs" />
     <Compile Include="Assets\Script\State\Player\ThirdPersonState.cs" />
+    <Compile Include="Assets\Script\State\PoolObject.cs" />
     <Compile Include="Assets\Script\State\Scene\LoadState.cs" />
     <Compile Include="Assets\Script\State\Scene\MenuState.cs" />
     <Compile Include="Assets\Script\State\Scene\ResultState.cs" />

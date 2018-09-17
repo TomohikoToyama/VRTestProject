@@ -119,12 +119,13 @@ namespace VR
         {
             explode.Play();
             SoundManager.Instance.PlaySE(1);
+            yield return new WaitForSeconds(0.3f);
             if (ES.Health <= 0)
             {
                 explode.Stop();
                 Destroy(gameObject);
             }
-            yield return new WaitForSeconds(0.3f);
+           
             explode.Stop();
            
         }

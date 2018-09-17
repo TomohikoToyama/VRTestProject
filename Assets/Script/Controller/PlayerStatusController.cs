@@ -63,9 +63,11 @@ namespace VR
         Vector3 direction;
         float sphereRadius = 2.5f;
         Queue<GameObject> queueENemy = new Queue<GameObject>();
+        PlayerObjectManager PlayerOM;
         GameObject PUnit;
         void Start()
         {
+            PlayerOM = GameObject.FindGameObjectWithTag("PlayerObjectManager").GetComponent<PlayerObjectManager>();
             explode.Stop();
             fire.Stop();
             shot = (GameObject)Resources.Load("Prefabs/Sphere");
@@ -86,8 +88,11 @@ namespace VR
         //弾を撃つ
         public void ShotBullet()
         {
-            if(!bShot && (StageManager.Instance != null && StageManager.Instance.AbleShoot() ))
-            StartCoroutine(ShootBulletAndDestroyCoroutine());
+            if (!bShot && (StageManager.Instance != null && StageManager.Instance.AbleShoot()))
+            {
+                
+                StartCoroutine(ShootBulletAndDestroyCoroutine());
+            }
         }
 
         //非同期処理群
@@ -99,8 +104,7 @@ namespace VR
             bShot = true;
             yield return new WaitForSeconds(0.15f);
             SoundManager.Instance.PlaySE(0);
-            var shotClone1 = Instantiate(shot, muzzleone.transform.position, player.transform.rotation);
-           // shotClone1.transform.eulerAngles = player.transform.eulerAngles;
+            PlayerOM.Place(muzzleone.transform.position, player.transform.eulerAngles);
             bShot = false;
            
           

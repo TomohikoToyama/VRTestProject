@@ -16,14 +16,21 @@ namespace VR {
         GameObject Controller;  //コントローラー
         GameObject PUnit;       //プレイヤー機体
         GameObject obj;
-        int bulletLimit = 20;
-        GameObject[] playerBullet = new GameObject[20];
+        private const int maxBullet = 20;
+        [SerializeField]
+        GameObject bulletPrefab;
         GameStateManager gsm;
         GameObject playerSpwaner;
         GameObject player;
         GameObject[] model;
         GameObject laser;
         GameObject laserObj;
+        private readonly Queue<PoolObject> poolBulletQueue =  new Queue<PoolObject>(maxBullet); //通常弾用
+        [SerializeField]
+        private PoolObject PoolBullet;
+
+        private readonly Queue<PoolObject> poolMissileQueue = new Queue<PoolObject>(maxBullet); //通常弾用
+
         // Use this for initialization
         void Start() {
             gsm = GameObject.FindWithTag("GameStateManager").GetComponent<GameStateManager>();
@@ -31,6 +38,7 @@ namespace VR {
 
             PUnit = (GameObject)Resources.Load("Prefabs/A15-Beast");
             laser = (GameObject)Resources.Load("Prefabs/Laser");
+
             laserObj = laser;
         }
 
@@ -39,20 +47,43 @@ namespace VR {
 
         }
 
-        public void LoadBullet()
+
+
+        public T Place<T>(Vector3 position, Vector3 forward) where T : PoolObject
         {
-            for (int i = 0; i < bulletLimit; i++)
+            return (T)Place(position, forward);
+        }
+
+        public PoolObject Place(Vector3 position, Vector3 forward)
+        {
+            PoolObject obj;
+            if (poolBulletQueue.Count > 0)
             {
-                //var shotClone1 = Instantiate(shot, muzzleone.transform.position, player.transform.rotation);
-                //playerBullet[i] = 
+                obj = poolBulletQueue.Dequeue();
+                obj.gameObject.SetActive(true);
+                obj.transform.position = position;
+                obj.transform.eulerAngles = forward;
+                obj.Init();
             }
+            else
+            {
+                obj = Instantiate(PoolBullet, position, PUnit.transform.rotation);
+                obj.transform.eulerAngles = forward;
+                obj.Pool = this;
+                obj.Init();
+            }
+            return obj;
         }
-
-        //プレイヤーショットの処理
-        public void CreateBullet(GameObject obj)
+     
+       
+      
+        public void Return(PoolObject obj)
         {
-
+            obj.gameObject.SetActive(false);
+            poolBulletQueue.Enqueue(obj);
         }
+
+       
 
         public void DestroyBullet(GameObject obj)
         {
@@ -121,6 +152,7 @@ namespace VR {
                 obj = Instantiate(PUnit, Controller.transform.position, Controller.transform.rotation);
                 obj.transform.parent = Controller.transform;
                 PUnit.transform.Rotate(45, 0, 0);
+               
                 Debug.Log("生成終了");
             }
 

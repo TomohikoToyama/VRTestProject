@@ -6,8 +6,8 @@ namespace VR
 {
     public class EnemyShot : MonoBehaviour
     {
-        private float limitTime = 2.0f;
-        private float shotSpeed = 20.0f;
+        private float limitTime = 3.0f;
+        private float shotSpeed = 25.0f;
         private int power = 1; //ショットの攻撃力
         public int Power { get { return power; } set { power = value; } }
         private bool remain = true;
