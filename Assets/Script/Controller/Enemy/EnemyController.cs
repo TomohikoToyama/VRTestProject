@@ -52,7 +52,7 @@ namespace VR
         private void InitEnemy(int _health)
         {
             ES.Health = _health;
-            ES.ShotStock = 20;
+            ES.ShotStock = 15;
             ES.Score = 100;
         }
 
@@ -142,14 +142,15 @@ namespace VR
                 if (other.gameObject.GetComponent<PlayerShot>() != null)
                 {
                     int Damage = other.gameObject.GetComponent<PlayerShot>().Power;
-                    
+
+                    ScoreManager.Instance.ScoreChange(ES.Score/10); //
                     ES.Health -= Damage;
                     StartCoroutine(FireCoroutine(other));
                 }
                 else if (other.gameObject.GetComponent<MissileMover>() != null && gameObject.name == other.gameObject.GetComponent<MissileMover>().GetEnemy())
                 {
                     int Damage = other.gameObject.GetComponent<MissileMover>().Power;
-                    
+                    ScoreManager.Instance.ScoreChange(ES.Score / 2); //
                     ES.Health -= Damage;
                     Unlock();
                     StartCoroutine(ExplodeCoroutine());

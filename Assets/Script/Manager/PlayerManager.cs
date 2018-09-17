@@ -10,6 +10,7 @@ namespace VR
         private int health;
         bool fMove;
         Vector3 playerPos;
+        public int totalScore; 
 
         void start()
         {

@@ -470,7 +470,6 @@
     <Compile Include="Assets\Script\Manager\ScoreManager.cs" />
     <Compile Include="Assets\Script\Manager\SoundManager.cs" />
     <Compile Include="Assets\Script\Manager\StageManager.cs" />
-    <Compile Include="Assets\Script\MenuButton.cs" />
     <Compile Include="Assets\Script\MissileMover.cs" />
     <Compile Include="Assets\Script\PlayerObjectManager.cs" />
     <Compile Include="Assets\Script\PlayerShot.cs" />

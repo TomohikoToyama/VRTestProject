@@ -15,6 +15,7 @@ namespace VR {
         TextMesh stateText;
         Material stageSkybox;
         GameObject playerCamera;
+        private bool stateAct;
         private bool gameEnd;
         public bool initEnd;
         public bool GameEnd { get { return gameEnd; } set { gameEnd = value; } }
@@ -80,6 +81,7 @@ namespace VR {
             //ゲームオーバーの時の処理
             else if (currentState == (int)STAGESTATE.GAMEOVER)
             {
+                if(!stateAct)
                 StartCoroutine(GameOverCoroutine());
             }//ステージクリアの時の処理
             else if (currentState == (int)STAGESTATE.CLEAR)
@@ -93,16 +95,7 @@ namespace VR {
 
         public void InitAct(onComplete callback)
         {
-            //Renderを取得して、モーションコントローラーの表示を消す
-            GameObject[] model = GameObject.FindGameObjectsWithTag("Model");
-            foreach (GameObject obj in model)
-            {
-                Renderer[] rnd = obj.GetComponentsInChildren<Renderer>();
-                foreach (var rnds in rnd)
-                {
-                    rnds.enabled = false;
-                }
-            }
+            
             // スコア表示数字のRenderer取得
             Renderer[] rend = GameObject.FindGameObjectWithTag("ScoreManager").GetComponentsInChildren<Renderer>();
 
@@ -113,12 +106,6 @@ namespace VR {
                 }
                
             currentState = (int)STAGESTATE.READY;
-            PS = GameObject.Find("PlayerSpawner");
-            PUnit = GameObject.FindGameObjectWithTag("PlayerUnit");
-            Player = GameObject.FindGameObjectWithTag("ActiveController");
-            Player.transform.position = PS.transform.position;
-            PUnit.transform.rotation = Player.transform.rotation;
-            PUnit.transform.Rotate(45, 0, 0);
             CameraText = GameObject.FindGameObjectWithTag("CameraText");
             RenderSettings.skybox = (Material)Resources.Load("Image/Material/Sky Material");
             initEnd = true;
@@ -164,15 +151,16 @@ namespace VR {
         //ゲームオーバー時の処理
         IEnumerator GameOverCoroutine()
         {
-            
+
+            stateAct = true;
             var soundInstance = SoundManager.Instance;
             soundInstance.StopBGM();
             yield return new WaitForSeconds(1.0f);
             CameraText.GetComponent<Renderer>().material = stageText[3];
             CameraText.GetComponent<MeshRenderer>().enabled = true;
-           // soundInstance.PlaySE(5);
+           soundInstance.PlaySE(5);
 
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(3.0f);
             GameObject.FindGameObjectWithTag("CameraText").GetComponent<MeshRenderer>().enabled = false;
             yield return new WaitForSeconds(1.0f);
             currentState = (int)STAGESTATE.NONE;
@@ -187,6 +175,7 @@ namespace VR {
                 col.enabled = false;
             }
             GameEnd = true;
+            stateAct = false;
         }
         #endregion
 

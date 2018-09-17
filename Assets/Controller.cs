@@ -38,13 +38,15 @@ namespace VR
         GameObject _parent;
         bool shotLimit = false;
 
-        bool waitInput = false;
+        public bool waitInput = true;
         // Use this for initialization
         void Start()
         {
             _parent = transform.root.gameObject;
             gsm = GameObject.FindWithTag("GameStateManager").GetComponent<GameStateManager>();
+            waitInput = false;
             Debug.Log(gsm);
+
         }
 
         // Update is called once per frame
@@ -54,7 +56,6 @@ namespace VR
             //操作可能時、入力を受け付ける
             if(!waitInput)
                 Act();
-
 
 
         }

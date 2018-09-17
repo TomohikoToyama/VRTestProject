@@ -265,7 +265,7 @@ namespace VR
         
 
         //あたり判定処理
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
 
             

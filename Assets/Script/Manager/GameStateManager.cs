@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 namespace VR
 {
-    public class GameStateManager : MonoBehaviour , IGameStateManagerController
+    public class GameStateManager : MonoBehaviour, IGameStateManagerController
     {
 
         //ゲームの状態を保持
@@ -16,8 +16,11 @@ namespace VR
         MenuObjectManager MenuOM;
         PlayerObjectManager PlayerOM;
         StageManager StageM;
-        private bool stageInit;
+        Controller con;
+        PlayerManager player;
 
+        private bool stageInit;
+        private bool menuInit;
         private string removeName = "VR.";     //state名を渡す時用にnamespaceの文字列を除去
         private string removeState = "State";     //state名を渡す時用にStateの文字列を除去
 
@@ -53,11 +56,13 @@ namespace VR
                 //管理マネージャーはシーン遷移では破棄させない
                 DontDestroyOnLoad(gameObject);
             }
-            playerObj = GameObject.FindGameObjectWithTag("Player");
+
+            PlayerOM = GameObject.FindGameObjectWithTag("PlayerObjectManager").GetComponent<PlayerObjectManager>();
             GameStateManagerInit();
-            PlayerInit();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>().PlayerInit();
+
         }
-    
+
         // Update is called once per frame
         void Update()
         {
@@ -65,24 +70,41 @@ namespace VR
             if (activeState != null)
                 activeState.StateUpdate();
 
-            if(GetStateName() == SceneManager.GetActiveScene().name && GetStateName() == "Test")
-            {
+            SceneInit();
 
-                    if (!stageInit)
-                        {
-                            PlayerOM = GameObject.FindGameObjectWithTag("PlayerObjectManager").GetComponent<PlayerObjectManager>();
-                            PlayerOM.CreatePlayerUnit();
-                            StageM = GameObject.FindGameObjectWithTag("StageManager").GetComponent<StageManager>();
-                            StageM.InitAct(Callback);
-                            SoundManager.Instance.PlayBGM(1);
-                            stageInit = true;
-                        }
-
-                
-            }
-           
         }
 
+        private void SceneInit(){
+
+
+
+            if (GetStateName() == "Menu")
+            {
+
+                if (!menuInit && GetStateName() == SceneManager.GetActiveScene().name)
+                {
+
+                    PlayerOM.AbleController();
+                    menuInit = true;
+                    stageInit = false;
+
+                }
+            }
+            else if (GetStateName() == "Test")
+                {
+                    if (!stageInit && GetStateName() == SceneManager.GetActiveScene().name)
+                    {
+                        PlayerOM.DisbleController();
+                        PlayerOM.CreatePlayerUnit();
+                        StageM = GameObject.FindGameObjectWithTag("StageManager").GetComponent<StageManager>();
+                        StageM.InitAct(Callback);
+                        SoundManager.Instance.PlayBGM(1);
+                        menuInit = false;
+                        stageInit = true;
+                    }
+                }
+            
+        }
 
 
         //ステイト切り替え
@@ -109,13 +131,7 @@ namespace VR
 
         }
 
-        //プレイヤー初期化
-        public void PlayerInit()
-        {
-            PM = playerObj.GetComponent<PlayerManager>();
-            PM.PlayerInit();
-        }
-
+        
         //現在のstate名を取得
         public string GetStateName()
         {
