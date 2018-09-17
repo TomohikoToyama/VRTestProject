@@ -32,6 +32,7 @@ namespace VR {
             NONE  = 9
         }
 
+        public int progress;
 
         protected static StageManager instance;
 
@@ -71,6 +72,9 @@ namespace VR {
             //道中の時の処理
             else if (currentState == (int)STAGESTATE.ROAD)
             {
+                progress++;
+                if (progress >= 751)
+                    progress = 0;
 
             }
             //ボス戦の時の処理
@@ -110,6 +114,7 @@ namespace VR {
             RenderSettings.skybox = (Material)Resources.Load("Image/Material/Sky Material");
             initEnd = true;
             StartCoroutine(ReadyCoroutine());
+            progress = 0;
         }
 
         public bool AbleShoot()

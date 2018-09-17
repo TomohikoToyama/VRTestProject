@@ -10,11 +10,13 @@ namespace VR
         public GameObject shot;
         bool bShot;
         GameObject ESobj;
+        [SerializeField]
         GameObject Target;
         [SerializeField]
         ParticleSystem explode;
         [SerializeField]
         ParticleSystem fire;
+        
         string PlayerUnit = "PlayerUnit";
         
         GameObject LockField;   //ロックオン画像
@@ -41,6 +43,7 @@ namespace VR
             {
                 if(Target == null)
                 Target = GameObject.FindGameObjectWithTag(PlayerUnit);
+
                 ShotBullet();
                 var aim = this.Target.transform.position - this.transform.position;
                 var look = Quaternion.LookRotation(aim);
@@ -54,6 +57,7 @@ namespace VR
             ES.Health = _health;
             ES.ShotStock = 15;
             ES.Score = 100;
+            Target = GameObject.FindGameObjectWithTag(PlayerUnit);
         }
 
         //ロックオンされた処理
@@ -122,6 +126,7 @@ namespace VR
             yield return new WaitForSeconds(0.3f);
             if (ES.Health <= 0)
             {
+                ES.Locked = false;
                 explode.Stop();
                 Destroy(gameObject);
             }
@@ -133,7 +138,9 @@ namespace VR
 
             private void OnTriggerEnter(Collider other)
         {
-            
+
+            if (other.gameObject.tag == "Water")
+                SoundManager.Instance.PlaySE(6);
 
             //プレイヤーの弾でHP減少
             if (other.gameObject.tag == "PlayerBullet")

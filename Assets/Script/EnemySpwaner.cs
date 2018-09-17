@@ -13,7 +13,9 @@ namespace VR
         }
 
         private string place;
-        float spawnTime;
+        public float nowTime;
+        public float spawnTime = 5.0f;
+
         [SerializeField]
         StageManager SM;
 
@@ -25,34 +27,41 @@ namespace VR
         {
             SM = GameObject.FindGameObjectWithTag("StageManager").GetComponent<StageManager>();
             enemy = (GameObject)Resources.Load("Prefabs/EnemyShip");
-            player = GameObject.FindGameObjectWithTag("SearchArea");
            
         }
 
         // Update is called once per frame
         void Update()
         {
-            spawnTime += Time.deltaTime;
-           
-            
-            
+            nowTime += Time.deltaTime;
+            if (StageManager.Instance.progress >= 750)
+                StartCoroutine(Enemy());
+
+
         }
 
 
-        void Enemy(){
+         private IEnumerator Enemy(){
 
-            var e1 = Instantiate(enemy, this.transform.position + new Vector3(5,5,5), this.transform.rotation);
+            nowTime = 0;
+            var e1 = Instantiate(enemy, this.transform.position + new Vector3(5,0,5), this.transform.rotation);
+            SoundManager.Instance.PlaySE(6);
+            yield return new WaitForSeconds(0.3f);
             var e2 = Instantiate(enemy, this.transform.position + new Vector3(0,0, 0), this.transform.rotation);
-            var e3 = Instantiate(enemy, this.transform.position + new Vector3(-5, -5, -5), this.transform.rotation);
-            var e4 = Instantiate(enemy, this.transform.position + new Vector3(10, 10, 10), this.transform.rotation);
-            
-            
+            SoundManager.Instance.PlaySE(6);
+            yield return new WaitForSeconds(0.3f);
+            var e3 = Instantiate(enemy, this.transform.position + new Vector3(-5, 0, -5), this.transform.rotation);
+            SoundManager.Instance.PlaySE(6);
+            yield return new WaitForSeconds(0.3f);
+            var e4 = Instantiate(enemy, this.transform.position + new Vector3(10, 0, 10), this.transform.rotation);
+            SoundManager.Instance.PlaySE(6);
+            yield return new WaitForSeconds(0.3f);
+
+
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.tag == "SearchArea")
-                Enemy();
         }
 
     }

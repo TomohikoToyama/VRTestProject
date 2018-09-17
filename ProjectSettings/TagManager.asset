@@ -29,6 +29,7 @@ TagManager:
   - ScoreManager
   - MenuManager
   - PlayerObjectManager
+  - Water
   layers:
   - Default
   - TransparentFX
