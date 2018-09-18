@@ -457,6 +457,7 @@
     <Compile Include="Assets\Script\Controller\PlayerStatusController.cs" />
     <Compile Include="Assets\Script\Data\EnemyData.cs" />
     <Compile Include="Assets\Script\Data\EnemyDataLoader.cs" />
+    <Compile Include="Assets\Script\EnemyObjectManager.cs" />
     <Compile Include="Assets\Script\EnemyShot.cs" />
     <Compile Include="Assets\Script\EnemySpwaner.cs" />
     <Compile Include="Assets\Script\Interface\IGameStateManagerController.cs" />
