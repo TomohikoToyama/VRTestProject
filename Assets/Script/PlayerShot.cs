@@ -33,19 +33,6 @@ namespace VR
             }
         }
 
-        //ショットの非同期処理
-        private IEnumerator ShootBulletAndDestroyCoroutine()
-        {
-
-            Debug.Log("にょろーん");
-            Remain = false;
-            //2秒経ったら破棄
-            yield return new WaitForSeconds(limitTime);
-            //ショット管理クラスに弾の残存を判定させるための処理を追加予定
-            gameObject.SetActive(false);
-
-
-        }
 
         //敵ショットのあたり判定
         private void OnTriggerEnter(Collider other)

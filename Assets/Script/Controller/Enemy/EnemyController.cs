@@ -96,12 +96,14 @@ namespace VR
             
 
             bShot = true;
-            yield return new WaitForSeconds(0.2f);
-            var shotClone1 = Instantiate(ESobj,this.transform.position, this.transform.rotation);
             var aim = this.Target.transform.position - this.transform.position;
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
+            EnemyObjectManager.Instance.ShotBullet(gameObject.transform.position, gameObject.transform.eulerAngles);
             ES.ShotStock -= 1;
+            yield return new WaitForSeconds(0.2f);
+           
+           
             bShot = false;
 
 

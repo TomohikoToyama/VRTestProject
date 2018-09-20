@@ -24,6 +24,14 @@ namespace VR
                 return instance;
             }
         }
+
+        private const int maxBullet = 256;
+        private List<GameObject> poolBulletList = new List<GameObject>(maxBullet); //通常弾用
+
+
+        [SerializeField]
+        private GameObject PoolBullet;
+
         // Use this for initialization
         void Start()
         {
@@ -35,5 +43,41 @@ namespace VR
         {
 
         }
+
+        //弾のオブジェクトプール
+        public GameObject ShotBullet(Vector3 position, Vector3 forward)
+        {
+            GameObject obj;
+            for (int i = 0; i < poolBulletList.Count; i++)
+            {
+                obj = poolBulletList[i];
+                if (obj.activeInHierarchy == false)
+                {
+                    obj.GetComponent<PoolObject>().Init();
+                    obj.gameObject.SetActive(true);
+                    obj.transform.position = position;
+                    obj.transform.eulerAngles = forward;
+                    return obj;
+                }
+            }
+            obj = (GameObject)Instantiate(PoolBullet, position, transform.rotation);
+            obj.SetActive(true);
+            obj.transform.position = position;
+            obj.transform.eulerAngles = forward;
+            obj.GetComponent<PoolObject>().Init();
+            poolBulletList.Add(obj);
+            return obj;
+        }
+
+
+
+
+        public void Return(GameObject obj)
+        {
+
+            obj.SetActive(false);
+
+        }
+
     }
 }
