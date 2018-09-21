@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace VR
 {
-    public class EnemyShot : MonoBehaviour
-    {
+    public class EnemyShot : PoolObject
+    { 
         private float nowTime = 0.0f;
         private float limitTime = 3.0f;
         private float shotSpeed = 25.0f;
@@ -16,6 +16,7 @@ namespace VR
         // Use this for initialization
         void Start()
         {
+
         }
 
         // Update is called once per frame
@@ -34,7 +35,14 @@ namespace VR
         //敵ショットのあたり判定
         private void OnTriggerEnter(Collider other)
         {
+            if(other.tag == "PlayerUnit")
             EnemyObjectManager.Instance.Return(gameObject);
+        }
+
+        // Use this for initialization
+        public override void Init()
+        {
+            nowTime = 0.0f;
         }
 
 

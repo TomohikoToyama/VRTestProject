@@ -10,7 +10,7 @@ namespace VR {
         GameObject enm;
         float directionX = 0.0f;//X方向進行
         float directionY = 0.0f;//X方向進行
-        float directionZ = 0.1f;//X方向進行
+        float directionZ = 0.05f;//X方向進行
                                 // Use this for initialization
         void Start() {
             player = GameObject.FindGameObjectWithTag("Player");

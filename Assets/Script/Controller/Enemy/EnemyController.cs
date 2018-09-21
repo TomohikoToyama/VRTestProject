@@ -23,7 +23,7 @@ namespace VR
 
         private int roadState = 1;
         private int bossState = 2;
-
+        EnemyObjectManager EnemyOM;
         // Use this for initialization
         void Start()
         {
@@ -34,6 +34,8 @@ namespace VR
             ESobj = (GameObject)Resources.Load("Prefabs/EnmSphere");
             InitEnemy(30);
             LockField = transform.Find("Lock").gameObject;
+            EnemyOM = GameObject.FindGameObjectWithTag("EnemyObjectManager").GetComponent<EnemyObjectManager>();
+
         }
 
         // Update is called once per frame
@@ -57,7 +59,7 @@ namespace VR
             ES.Health = _health;
             ES.ShotStock = 15;
             ES.Score = 100;
-            Target = GameObject.FindGameObjectWithTag(PlayerUnit);
+            Target = GameObject.FindGameObjectWithTag("Player");
         }
 
         //ロックオンされた処理
@@ -99,7 +101,7 @@ namespace VR
             var aim = this.Target.transform.position - this.transform.position;
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
-            EnemyObjectManager.Instance.ShotBullet(gameObject.transform.position, gameObject.transform.eulerAngles);
+            EnemyOM.ShotBullet(gameObject.transform.position, gameObject.transform.eulerAngles);
             ES.ShotStock -= 1;
             yield return new WaitForSeconds(0.2f);
            

@@ -30,6 +30,8 @@ TagManager:
   - MenuManager
   - PlayerObjectManager
   - Water
+  - EnemyObjectManager
+  - BackGround
   layers:
   - Default
   - TransparentFX
