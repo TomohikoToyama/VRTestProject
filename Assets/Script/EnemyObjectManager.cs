@@ -26,8 +26,10 @@ namespace VR
         }
 
         private const int maxBullet = 256;
-        private List<GameObject> poolBulletList = new List<GameObject>(maxBullet); //通常弾用
+        private List<GameObject> poolBulletList = new List<GameObject>(maxBullet); //敵弾用
 
+        private const int maxEnemy = 256;
+        private List<GameObject> poolEnemyList = new List<GameObject>(maxEnemy); //敵本体用
 
         [SerializeField]
         private GameObject PoolBullet;
@@ -78,6 +80,34 @@ namespace VR
             obj.SetActive(false);
 
         }
+
+
+        //敵のオブジェクトプール
+        public GameObject spwanEnemy(Vector3 position, Vector3 forward)
+        {
+            GameObject obj;
+            for (int i = 0; i < poolBulletList.Count; i++)
+            {
+                obj = poolBulletList[i];
+                if (obj.activeInHierarchy == false)
+                {
+                    obj.GetComponent<PoolObject>().Init();
+                    obj.gameObject.SetActive(true);
+                    obj.transform.position = position;
+                    obj.transform.eulerAngles = forward;
+                    return obj;
+                }
+            }
+            obj = (GameObject)Instantiate(PoolBullet, position, transform.rotation);
+            obj.SetActive(true);
+            obj.transform.position = position;
+            obj.transform.eulerAngles = forward;
+            obj.GetComponent<PoolObject>().Init();
+            poolBulletList.Add(obj);
+            return obj;
+        }
+
+
 
     }
 }
