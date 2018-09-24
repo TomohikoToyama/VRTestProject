@@ -54,7 +54,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4205123993074530}
   - component: {fileID: 33240178999937264}
-  - component: {fileID: 64223246097297598}
   - component: {fileID: 23331086749740660}
   m_Layer: 2
   m_Name: Lock
@@ -75,8 +74,8 @@ GameObject:
   - component: {fileID: 23867370793979364}
   - component: {fileID: 114999219059772278}
   - component: {fileID: 114995114177775296}
-  - component: {fileID: 114277699511530284}
   - component: {fileID: 136779407806851688}
+  - component: {fileID: 54793448560429252}
   m_Layer: 0
   m_Name: EnemyShip
   m_TagString: Enemy
@@ -215,7 +214,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1451117084270122}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 7.3200006, y: 1.33, z: 21.9}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.050000064, y: 0.05, z: 0.050000064}
   m_Children:
   - {fileID: 4205123993074530}
@@ -345,31 +344,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1451117084270122}
   m_Mesh: {fileID: 4300000, guid: 8e1f346e1a2b2974bb8483f6b9732a67, type: 3}
---- !u!64 &64223246097297598
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1308519328671496}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114277699511530284
-MonoBehaviour:
+--- !u!54 &54793448560429252
+Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1451117084270122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28bc3ad48871dcf43836a93402d7bb00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &114995114177775296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -393,6 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shot: {fileID: 1417617513603686, guid: 965affd5e4c4fe945b2a7406d2eb5e12, type: 2}
+  Target: {fileID: 0}
   explode: {fileID: 198163594364957420}
   fire: {fileID: 198511901512184942}
 --- !u!136 &136779407806851688

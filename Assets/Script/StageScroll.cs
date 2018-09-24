@@ -19,6 +19,11 @@ namespace VR {
 
         // Update is called once per frame
         void Update() {
+            
+        }
+
+        private void FixedUpdate()
+        {
             if (StageManager.Instance.GetCurrentState() == RoadState)
             {
                 player.transform.Translate(directionX, directionY, directionZ);

@@ -74,6 +74,18 @@ namespace VR
 
         }
 
+        void OnApplicationPause(bool pauseStatus)
+        {
+            if (pauseStatus)
+            {
+                Debug.Log("停止してるよ");
+            }
+            else
+            {
+                Debug.Log("動いてるよ");
+            }
+        }
+
         private void SceneInit(){
 
 

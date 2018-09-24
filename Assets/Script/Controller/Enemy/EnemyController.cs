@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace VR
 {
-    public class EnemyController : MonoBehaviour
+    public class EnemyController : EnemyStatus
     {
-        EnemyStatus ES;
+        
         public GameObject shot;
         bool bShot;
         GameObject ESobj;
@@ -30,7 +30,6 @@ namespace VR
 
             explode.Stop();
             fire.Stop();
-            ES = gameObject.GetComponent<EnemyStatus>();
             ESobj = (GameObject)Resources.Load("Prefabs/EnmSphere");
             InitEnemy(30);
             LockField = transform.Find("Lock").gameObject;
@@ -47,32 +46,40 @@ namespace VR
                 Target = GameObject.FindGameObjectWithTag("Player");
 
                 ShotBullet();
-                var aim = this.Target.transform.position - this.transform.position;
-                var look = Quaternion.LookRotation(aim);
-                this.transform.localRotation = look;
+
+                //transform.LookAt(Target.transform);
+               // transform.Translate(Vector3.forward * 1f);
             }
+        }
+
+        private void FixedUpdate()
+        {
+          //  var aim = this.Target.transform.position - this.transform.position;
+         //   var look = Quaternion.LookRotation(aim);
+         //   this.transform.localRotation = look;
+            
         }
 
         //敵機初期化処理
         private void InitEnemy(int _health)
         {
-            ES.Health = _health;
-            ES.ShotStock = 15;
-            ES.Score = 100;
+            Health = _health;
+            ShotStock = 15;
+            Score = 100;
             Target = GameObject.FindGameObjectWithTag("Player");
         }
 
         //ロックオンされた処理
         public void Locked()
         {
-            ES.Locked = true;
+            Lock = true;
             LockField.GetComponent<MeshRenderer>().enabled = true;
         }
 
         //ミサイル着弾でロックオン解除
         public void Unlock()
         {
-            ES.Locked = false;
+            Lock = false;
             LockField.GetComponent<MeshRenderer>().enabled = false;
         }
 
@@ -81,12 +88,12 @@ namespace VR
         //ロックオン済みか確認
         public bool CheckLock()
         {
-            return ES.Locked;
+            return Lock;
         }
         //弾を撃つ
         public void ShotBullet()
         {
-            if (!bShot && ES.ShotStock > 0)
+            if (!bShot && ShotStock > 0)
                 StartCoroutine(ShootBulletAndDestroyCoroutine());
         }
 
@@ -102,7 +109,7 @@ namespace VR
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
             EnemyOM.ShotBullet(gameObject.transform.position, gameObject.transform.eulerAngles);
-            ES.ShotStock -= 1;
+            ShotStock -= 1;
             yield return new WaitForSeconds(0.2f);
            
            
@@ -128,9 +135,9 @@ namespace VR
             explode.Play();
             SoundManager.Instance.PlaySE(1);
             yield return new WaitForSeconds(0.3f);
-            if (ES.Health <= 0)
+            if (Health <= 0)
             {
-                ES.Locked = false;
+                Lock = false;
                 explode.Stop();
                 Destroy(gameObject);
             }
@@ -155,24 +162,24 @@ namespace VR
                 {
                     int Damage = other.gameObject.GetComponent<PlayerShot>().Power;
 
-                    ScoreManager.Instance.ScoreChange(ES.Score/10); //
-                    ES.Health -= Damage;
+                    ScoreManager.Instance.ScoreChange(Score/10); //
+                    Health -= Damage;
                     StartCoroutine(FireCoroutine(other));
                 }
-                else if (other.gameObject.GetComponent<MissileMover>() != null && gameObject.name == other.gameObject.GetComponent<MissileMover>().GetEnemy())
+                else if (other.gameObject.GetComponent<MissileMover>() != null && gameObject.GetInstanceID() == other.gameObject.GetComponent<MissileMover>().GetEnemy())
                 {
                     int Damage = other.gameObject.GetComponent<MissileMover>().Power;
-                    ScoreManager.Instance.ScoreChange(ES.Score / 2); //
-                    ES.Health -= Damage;
+                    ScoreManager.Instance.ScoreChange(Score / 2); //
+                    Health -= Damage;
                     Unlock();
                     StartCoroutine(ExplodeCoroutine());
                 }
 
 
                 //体力がなくなったら死亡処理
-                if (ES.Health <= 0)
+                if (Health <= 0)
                 {
-                    ScoreManager.Instance.ScoreChange(ES.Score);
+                    ScoreManager.Instance.ScoreChange(Score);
                     StartCoroutine(ExplodeCoroutine());
                 }
             }

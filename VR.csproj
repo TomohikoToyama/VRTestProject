@@ -451,6 +451,7 @@
     <Compile Include="Assets\Script\Controller\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Script\Controller\Enemy\EnemyMovePattern.cs" />
     <Compile Include="Assets\Script\Controller\Enemy\EnemyStatus.cs" />
+    <Compile Include="Assets\Script\Controller\Enemy\ShotPattern_1.cs" />
     <Compile Include="Assets\Script\Controller\GameStateManagerController.cs" />
     <Compile Include="Assets\Script\Controller\LaserPointer.cs" />
     <Compile Include="Assets\Script\Controller\MenuController.cs" />
@@ -473,6 +474,7 @@
     <Compile Include="Assets\Script\Manager\SoundManager.cs" />
     <Compile Include="Assets\Script\Manager\StageManager.cs" />
     <Compile Include="Assets\Script\MissileMover.cs" />
+    <Compile Include="Assets\Script\mover.cs" />
     <Compile Include="Assets\Script\PlayerObjectManager.cs" />
     <Compile Include="Assets\Script\PlayerShot.cs" />
     <Compile Include="Assets\Script\StageScroll.cs" />

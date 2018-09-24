@@ -48,7 +48,11 @@ namespace VR {
         [SerializeField]
         private GameObject PoolBullet;
 
-        private readonly Queue<PoolObject> poolMissileQueue = new Queue<PoolObject>(maxMissile); //通常弾用
+
+        private List<GameObject> poolMissileList = new List<GameObject>(maxMissile); //ミサイル用
+        [SerializeField]
+        private GameObject PoolMissile;
+
 
         // Use this for initialization
         void Start() {
@@ -89,10 +93,36 @@ namespace VR {
                 poolBulletList.Add(obj);
                 return obj;
         }
-           
-        
-       
-      
+
+
+        public GameObject ShotMissile(Vector3 position, Vector3 forward, GameObject target)
+        {
+            GameObject obj;
+            for (int i = 0; i < poolMissileList.Count; i++)
+            {
+                obj = poolMissileList[i];
+                if (obj.activeInHierarchy == false)
+                {
+                    obj.GetComponent<PoolObject>().Init();
+                    
+                    obj.gameObject.SetActive(true);
+                    obj.transform.position = position;
+                    obj.transform.eulerAngles = forward;
+                    obj.GetComponent<MissileMover>().SetEnemy(target);
+                    return obj;
+                }
+            }
+            obj = (GameObject)Instantiate(PoolMissile, position, PUnit.transform.rotation);
+            obj.SetActive(true);
+            obj.transform.position = position;
+            obj.transform.eulerAngles = forward;
+            obj.GetComponent<PoolObject>().Init();
+            poolMissileList.Add(obj);
+
+            obj.GetComponent<MissileMover>().SetEnemy(target);
+            return obj;
+        }
+
         public void Return(GameObject obj)
         {
 

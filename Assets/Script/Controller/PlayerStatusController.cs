@@ -250,11 +250,8 @@ namespace VR
                         if (targetObj != null)
                         {
                             SoundManager.Instance.PlaySE(4);
-                            var misslieClone = Instantiate(missile, muzzleone.transform.position, Quaternion.identity);
-                            misslieClone.transform.position = muzzleone.position;
-                            misslieClone.transform.eulerAngles = player.transform.eulerAngles;
-                            MS = misslieClone.GetComponent<MissileMover>();
-                            MS.SetEnemy(targetObj);
+                            PlayerOM.ShotMissile(muzzleone.transform.position, player.transform.eulerAngles, targetObj);
+                            
                         }
                         targetObj = null;
                         yield return new WaitForSeconds(0.1f);
@@ -266,12 +263,40 @@ namespace VR
             }
         }
 
-        
+
 
         //あたり判定処理
-        private void OnTriggerStay(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
 
+            //プレイヤーの弾でHP減少
+            if (other.gameObject.tag == "EnemyShot" || other.gameObject.tag == "Enemy")
+            {
+                //弾のショットから弾の威力を取得して威力分のダメージ
+                if (!invicible && health > 1)
+                {
+                    StartCoroutine(FireCoroutine(other));
+                    //ダメージ時に連続ヒット防止に無敵化処理
+                    StartCoroutine(IsInvicible());
+                    //敵ショット
+
+                    Health--;
+
+                }
+
+                //体力がなくなったら死亡処理
+                if (!invicible && health == 1)
+                {
+                    Health--;
+                    StartCoroutine(ExplodeCoroutine());
+
+
+                }
+            }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
             
             //プレイヤーの弾でHP減少
             if (other.gameObject.tag == "EnemyShot" || other.gameObject.tag == "Enemy")

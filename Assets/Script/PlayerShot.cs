@@ -19,12 +19,12 @@ namespace VR
         public override void Init()
         {
             nowTime = 0.0f;
+
         }
 
         // Update is called once per frame
         void Update()
         {
-            gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed;
             nowTime += Time.deltaTime;
             if (nowTime >= limitTime)
             {
@@ -33,17 +33,21 @@ namespace VR
             }
         }
 
+        private void FixedUpdate()
+        {
+            gameObject.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed;
 
+        }
         //敵ショットのあたり判定
         private void OnTriggerEnter(Collider other)
         {
 
             if (other.gameObject.tag == "Enemy")
-            {
-
                 PlayerObjectManager.Instance.Return(gameObject);
-            }
+            else if(other.gameObject.tag == "BackGround")
+                PlayerObjectManager.Instance.Return(gameObject);
+        
 
-        }
+    }
     }
 }
