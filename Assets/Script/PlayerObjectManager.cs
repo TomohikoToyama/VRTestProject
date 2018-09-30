@@ -48,6 +48,9 @@ namespace VR {
         [SerializeField]
         private GameObject PoolBullet;
 
+        private string filePlace = "Prefabs/";
+        private string unitName  = "A15-Beast";
+        private string laserName = "Laser";
 
         private List<GameObject> poolMissileList = new List<GameObject>(maxMissile); //ミサイル用
         [SerializeField]
@@ -59,8 +62,8 @@ namespace VR {
             gsm = GameObject.FindWithTag("GameStateManager").GetComponent<GameStateManager>();
 
 
-            PUnit = (GameObject)Resources.Load("Prefabs/A15-Beast");
-            laser = (GameObject)Resources.Load("Prefabs/Laser");
+            PUnit = (GameObject)Resources.Load(filePlace + unitName);
+            laser = (GameObject)Resources.Load(filePlace + laserName);
             laserObj = laser;
         }
 
@@ -193,11 +196,11 @@ namespace VR {
         //プレイヤー機体の処理
         #region
         public void CreatePlayerUnit() {
-
+            Init();
             if (gsm.GetStateName() == typeScene.Test.ToString())
             {
                 Controller = GameObject.FindGameObjectWithTag("ActiveController");
-                obj = Instantiate(PUnit, Controller.transform.position, Controller.transform.rotation);
+                obj = Instantiate(PUnit, Controller.transform.position, Controller.transform.rotation );
                 obj.transform.parent = Controller.transform;
                 PUnit.transform.Rotate(45, 0, 0);
                
@@ -217,6 +220,19 @@ namespace VR {
 
         #endregion
 
+
+        private void Init()
+        {
+            
+                gsm = GameObject.FindWithTag("GameStateManager").GetComponent<GameStateManager>();
+
+
+                PUnit = (GameObject)Resources.Load(filePlace + unitName);
+                laser = (GameObject)Resources.Load(filePlace + laserName);
+                laserObj = laser;
+            
+
+        }
     }
 
 }
