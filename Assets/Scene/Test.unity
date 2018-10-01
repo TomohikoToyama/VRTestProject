@@ -497,6 +497,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d635a12fd98514e48b150eb1dd2dd79c, type: 2}
+      propertyPath: m_Name
+      value: Cotton_candy_1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d635a12fd98514e48b150eb1dd2dd79c, type: 2}
   m_IsPrefabParent: 0
