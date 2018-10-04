@@ -47,16 +47,13 @@ namespace VR
 
                 ShotBullet();
 
-                //transform.LookAt(Target.transform);
-               // transform.Translate(Vector3.forward * 1f);
+                
             }
         }
 
         private void FixedUpdate()
         {
-          //  var aim = this.Target.transform.position - this.transform.position;
-         //   var look = Quaternion.LookRotation(aim);
-         //   this.transform.localRotation = look;
+         
             
         }
 
