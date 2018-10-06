@@ -30,5 +30,8 @@ namespace VR
         public string Item { get { return item; } set { item = value; } }
         private bool lockOn;    // ロックオン判定
         public bool Lock { get { return lockOn; } set { lockOn = value; } }
+        private int difficult;    // ロックオン判定
+        public int Difficult { get { return difficult; } set { difficult = value; } }
+
     }
 }

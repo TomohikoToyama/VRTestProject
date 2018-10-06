@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace VR
 {
-    public class ShotPattern_1 : EnemyShot
+    public class ShotPattern_1 : MonoBehaviour
     {
         EnemyController EC;
+        int nowDif;
         enum difficult
         {
             easy   = 1,
@@ -20,22 +21,29 @@ namespace VR
         // Use this for initialization
         void Start()
         {
-            EC = gameObject.Getcomponent<EnemyController>();
+            EC = gameObject.GetComponent<EnemyController>();
+            nowDif = EC.GetDifficult();
 
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            if (!EC.bShot && EC.ShotStock > 0)
+            {
+                ShotBullet();
+            }
         }
 
 
 
-        public override void Init()
+        private void ShotBullet()
         {
+            if (nowDif == (int)difficult.easy)
+                EasyShot();
 
         }
+        
 
         //非同期処理群
         #region
@@ -43,7 +51,7 @@ namespace VR
         private IEnumerator EasyShot()
         {
             EC.bShot = true;
-            var aim = this.Target.transform.position - this.transform.position;
+            var aim = this.EC.Target.transform.position - this.transform.position;
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
             EnemyObjectManager.Instance.ShotBullet(gameObject.transform.position, gameObject.transform.eulerAngles);
@@ -51,7 +59,7 @@ namespace VR
             yield return new WaitForSeconds(0.2f);
 
 
-            bShot = false;
+            EC.bShot = false;
         }
             #endregion
         

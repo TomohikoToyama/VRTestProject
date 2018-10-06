@@ -8,15 +8,15 @@ namespace VR
     {
         
         public GameObject shot;
-        bool bShot;
+        public bool bShot;
         GameObject ESobj;
         [SerializeField]
-        GameObject Target;
+        public GameObject Target;
         [SerializeField]
         ParticleSystem explode;
         [SerializeField]
         ParticleSystem fire;
-        
+        public int dif;
         string PlayerUnit = "PlayerUnit";
         
         GameObject LockField;   //ロックオン画像
@@ -57,6 +57,10 @@ namespace VR
             
         }
 
+        public int GetDifficult()
+        {
+            return dif = Difficult;
+        }
         //敵機初期化処理
         private void InitEnemy(int _health)
         {
