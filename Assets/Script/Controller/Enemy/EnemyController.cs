@@ -34,6 +34,7 @@ namespace VR
             InitEnemy(30);
             LockField = transform.Find("Lock").gameObject;
             EnemyOM = GameObject.FindGameObjectWithTag("EnemyObjectManager").GetComponent<EnemyObjectManager>();
+            Difficult = 2;
 
         }
 
@@ -45,7 +46,7 @@ namespace VR
                 if(Target == null)
                 Target = GameObject.FindGameObjectWithTag("Player");
 
-                ShotBullet();
+             //   ShotBullet();
 
                 
             }
