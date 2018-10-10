@@ -398,7 +398,7 @@ MonoBehaviour:
   Target: {fileID: 0}
   explode: {fileID: 198163594364957420}
   fire: {fileID: 198511901512184942}
-  dif: 0
+  dif: 1
 --- !u!136 &136779407806851688
 CapsuleCollider:
   m_ObjectHideFlags: 1
