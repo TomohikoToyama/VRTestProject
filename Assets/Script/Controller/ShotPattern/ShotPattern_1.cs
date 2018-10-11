@@ -32,6 +32,7 @@ namespace VR
             if (!EC.bShot && EC.ShotStock > 0)
             {
                 ShotBullet();
+                
             }
         }
 
@@ -40,13 +41,13 @@ namespace VR
         private void ShotBullet()
         {
             if (nowDif == (int)difficult.easy)
-                EasyShot();
+                StartCoroutine( EasyShot() );
             else if (nowDif == (int)difficult.normal)
-                NormalShot();
+                StartCoroutine(NormalShot());
             else if (nowDif == (int)difficult.hard)
-                HardShot();
+                StartCoroutine(HardShot());
             else if (nowDif == (int)difficult.death)
-                DeathShot();
+                StartCoroutine(DeathShot());
 
         }
 

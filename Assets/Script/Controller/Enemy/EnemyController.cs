@@ -60,7 +60,8 @@ namespace VR
 
         public int GetDifficult()
         {
-            return dif = Difficult;
+            
+            return Difficult;
         }
         //敵機初期化処理
         private void InitEnemy(int _health)
