@@ -7,6 +7,13 @@ namespace VR
     public class EnemyController : EnemyStatus
     {
         
+        enum currentState
+        {
+            None = 0,
+            Act = 1,
+            Escape = 2,
+            Death = 3
+        }
         public GameObject shot;
         public bool bShot;
         GameObject ESobj;
@@ -41,6 +48,16 @@ namespace VR
         // Update is called once per frame
         void Update()
         {
+            if (State == (int)currentState.Act)
+            {
+
+            }else if(State == (int)currentState.Escape)
+            {
+
+            }else if(State == (int)currentState.Death)
+            {
+
+            }
             if (StageManager.Instance.AbleShoot())
             {
                 if(Target == null)
@@ -58,6 +75,10 @@ namespace VR
             
         }
 
+        private void stateChange()
+        {
+
+        }
         public int GetDifficult()
         {
             

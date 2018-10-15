@@ -6,6 +6,7 @@ namespace VR
 {
     public class EnemyStatus : MonoBehaviour
     {
+
         private string type;               // 敵名
         public string Type { get { return type; } set { type = value; } }
         private string weapon;    // 攻撃種類
@@ -14,6 +15,8 @@ namespace VR
         public string AtkPattern { get { return atkPattern; } set { atkPattern = value; } }
         private string movePattern;    // 移動パターン
         public string MovePattern { get { return movePattern; } set { movePattern = value; } }
+        private int state;
+        public int State { get { return state; } set { state = value; } }
         private int health;          // 体力
         public int Health { get { return health; } set { health = value; } }
         private int shotStock;          // 体力
