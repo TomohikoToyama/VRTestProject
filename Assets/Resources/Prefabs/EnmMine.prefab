@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33804336760548530}
   - component: {fileID: 135121937096868102}
   - component: {fileID: 23552340598295450}
+  - component: {fileID: 114144252207302822}
   m_Layer: 0
   m_Name: EnmMine
   m_TagString: EnemyShot
@@ -83,6 +84,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1154874195384708}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114144252207302822
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1154874195384708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0c1a4a1c5542b4caac87b10f2530a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
 --- !u!135 &135121937096868102
 SphereCollider:
   m_ObjectHideFlags: 1

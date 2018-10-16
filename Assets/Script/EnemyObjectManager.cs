@@ -47,13 +47,13 @@ namespace VR
         }
 
         //弾のオブジェクトプール
-        public GameObject ShotBullet(Vector3 position, Vector3 forward)
+        public GameObject ShotBullet(GameObject shotObj,Vector3 position, Vector3 forward)
         {
             GameObject obj;
             for (int i = 0; i < poolBulletList.Count; i++)
             {
                 obj = poolBulletList[i];
-                if (obj.activeInHierarchy == false)
+                if (shotObj.activeInHierarchy == false)
                 {
                     obj.GetComponent<PoolObject>().Init();
                     obj.gameObject.SetActive(true);
@@ -62,7 +62,7 @@ namespace VR
                     return obj;
                 }
             }
-            obj = (GameObject)Instantiate(PoolBullet, position, transform.rotation);
+            obj = (GameObject)Instantiate(shotObj, position, transform.rotation);
             obj.SetActive(true);
             obj.transform.position = position;
             obj.transform.eulerAngles = forward;
