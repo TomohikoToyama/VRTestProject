@@ -132,7 +132,7 @@ namespace VR
             var aim = this.Target.transform.position - this.transform.position;
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
-            EnemyOM.ShotBullet(gameObject.transform.position, gameObject.transform.eulerAngles);
+            EnemyOM.ShotBullet(gameObject.transform.position, transform.eulerAngles);
             ShotStock -= 1;
             yield return new WaitForSeconds(0.2f);
            

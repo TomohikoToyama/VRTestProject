@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -107,7 +108,9 @@ namespace VR
             return obj;
         }
 
-
-
+        internal void ShotBullet(Vector3 position, Vector3 eulerAngles)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
