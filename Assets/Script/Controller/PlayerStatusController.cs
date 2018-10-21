@@ -84,7 +84,7 @@ namespace VR
 
         }
 
-
+        
         //弾を撃つ
         public void ShotBullet()
         {

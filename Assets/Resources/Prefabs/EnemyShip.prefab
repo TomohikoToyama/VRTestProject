@@ -371,6 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cca3ff05f71ea4e86854ceb6947215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotObj: {fileID: 0}
 --- !u!114 &114995114177775296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -399,6 +400,7 @@ MonoBehaviour:
   explode: {fileID: 198163594364957420}
   fire: {fileID: 198511901512184942}
   dif: 1
+  ES: {fileID: 114995114177775296}
 --- !u!136 &136779407806851688
 CapsuleCollider:
   m_ObjectHideFlags: 1

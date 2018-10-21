@@ -33,7 +33,10 @@ namespace VR
         private List<GameObject> poolEnemyList = new List<GameObject>(maxEnemy); //敵本体用
 
         [SerializeField]
-        private GameObject PoolBullet;
+        private GameObject poolBullet;
+
+        [SerializeField]
+        private GameObject poolEnemy;
 
         // Use this for initialization
         void Start()
@@ -84,12 +87,14 @@ namespace VR
 
 
         //敵のオブジェクトプール
-        public GameObject spwanEnemy(Vector3 position, Vector3 forward)
+        public GameObject spwanEnemy(GameObject enemyObj,Vector3 position, Vector3 forward)
         {
+            Debug.Log("てすとー");
             GameObject obj;
-            for (int i = 0; i < poolBulletList.Count; i++)
+
+            for (int i = 0; i < poolEnemyList.Count; i++)
             {
-                obj = poolBulletList[i];
+                obj = poolEnemyList[i];
                 if (obj.activeInHierarchy == false)
                 {
                     obj.GetComponent<PoolObject>().Init();
@@ -99,7 +104,8 @@ namespace VR
                     return obj;
                 }
             }
-            obj = (GameObject)Instantiate(PoolBullet, position, transform.rotation);
+            poolEnemy = enemyObj;
+            obj = (GameObject)Instantiate(poolEnemy, position, transform.rotation);
             obj.SetActive(true);
             obj.transform.position = position;
             obj.transform.eulerAngles = forward;

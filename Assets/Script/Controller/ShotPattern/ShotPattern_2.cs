@@ -29,7 +29,7 @@ namespace VR
         // Update is called once per frame
         void Update()
         {
-            if (!EC.bShot && EC.ShotStock > 0)
+            if (!EC.bShot && EC.GetStock() > 0)
             {
                 ShotBullet();
             }
@@ -60,7 +60,7 @@ namespace VR
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
             EnemyObjectManager.Instance.ShotBullet(shotObj,gameObject.transform.position, gameObject.transform.eulerAngles);
-            EC.ShotStock -= 1;
+            EC.SetStock(1);
             yield return new WaitForSeconds(0.2f);
 
 
@@ -77,7 +77,7 @@ namespace VR
             EnemyObjectManager.Instance.ShotBullet(shotObj, gameObject.transform.position, gameObject.transform.eulerAngles += new Vector3(5f, 0, 0));
             EnemyObjectManager.Instance.ShotBullet(shotObj, gameObject.transform.position, gameObject.transform.eulerAngles + new Vector3(-5, 0, 0));
 
-            EC.ShotStock -= 1;
+            EC.SetStock(1);
             yield return new WaitForSeconds(0.2f);
 
 
@@ -92,7 +92,7 @@ namespace VR
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
             EnemyObjectManager.Instance.ShotBullet(shotObj, gameObject.transform.position, gameObject.transform.eulerAngles);
-            EC.ShotStock -= 1;
+            EC.SetStock(1); 
             yield return new WaitForSeconds(0.2f);
 
 
@@ -107,7 +107,7 @@ namespace VR
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
             EnemyObjectManager.Instance.ShotBullet(shotObj, gameObject.transform.position, gameObject.transform.eulerAngles);
-            EC.ShotStock -= 1;
+            EC.SetStock(1);
             yield return new WaitForSeconds(0.2f);
 
 
