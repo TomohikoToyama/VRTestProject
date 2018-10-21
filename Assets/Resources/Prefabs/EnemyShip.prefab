@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cca3ff05f71ea4e86854ceb6947215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotObj: {fileID: 0}
+  shotObj: {fileID: 1417617513603686, guid: 965affd5e4c4fe945b2a7406d2eb5e12, type: 2}
 --- !u!114 &114995114177775296
 MonoBehaviour:
   m_ObjectHideFlags: 1

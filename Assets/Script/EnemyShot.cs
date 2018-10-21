@@ -62,7 +62,7 @@ namespace VR
             if(other.tag == "PlayerUnit")
             EnemyObjectManager.Instance.Return(gameObject);
             else if(other.tag == "BackGround")
-                EnemyObjectManager.Instance.Return(gameObject);
+            EnemyObjectManager.Instance.Return(gameObject);
         }
 
         // Use this for initialization

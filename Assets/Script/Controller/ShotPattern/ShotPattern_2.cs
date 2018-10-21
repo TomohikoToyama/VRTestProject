@@ -8,6 +8,7 @@ namespace VR
     {
 
         EnemyController EC;
+        [SerializeField]
         int nowDif;
         [SerializeField]
         GameObject shotObj;
@@ -23,13 +24,14 @@ namespace VR
         void Start()
         {
             EC = gameObject.GetComponent<EnemyController>();
-            nowDif = EC.GetDifficult();
+            
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (!EC.bShot && EC.GetStock() > 0)
+            nowDif = EC.GetDifficult();
+            if (!EC.bShot )
             {
                 ShotBullet();
             }

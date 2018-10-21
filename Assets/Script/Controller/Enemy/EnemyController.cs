@@ -44,18 +44,20 @@ namespace VR
             InitEnemy(30);
             LockField = transform.Find("Lock").gameObject;
             EnemyOM = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyObjectManager>();
-            ES.Difficult = 2;
+            
 
         }
 
         // Update is called once per frame
         void Update()
         {
+            ES.Difficult = 2;
             if (ES.State == (int)currentState.Act)
             {
 
             }else if(ES.State == (int)currentState.Escape)
             {
+
 
             }else if(ES.State == (int)currentState.Death)
             {
@@ -97,6 +99,7 @@ namespace VR
         //敵機初期化処理
         private void InitEnemy(int _health)
         {
+            
             ES.Health = _health;
             ES.ShotStock = 15;
             ES.Score = 100;
@@ -181,7 +184,7 @@ namespace VR
             {
                 ES.Lock = false;
                 explode.Stop();
-                Destroy(gameObject);
+                EnemyOM.Return(gameObject);
             }
            
             explode.Stop();

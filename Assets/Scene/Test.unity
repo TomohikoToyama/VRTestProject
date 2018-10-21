@@ -6638,7 +6638,7 @@ MonoBehaviour:
   spawnTime: 5
   SM: {fileID: 1869297131}
   EOM: {fileID: 506453915}
-  enemy: {fileID: 0}
+  enemy: {fileID: 1663799901343890, guid: f3a4ce4c003d0e042a7942804e13330f, type: 2}
 --- !u!4 &1516021528
 Transform:
   m_ObjectHideFlags: 0

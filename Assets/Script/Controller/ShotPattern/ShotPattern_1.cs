@@ -7,6 +7,7 @@ namespace VR
     public class ShotPattern_1 : MonoBehaviour
     {
         EnemyController EC;
+        [SerializeField]
         int nowDif;
         [SerializeField]
         GameObject shotObj;
@@ -31,7 +32,8 @@ namespace VR
         // Update is called once per frame
         void Update()
         {
-            if (!EC.bShot && EC.GetStock() > 0)
+
+            if (!EC.bShot )
             {
                 ShotBullet();
                 
