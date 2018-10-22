@@ -53,9 +53,12 @@ namespace VR
         //弾のオブジェクトプール
         public GameObject ShotBullet(GameObject shotObj,Vector3 position, Vector3 forward)
         {
+            Debug.Log(shotObj + "弾生成");
             GameObject obj;
+           // poolBullet = shotObj;
             for (int i = 0; i < poolBulletList.Count; i++)
             {
+               
                 obj = poolBulletList[i];
                 if (shotObj.activeInHierarchy == false)
                 {
@@ -66,6 +69,7 @@ namespace VR
                     return obj;
                 }
             }
+            Debug.Log("開始");
             obj = (GameObject)Instantiate(shotObj, position, transform.rotation);
             obj.SetActive(true);
             obj.transform.position = position;
@@ -104,8 +108,8 @@ namespace VR
                     return obj;
                 }
             }
-            poolEnemy = enemyObj;
-            obj = (GameObject)Instantiate(poolEnemy, position, transform.rotation);
+            //poolEnemy = enemyObj;
+            obj = (GameObject)Instantiate(enemyObj, position, transform.rotation);
             obj.SetActive(true);
             obj.transform.position = position;
             obj.transform.eulerAngles = forward;
@@ -114,9 +118,5 @@ namespace VR
             return obj;
         }
 
-        internal void ShotBullet(Vector3 position, Vector3 eulerAngles)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -11,6 +11,8 @@ namespace VR
         int nowDif;
         [SerializeField]
         GameObject shotObj;
+        
+        EnemyObjectManager EOM;
         enum difficult
         {
             easy   = 1,
@@ -26,13 +28,14 @@ namespace VR
         {
             EC = gameObject.GetComponent<EnemyController>();
             nowDif = EC.GetDifficult();
+            EOM = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyObjectManager>();
 
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            nowDif = 1;
             if (!EC.bShot )
             {
                 ShotBullet();
@@ -45,7 +48,7 @@ namespace VR
         private void ShotBullet()
         {
             if (nowDif == (int)difficult.easy)
-                StartCoroutine( EasyShot() );
+                StartCoroutine(EasyShot());
             else if (nowDif == (int)difficult.normal)
                 StartCoroutine(NormalShot());
             else if (nowDif == (int)difficult.hard)
@@ -62,15 +65,16 @@ namespace VR
         //難易度EASY
         private IEnumerator EasyShot()
         {
-            EC.bShot = true;
+            Debug.Log("EASY弾");
+          //  EC.bShot = true;
             var aim = this.EC.Target.transform.position - this.transform.position;
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
-            EnemyObjectManager.Instance.ShotBullet(shotObj,gameObject.transform.position, gameObject.transform.eulerAngles);
+            EOM.ShotBullet(shotObj,gameObject.transform.position, gameObject.transform.eulerAngles);
             EC.SetStock(1);
             yield return new WaitForSeconds(0.2f);
 
-
+            Debug.Log("弾生成終了");
             EC.bShot = false;
         }
 
@@ -81,8 +85,8 @@ namespace VR
             var aim = this.EC.Target.transform.position - this.transform.position;
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
-            EnemyObjectManager.Instance.ShotBullet(shotObj, gameObject.transform.position, gameObject.transform.eulerAngles += new Vector3(5f, 0, 0));
-            EnemyObjectManager.Instance.ShotBullet(shotObj, gameObject.transform.position, gameObject.transform.eulerAngles + new Vector3(-5, 0, 0));
+            EOM.ShotBullet(shotObj, gameObject.transform.position, gameObject.transform.eulerAngles += new Vector3(5f, 0, 0));
+            EOM.ShotBullet(shotObj, gameObject.transform.position, gameObject.transform.eulerAngles + new Vector3(-5, 0, 0));
 
             EC.SetStock(1);
             yield return new WaitForSeconds(0.2f);
@@ -98,7 +102,7 @@ namespace VR
             var aim = this.EC.Target.transform.position - this.transform.position;
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
-            EnemyObjectManager.Instance.ShotBullet(shotObj, gameObject.transform.position, gameObject.transform.eulerAngles);
+            EOM.ShotBullet(shotObj, gameObject.transform.position, gameObject.transform.eulerAngles);
             EC.SetStock(1);
             yield return new WaitForSeconds(0.2f);
 
@@ -113,7 +117,7 @@ namespace VR
             var aim = this.EC.Target.transform.position - this.transform.position;
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
-            EnemyObjectManager.Instance.ShotBullet(shotObj, gameObject.transform.position, gameObject.transform.eulerAngles);
+            EOM.ShotBullet(shotObj, gameObject.transform.position, gameObject.transform.eulerAngles);
             EC.SetStock(1);
             yield return new WaitForSeconds(0.2f);
 

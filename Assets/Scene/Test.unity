@@ -1922,8 +1922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a534eaeb78acf7e4f8332293bc807c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolBullet: {fileID: 0}
-  poolEnemy: {fileID: 0}
+  poolBullet: {fileID: 1417617513603686, guid: 965affd5e4c4fe945b2a7406d2eb5e12, type: 2}
+  poolEnemy: {fileID: 1451117084270122, guid: 74cd4cbb35dc5a549a74b939fcefe948, type: 2}
 --- !u!1 &512493003
 GameObject:
   m_ObjectHideFlags: 0
@@ -6638,7 +6638,7 @@ MonoBehaviour:
   spawnTime: 5
   SM: {fileID: 1869297131}
   EOM: {fileID: 506453915}
-  enemy: {fileID: 1663799901343890, guid: f3a4ce4c003d0e042a7942804e13330f, type: 2}
+  enemy: {fileID: 1978886693440190, guid: f3a4ce4c003d0e042a7942804e13330f, type: 2}
 --- !u!4 &1516021528
 Transform:
   m_ObjectHideFlags: 0
@@ -8906,7 +8906,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1967104830}
   m_LocalRotation: {x: 0.55769587, y: 0.08435376, z: 0.057113137, w: -0.8237706}
-  m_LocalPosition: {x: 9.128393, y: -15.215885, z: -2.6781998}
+  m_LocalPosition: {x: 8.952667, y: -13.048378, z: -1.8290906}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
