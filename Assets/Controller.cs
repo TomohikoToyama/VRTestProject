@@ -152,7 +152,7 @@ namespace VR
         //タッチパッドを押した時の処理
         private void PressTouch(float X, float Y)
         {
-            _parent.transform.Translate(0.05f * X, 0, 0.05f * Y);
+           // _parent.transform.Translate(0.05f * X, 0, 0.05f * Y);
             if (gsm.GetStateName() == typeScene.Test.ToString() && gsm.GetStateName() == SceneManager.GetActiveScene().name)
                 PSC.Lockon();
         }

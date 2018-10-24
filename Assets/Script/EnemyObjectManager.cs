@@ -70,7 +70,7 @@ namespace VR
                 }
             }
             Debug.Log("開始");
-            obj = (GameObject)Instantiate(shotObj, position, transform.rotation);
+            obj = Instantiate(poolBullet, position, transform.rotation);
             obj.SetActive(true);
             obj.transform.position = position;
             obj.transform.eulerAngles = forward;

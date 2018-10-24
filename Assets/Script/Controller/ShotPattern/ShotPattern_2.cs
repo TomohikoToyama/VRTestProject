@@ -33,7 +33,7 @@ namespace VR
         // Update is called once per frame
         void Update()
         {
-            Debug.Log(EOM + "ですよ"); 
+           
             nowDif = 1;
             //nowDif = EC.GetDifficult();
             if (!EC.bShot )
@@ -68,7 +68,7 @@ namespace VR
             var look = Quaternion.LookRotation(aim);
             this.transform.localRotation = look;
             EOM.ShotBullet(shotObj,gameObject.transform.position, gameObject.transform.eulerAngles);
-            EC.SetStock(1);
+            EC.ShotStock --;
             yield return new WaitForSeconds(0.2f);
 
 
