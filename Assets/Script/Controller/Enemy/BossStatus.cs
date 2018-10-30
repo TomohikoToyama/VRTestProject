@@ -4,18 +4,19 @@ using UnityEngine;
 
 namespace VR
 {
-    public class EnemyStatus : MonoBehaviour
+    public class BossStatus : MonoBehaviour
     {
-
         private string type;               // 敵名
         public string Type { get { return type; } set { type = value; } }
         private string weapon;    // 攻撃種類
         public string Weapon { get { return weapon; } set { weapon = value; } }
+        private int phase;      //戦闘形態
+        public int Phase { get { return phase; } set { phase = value; } }
         private string atkPattern;    // 攻撃パターン
         public string AtkPattern { get { return atkPattern; } set { atkPattern = value; } }
         private string movePattern;    // 移動パターン
         public string MovePattern { get { return movePattern; } set { movePattern = value; } }
-        private int state;              //状態    
+        private int state;              //状態
         public int State { get { return state; } set { state = value; } }
         private int health;          // 体力
         public int Health { get { return health; } set { health = value; } }
@@ -36,5 +37,18 @@ namespace VR
         private int difficult;    // ロックオン判定
         public int Difficult { get { return difficult; } set { difficult = value; } }
 
+        
+
+        // Use this for initialization
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }
