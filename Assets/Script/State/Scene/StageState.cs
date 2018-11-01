@@ -12,6 +12,7 @@ namespace VR
         GameObject obj;
         PlayerObjectManager PMO;
         private GameStateManager manager;
+        StageManager SM;
 
         public StageState(GameStateManager GSM)
         {
@@ -29,6 +30,11 @@ namespace VR
             if (PSC.Died == true)
             {
 
+                manager.SwitchState(new MenuState(manager));
+                SceneManager.LoadScene("Menu");
+            }else if (SM.GetClear())
+            {
+                //クリア演出後にメニューに遷移
                 manager.SwitchState(new MenuState(manager));
                 SceneManager.LoadScene("Menu");
             }

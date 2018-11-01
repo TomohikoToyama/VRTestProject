@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace VR
 {
-    public class BossController : MonoBehaviour
+    public class BossController : BossStatus
     {
         enum currentState
         {
@@ -13,6 +13,15 @@ namespace VR
             Escape = 2,
             Death = 3
         }
+
+        enum currentPhase
+        {
+            One = 1,
+            Two = 2,
+            Three = 3
+        }
+
+        
         public GameObject shot;
         public bool bShot;
         GameObject ESobj;
@@ -24,8 +33,6 @@ namespace VR
         ParticleSystem fire;
         public int dif;
         string PlayerUnit = "PlayerUnit";
-        [SerializeField]
-        BossStatus BS;
 
         GameObject LockField;   //ロックオン画像
 
@@ -41,7 +48,24 @@ namespace VR
         // Update is called once per frame
         void Update()
         {
+            if(Phase == (int)currentPhase.One)
+            {
+                if (Health <= Health/2)
+                    PhaseChange();
+            }else if(Phase == (int)currentPhase.Two)
+            {
 
+            }else if(Phase == (int)currentPhase.Three)
+            {
+
+
+            }
+        }
+
+
+        private void PhaseChange()
+        {
+            
         }
     }
 }

@@ -17,6 +17,8 @@ namespace VR {
         GameObject playerCamera;
         private bool stateAct;
         private bool gameEnd;
+        private bool bossDied;
+        private bool clearAct;
         public bool initEnd;
         public bool GameEnd { get { return gameEnd; } set { gameEnd = value; } }
         public delegate void onComplete(string msg);
@@ -73,14 +75,17 @@ namespace VR {
             else if (currentState == (int)STAGESTATE.ROAD)
             {
                 progress++;
-                if (progress >= 751)
-                    progress = 0;
+                if (progress >= 200)
+                {
+                    currentState = (int)STAGESTATE.BOSS;
+                }                    
 
             }
             //ボス戦の時の処理
             else if (currentState == (int)STAGESTATE.BOSS)
             {
-
+                if(bossDied)
+                    currentState = (int)STAGESTATE.CLEAR;
             }
             //ゲームオーバーの時の処理
             else if (currentState == (int)STAGESTATE.GAMEOVER)
@@ -90,13 +95,17 @@ namespace VR {
             }//ステージクリアの時の処理
             else if (currentState == (int)STAGESTATE.CLEAR)
             {
-
+                clearAct = true;
             }
 
 
         }
       
+        public bool GetClear()
+        {
 
+            return clearAct;
+        }
         public void InitAct(onComplete callback)
         {
             
