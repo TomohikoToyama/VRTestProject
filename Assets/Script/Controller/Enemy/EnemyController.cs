@@ -11,8 +11,9 @@ namespace VR
         {
             None = 0,
             Act = 1,
-            Escape = 2,
-            Death = 3
+            Attack = 2,
+            Escape = 3,
+            Death = 4
         }
         public GameObject shot;
         public bool bShot;
@@ -51,11 +52,18 @@ namespace VR
         // Update is called once per frame
         void Update()
         {
-            Difficult = 2;
-            if (State == (int)currentState.Act)
+            Difficult = 1;
+            if(State == (int)currentState.None) {
+
+
+            }else if(State == (int)currentState.Act)
             {
 
-            }else if(State == (int)currentState.Escape)
+            }else if(State == (int)currentState.Attack) {
+
+
+            }
+            else if(State == (int)currentState.Escape)
             {
 
 
@@ -95,7 +103,7 @@ namespace VR
         //敵機初期化処理
         private void InitEnemy(int _health)
         {
-            
+            State = (int)currentState.None;
             Health = _health;
             ShotStock = 15;
             Score = 100;

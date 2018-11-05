@@ -72,7 +72,7 @@ namespace VR
             this.transform.localRotation = look;
             EOM.ShotBullet(shotObj,gameObject.transform.position, gameObject.transform.eulerAngles);
             EC.ShotStock --;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(1.0f);
 
             Debug.Log("弾生成終了");
             EC.bShot = false;
