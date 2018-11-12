@@ -289,9 +289,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Controller.cs" />
-    <Compile Include="Assets\IEnemy.cs" />
-    <Compile Include="Assets\PlayerSpawner.cs" />
     <Compile Include="Assets\Plugin\Almgp_particle_vol_1\script\sprite_sheet.cs" />
     <Compile Include="Assets\Plugin\ChristmasCookies\Scripts\BreakFruit.cs" />
     <Compile Include="Assets\Plugin\ChristmasCookies\Scripts\QuitOnEsc.cs" />
@@ -451,32 +448,38 @@
     <Compile Include="Assets\Plugin\SteamVR\Scripts\SteamVR_UpdatePoses.cs" />
     <Compile Include="Assets\Plugin\SteamVR\Scripts\SteamVR_Utils.cs" />
     <Compile Include="Assets\Plugin\UGUIImageShaderPack\Examples\TestController.cs" />
-    <Compile Include="Assets\Scene\test.cs" />
+    <Compile Include="Assets\Script\Controller\Controller.cs" />
     <Compile Include="Assets\Script\Controller\Enemy\BossController.cs" />
     <Compile Include="Assets\Script\Controller\Enemy\BossStatus.cs" />
     <Compile Include="Assets\Script\Controller\Enemy\EnemyAttackPattern.cs" />
     <Compile Include="Assets\Script\Controller\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Script\Controller\Enemy\EnemyMovePattern.cs" />
     <Compile Include="Assets\Script\Controller\Enemy\EnemyStatus.cs" />
+    <Compile Include="Assets\Script\Controller\EnemyObjectManager.cs" />
+    <Compile Include="Assets\Script\Controller\EnemyShot.cs" />
+    <Compile Include="Assets\Script\Controller\EnemySpwaner.cs" />
     <Compile Include="Assets\Script\Controller\GameStateManagerController.cs" />
     <Compile Include="Assets\Script\Controller\LaserPointer.cs" />
     <Compile Include="Assets\Script\Controller\MenuController.cs" />
+    <Compile Include="Assets\Script\Controller\MissileMover.cs" />
     <Compile Include="Assets\Script\Controller\MovePattern\MovePattern_1.cs" />
     <Compile Include="Assets\Script\Controller\MovePattern\MovePattern_2.cs" />
     <Compile Include="Assets\Script\Controller\MovePattern\MovePattern_3.cs" />
     <Compile Include="Assets\Script\Controller\MovePattern\MovePattern_4.cs" />
     <Compile Include="Assets\Script\Controller\MovePattern\MovePattern_5.cs" />
+    <Compile Include="Assets\Script\Controller\PlayerObjectManager.cs" />
+    <Compile Include="Assets\Script\Controller\PlayerShot.cs" />
+    <Compile Include="Assets\Script\Controller\PlayerSpawner.cs" />
     <Compile Include="Assets\Script\Controller\PlayerStatusController.cs" />
     <Compile Include="Assets\Script\Controller\ShotPattern\ShotPattern_1.cs" />
     <Compile Include="Assets\Script\Controller\ShotPattern\ShotPattern_2.cs" />
     <Compile Include="Assets\Script\Controller\ShotPattern\ShotPattern_3.cs" />
     <Compile Include="Assets\Script\Controller\ShotPattern\ShotPattern_4.cs" />
     <Compile Include="Assets\Script\Controller\ShotPattern\ShotPattern_5.cs" />
+    <Compile Include="Assets\Script\Controller\StageScroll.cs" />
+    <Compile Include="Assets\Script\Controller\StageSelect.cs" />
     <Compile Include="Assets\Script\Data\EnemyData.cs" />
     <Compile Include="Assets\Script\Data\EnemyDataLoader.cs" />
-    <Compile Include="Assets\Script\EnemyObjectManager.cs" />
-    <Compile Include="Assets\Script\EnemyShot.cs" />
-    <Compile Include="Assets\Script\EnemySpwaner.cs" />
     <Compile Include="Assets\Script\FadeAction.cs" />
     <Compile Include="Assets\Script\Interface\IGameStateManagerController.cs" />
     <Compile Include="Assets\Script\Interface\IPlayerState.cs" />
@@ -490,12 +493,6 @@
     <Compile Include="Assets\Script\Manager\ScoreManager.cs" />
     <Compile Include="Assets\Script\Manager\SoundManager.cs" />
     <Compile Include="Assets\Script\Manager\StageManager.cs" />
-    <Compile Include="Assets\Script\MissileMover.cs" />
-    <Compile Include="Assets\Script\mover.cs" />
-    <Compile Include="Assets\Script\PlayerObjectManager.cs" />
-    <Compile Include="Assets\Script\PlayerShot.cs" />
-    <Compile Include="Assets\Script\StageScroll.cs" />
-    <Compile Include="Assets\Script\StageSelect.cs" />
     <Compile Include="Assets\Script\State\Enemy\EnemyAIFSM.cs" />
     <Compile Include="Assets\Script\State\Enemy\EnemyFSM.cs" />
     <Compile Include="Assets\Script\State\Enemy\EnemyFSMState.cs" />
